@@ -1,0 +1,25 @@
+@import url(./typography.css);
+
+* {
+  margin: 0;
+  padding: 0;
+  margin-block: 0;
+  margin-inline: 0;
+  padding-block: 0;
+  padding-inline: 0;
+}
+
+:root {
+  --regular-text-color: #393939;
+  --weak-accent-color: #e0a449;
+  --strong-accent-color: #f17900;
+  --surface-color: #ffffff;
+  --surface-stroke-color: #f0f1f1;
+  --button-color: #f9f9f9;
+  --hovered-button-color: #fbd7b21e;
+}
+
+body {
+  background-color: #fafafa;
+  font-family: 'Lexend Deca';
+}
