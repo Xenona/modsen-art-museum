@@ -4,17 +4,21 @@ import { FavouritesPage } from '@pages/favourites';
 import { ArtworkPage } from '@pages/artwork';
 import { NotFound } from '@pages/404';
 import '@styles/globals.css';
+import { AppHeader } from '@components/Header';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/fav" element={<FavouritesPage />} />
-        <Route path="/artwork/:id" element={<ArtworkPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <AppHeader />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/fav" element={<FavouritesPage />} />
+          <Route path="/artwork/:id" element={<ArtworkPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

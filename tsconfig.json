@@ -11,14 +11,14 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "types": ["@testing-library/jest-dom"],
     "baseUrl": "./",
     "paths": {
       "@components/*": ["src/components/*"],
       "@utils/*": ["src/utils/*"],
       "@pages/*": ["src/pages/*"],
       "@assets/*": ["src/assets/*"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@constants/*": ["src/constants/*"]
     }
   }
 }
