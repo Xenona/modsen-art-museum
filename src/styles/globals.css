@@ -23,3 +23,34 @@ body {
   background-color: #fafafa;
   font-family: 'Lexend Deca';
 }
+
+body > div > * {
+  margin: 0 15%;
+}
+
+a {
+  text-decoration: none;
+  color: var(--regular-text-color);
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+button:hover {
+  background-color: var(--hovered-button-color);
+}
+
+button:active {
+  background-color: var(--surface-stroke-color);
+}
+
+@media screen and (max-width: 720px) {
+  button:active:hover {
+    background-color: var(--hovered-button-color);
+  }
+  button:hover {
+    background-color: transparent;
+  }
+}
