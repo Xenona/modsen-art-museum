@@ -1,7 +1,7 @@
 import museumLogo from '@assets/logos/museum_logo.svg';
 import menu from '@assets/icons/menu.svg';
 import { useState } from 'react';
-import { Menu } from './menu';
+import { Menu } from './Menu';
 import {
   DesktopMenu,
   Header,
