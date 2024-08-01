@@ -4,7 +4,7 @@ export const ArtworkContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 35%));
   justify-content: space-between;
-  row-gap: 50px;
+  row-gap: 100px;
   column-gap: 5%;
   margin-bottom: 50px;
 
