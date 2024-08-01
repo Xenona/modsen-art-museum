@@ -33,7 +33,7 @@ export const Content = styled.div`
   overflow: hidden;
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h2`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

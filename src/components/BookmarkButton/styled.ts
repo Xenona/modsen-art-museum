@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const MainButton = styled.button`
+export const MainButton = styled.button<{ $profile?: boolean }>`
   --side: 59px;
   min-width: var(--side);
   min-height: var(--side);
@@ -8,11 +8,16 @@ export const MainButton = styled.button`
   width: var(--side);
   background-color: var(--button-color);
   border-radius: 100%;
-`;
 
-export const ProfileButton = styled(MainButton)`
-  background-color: var(--surface-color);
-  border: 1px solid var(--surface-stroke-color);
+  ${({ $profile }) =>
+    $profile &&
+    css`
+      background-color: var(--surface-color);
+      border: 1px solid var(--surface-stroke-color);
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    `}
 `;
 
 export const ButtonIcon = styled.img`

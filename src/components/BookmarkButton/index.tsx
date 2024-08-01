@@ -4,7 +4,13 @@ import { useFavStorageContext } from '@components/FavStorageProvider';
 import { useState } from 'react';
 import { ButtonIcon, MainButton } from './styled';
 
-export function BookmarkButton({ id }: { id: number }) {
+export function BookmarkButton({
+  id,
+  profile,
+}: {
+  id: number;
+  profile?: boolean;
+}) {
   const favStorageContext = useFavStorageContext();
   const [isSavedToFav, setIsSavedToFav] = useState<boolean>(
     favStorageContext.check(id),
@@ -21,6 +27,7 @@ export function BookmarkButton({ id }: { id: number }) {
 
   return (
     <MainButton
+      $profile={profile}
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
