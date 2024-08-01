@@ -1,4 +1,4 @@
-import { Img, Text, ArtworkCard as Card } from './styled';
+import { SquareImg, Text, ArtworkCard as Card } from './styled';
 import { InfoCard } from '@components/InfoCard';
 
 export interface IData {
@@ -8,6 +8,11 @@ export interface IData {
   isPublicDomain: boolean;
   altText: string;
   id: number;
+  year?: string;
+  artistNationality?: string;
+  dimensions?: string;
+  creditLine?: string;
+  repository?: string;
 }
 
 export function ArtworkCard({ id }: { id: number }) {
@@ -40,7 +45,7 @@ export function ArtworkCard({ id }: { id: number }) {
 
   return (
     <Card>
-      <Img src={data.imgSrc} alt={data.altText} />
+      <SquareImg src={data.imgSrc} alt={data.altText} />
       <Text>
         <InfoCard data={data} withImage={false} />
       </Text>

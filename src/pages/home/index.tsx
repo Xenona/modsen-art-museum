@@ -1,17 +1,17 @@
-import { HeadLine } from '@components/HeadLine';
 import { SearchInput } from '@components/SearchInput';
 import { SectionHeader } from '@components/SectionHeader';
 import { ShortGallery } from '@components/ShortGallery';
 import { SpecialGallery } from '@components/SpecialGallery';
 import { Main, SearchSection } from './styled';
+import { StyledH1 } from '@components/HeadLine/styled';
 
 export function HomePage() {
   return (
     <Main>
       <SearchSection>
-        <HeadLine>
+        <StyledH1>
           Let's Find Some <span>Art</span> <br /> Here!
-        </HeadLine>
+        </StyledH1>
         <SearchInput />
       </SearchSection>
       <SpecialGallery />
