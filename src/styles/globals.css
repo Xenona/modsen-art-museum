@@ -35,6 +35,12 @@ a {
   color: var(--regular-text-color);
 }
 
+h4 {
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--weak-accent-color);
+}
+
 button {
   background: none;
   border: none;
@@ -52,6 +58,7 @@ button:active {
   button:active:hover {
     background-color: var(--hovered-button-color);
   }
+
   button:hover {
     background-color: transparent;
   }
