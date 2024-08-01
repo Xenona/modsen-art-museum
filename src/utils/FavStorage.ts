@@ -28,4 +28,9 @@ export class FavStorage {
     const withoutGivenId = ids.filter((id) => id != rmId);
     localStorage.setItem(FavStorage.KEY, JSON.stringify(withoutGivenId));
   }
+
+  public static idExists(id: number): boolean {
+    const ids = FavStorage.getAllIds();
+    return ids.includes(id);
+  }
 }
