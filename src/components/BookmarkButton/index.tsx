@@ -20,7 +20,13 @@ export function BookmarkButton({ id }: { id: number }) {
   };
 
   return (
-    <MainButton onClick={() => handleClick(id)}>
+    <MainButton
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        handleClick(id);
+      }}
+    >
       {isSavedToFav ? (
         <ButtonIcon
           src={bookmarkFilledIcon}

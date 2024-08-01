@@ -9,6 +9,7 @@ export const SearchContainer = styled.label`
   background-color: #3939390c;
   align-items: center;
   padding: 16px;
+  margin: 0 auto;
 `;
 
 export const SearchInput = styled.input`
