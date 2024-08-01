@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
 export const Header = styled.header`
-  margin: 0 !important;
+  margin: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 120px;
-  padding: 0 8%;
+  padding: 32px 8%;
   background: linear-gradient(
     90deg,
     rgba(52, 51, 51, 1) 17%,
@@ -15,16 +14,11 @@ export const Header = styled.header`
   );
 
   @media screen and (max-width: 720px) {
-    background-color: antiquewhite;
     flex-direction: column;
     height: fit-content;
     gap: 30px;
     padding: 10px 30px 30px;
   }
-`;
-
-export const Logo = styled.img`
-  height: 50%;
 `;
 
 export const MobileMenuButton = styled.button`
