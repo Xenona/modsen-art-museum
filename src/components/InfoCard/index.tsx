@@ -1,4 +1,13 @@
+import { BookmarkButton } from '@components/BookmarkButton';
 import './styles.css';
+import {
+  Author,
+  Card,
+  Content,
+  PublicDomain,
+  Thumbnail,
+  Title,
+} from './styled';
 
 export function InfoCard({
   id,
@@ -21,11 +30,16 @@ export function InfoCard({
   };
 
   return (
-    <div>
-      {withImage && <img src={data.imgSrc} alt={data.altText} />}
-      <div>
-        <h3></h3>
-      </div>
-    </div>
+    <Card>
+      {withImage && <Thumbnail src={data.imgSrc} alt={data.altText} />}
+      <Content>
+        <Title>{data.title}</Title>
+        <Author>{data.artist}</Author>
+        <PublicDomain>
+          {data.isPublicDomain ? 'Public' : 'Private'}
+        </PublicDomain>
+      </Content>
+      <BookmarkButton id={data.id} />
+    </Card>
   );
 }
