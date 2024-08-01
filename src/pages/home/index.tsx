@@ -1,4 +1,5 @@
 import { HeadLine } from '@components/HeadLine';
+import { InfoCard } from '@components/InfoCard';
 import { SearchInput } from '@components/SearchInput';
 import { SectionHeader } from '@components/SectionHeader';
 
@@ -15,6 +16,7 @@ export function HomePage() {
           bottomText="Our special gallery"
         />
       </section>
+      <InfoCard id={1} withImage={true} />
     </>
   );
 }
