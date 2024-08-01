@@ -5,6 +5,9 @@ export const Card = styled.div`
   padding: 16px;
   gap: 16px;
   align-items: center;
+  background-color: var(--surface-color);
+  border: 1px solid var(--surface-stroke-color);
+  justify-content: space-between;
 `;
 
 export const Thumbnail = styled.img`
@@ -17,7 +20,11 @@ export const Thumbnail = styled.img`
 
 export const Content = styled.div`
   position: relative;
-  width: 100%;
+  width: 70%;
+
+  @media screen and (max-width: 1300px) {
+    width: 60%;
+  }
 `;
 
 export const Title = styled.h3`

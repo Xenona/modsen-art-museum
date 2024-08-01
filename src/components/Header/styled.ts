@@ -6,7 +6,7 @@ export const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   height: 120px;
-  padding: 0 15%;
+  padding: 0 8%;
   background: linear-gradient(
     90deg,
     rgba(52, 51, 51, 1) 17%,
