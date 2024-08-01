@@ -6,7 +6,7 @@ export function HomePage() {
   return (
     <>
       <HeadLine>
-        Let's Find <span>Some</span> Art <br /> Here!
+        Let's Find Some <span>Art</span> <br /> Here!
       </HeadLine>
       <SearchInput />
       <section>
