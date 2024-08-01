@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 
 export const MainButton = styled.button`
-  width: 59px;
-  height: 59px;
+  --side: 59px;
+  min-width: var(--side);
+  min-height: var(--side);
+  height: var(--side);
+  width: var(--side);
   background-color: var(--button-color);
   border-radius: 100%;
 `;
 
-export const ProfileButton = styled.button`
-  width: 59px;
-  height: 59px;
+export const ProfileButton = styled(MainButton)`
   background-color: var(--surface-color);
-  border-radius: 100%;
+  border: 1px solid var(--surface-stroke-color);
 `;
 
 export const ButtonIcon = styled.img`
