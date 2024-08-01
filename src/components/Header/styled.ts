@@ -78,22 +78,16 @@ export const Nav = styled.nav`
   }
 
   li {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 4px;
     font-family: 'Inter';
 
     a {
       color: var(--surface-color);
       text-decoration: none;
       white-space: nowrap;
-    }
-
-    &:active {
-      transform: translateY(10px);
-      outline: none;
-      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     img {

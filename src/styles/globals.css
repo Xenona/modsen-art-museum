@@ -33,6 +33,13 @@ body > div > * {
 a {
   text-decoration: none;
   color: var(--regular-text-color);
+  display: block;
+
+  &:active {
+    transform: translateY(10px);
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 h4 {
@@ -44,6 +51,7 @@ h4 {
 button {
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 button:hover {
