@@ -27,7 +27,7 @@ body {
 }
 
 body > div > * {
-  margin: 0 15%;
+  margin: 0 8%;
 }
 
 a {
@@ -62,6 +62,14 @@ button:active {
   background-color: var(--surface-stroke-color);
 }
 
+.artwork-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 35%));
+  justify-content: space-between;
+  row-gap: 1%;
+  column-gap: 5%;
+}
+
 @media screen and (max-width: 720px) {
   button:active:hover {
     background-color: var(--hovered-button-color);
@@ -69,5 +77,21 @@ button:active {
 
   button:hover {
     background-color: transparent;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .artwork-container {
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    column-gap: 5%;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .artwork-container {
+    grid-template-columns: repeat(1, auto);
+    justify-content: center;
+    column-gap: 5%;
   }
 }

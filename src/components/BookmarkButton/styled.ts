@@ -8,6 +8,8 @@ export const MainButton = styled.button`
   width: var(--side);
   background-color: var(--button-color);
   border-radius: 100%;
+  position: relative;
+  z-index: 1;
 `;
 
 export const ProfileButton = styled(MainButton)`
