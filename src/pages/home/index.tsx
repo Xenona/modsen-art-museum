@@ -1,3 +1,4 @@
+import { Footer } from '@components/Footer';
 import { HeadLine } from '@components/HeadLine';
 import { SearchInput } from '@components/SearchInput';
 import { SectionHeader } from '@components/SectionHeader';
@@ -19,6 +20,7 @@ export function HomePage() {
         />
         <ShortGallery />
       </section>
+      <Footer />
     </>
   );
 }
