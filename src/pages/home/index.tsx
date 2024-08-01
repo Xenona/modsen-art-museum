@@ -1,5 +1,6 @@
 import { HeadLine } from '@components/HeadLine';
 import { SearchInput } from '@components/SearchInput';
+import { SectionHeader } from '@components/SectionHeader';
 import { SpecialGallery } from '@components/SpecialGallery';
 
 export function HomePage() {
@@ -10,6 +11,13 @@ export function HomePage() {
       </HeadLine>
       <SearchInput />
       <SpecialGallery />
+      <section>
+        <SectionHeader
+          bottomText="Other works for you"
+          topText="Here some more"
+        />
+        <div></div>
+      </section>
     </>
   );
 }
