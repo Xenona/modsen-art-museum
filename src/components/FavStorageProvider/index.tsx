@@ -5,6 +5,7 @@ interface IFavStorageContext {
   save: (id: number) => void;
   remove: (id: number) => void;
   getAll: () => number[];
+  check: (id: number) => boolean;
 }
 
 const FavStorageContext = createContext<IFavStorageContext>({
@@ -15,6 +16,9 @@ const FavStorageContext = createContext<IFavStorageContext>({
     throw new Error('Use context inside provider');
   },
   getAll: () => {
+    throw new Error('Use context inside provider');
+  },
+  check: () => {
     throw new Error('Use context inside provider');
   },
 });
@@ -30,6 +34,7 @@ export function FavStorageProvider({
         save: (id: number) => FavStorage.setId(id),
         remove: (id: number) => FavStorage.removeId(id),
         getAll: () => FavStorage.getAllIds(),
+        check: (id: number) => FavStorage.idExists(id),
       }}
     >
       {children}
