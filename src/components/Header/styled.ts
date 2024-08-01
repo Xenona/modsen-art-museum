@@ -19,6 +19,7 @@ export const Header = styled.header`
     gap: 30px;
     padding: 10px 30px 30px;
   }
+  margin-bottom: 120px;
 `;
 
 export const MobileMenuButton = styled.button`

@@ -5,6 +5,7 @@ import { ArtworkPage } from '@pages/artwork';
 import { NotFound } from '@pages/404';
 import { AppHeader } from '@components/Header';
 import { FavStorageProvider } from '@components/FavStorageProvider';
+import { Footer } from '@components/Footer';
 import '@styles/globals.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </FavStorageProvider>
+      <Footer />
     </BrowserRouter>
   );
 }
