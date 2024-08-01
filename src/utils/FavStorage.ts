@@ -1,9 +1,9 @@
-export class Favourite {
+export class FavStorage {
   static KEY = 'favs';
 
   public static getAllIds(): number[] {
     const ids: number[] = JSON.parse(
-      localStorage.getItem(Favourite.KEY) ?? '[]',
+      localStorage.getItem(FavStorage.KEY) ?? '[]',
     );
     const filteredIds = ids.filter((id) => {
       if (typeof id === 'number') {
@@ -18,14 +18,14 @@ export class Favourite {
   }
 
   public static setId(id: number) {
-    const ids = Favourite.getAllIds();
+    const ids = FavStorage.getAllIds();
     ids.push(id);
-    localStorage.setItem(Favourite.KEY, JSON.stringify(ids));
+    localStorage.setItem(FavStorage.KEY, JSON.stringify(ids));
   }
 
   public static removeId(rmId: number) {
-    const ids = Favourite.getAllIds();
+    const ids = FavStorage.getAllIds();
     const withoutGivenId = ids.filter((id) => id != rmId);
-    localStorage.setItem(Favourite.KEY, JSON.stringify(withoutGivenId));
+    localStorage.setItem(FavStorage.KEY, JSON.stringify(withoutGivenId));
   }
 }
