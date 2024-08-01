@@ -1,6 +1,7 @@
 import { HeadLine } from '@components/HeadLine';
 import { SearchInput } from '@components/SearchInput';
 import { SectionHeader } from '@components/SectionHeader';
+import { ShortGallery } from '@components/ShortGallery';
 import { SpecialGallery } from '@components/SpecialGallery';
 
 export function HomePage() {
@@ -16,7 +17,7 @@ export function HomePage() {
           bottomText="Other works for you"
           topText="Here some more"
         />
-        <div></div>
+        <ShortGallery />
       </section>
     </>
   );

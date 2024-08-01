@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const Card = styled.div`
-  display: flex;
   padding: 16px;
   gap: 16px;
+  display: grid;
+  grid-template-columns: 80px auto 60px;
   align-items: center;
   background-color: var(--surface-color);
   border: 1px solid var(--surface-stroke-color);
@@ -20,16 +21,13 @@ export const Thumbnail = styled.img`
 
 export const Content = styled.div`
   position: relative;
-  width: 70%;
-
-  @media screen and (max-width: 1300px) {
-    width: 60%;
-  }
+  max-width: 100%;
+  overflow: hidden;
 `;
 
 export const Title = styled.h3`
-  overflow: hidden;
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 
   font-family: 'Inter';
