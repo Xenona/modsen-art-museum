@@ -8,6 +8,7 @@ import {
   Thumbnail,
   Title,
 } from './styled';
+import { Link } from 'react-router-dom';
 
 export function InfoCard({
   id,
@@ -30,16 +31,18 @@ export function InfoCard({
   };
 
   return (
-    <Card>
-      {withImage && <Thumbnail src={data.imgSrc} alt={data.altText} />}
-      <Content>
-        <Title>{data.title}</Title>
-        <Author>{data.artist}</Author>
-        <PublicDomain>
-          {data.isPublicDomain ? 'Public' : 'Private'}
-        </PublicDomain>
-      </Content>
-      <BookmarkButton id={data.id} />
-    </Card>
+    <Link to={`/artwork/${data.id}`}>
+      <Card>
+        {withImage && <Thumbnail src={data.imgSrc} alt={data.altText} />}
+        <Content>
+          <Title>{data.title}</Title>
+          <Author>{data.artist}</Author>
+          <PublicDomain>
+            {data.isPublicDomain ? 'Public' : 'Private'}
+          </PublicDomain>
+        </Content>
+        <BookmarkButton id={data.id} />
+      </Card>
+    </Link>
   );
 }

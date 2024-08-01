@@ -8,12 +8,16 @@ export function Menu() {
     <Nav>
       <ul>
         <li>
-          <img src={homeIcon} alt="Home icon" />
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">
+            <img src={homeIcon} alt="Home icon" />
+            Home
+          </NavLink>
         </li>
         <li>
-          <img src={bookmarkIcon} alt="Bookmark icon" />
-          <NavLink to="/fav">Your favorites</NavLink>
+          <NavLink to="/fav">
+            <img src={bookmarkIcon} alt="Bookmark icon" />
+            Your favorites
+          </NavLink>
         </li>
       </ul>
     </Nav>
