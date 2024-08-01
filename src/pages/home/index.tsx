@@ -1,17 +1,19 @@
-import { Footer } from '@components/Footer';
 import { HeadLine } from '@components/HeadLine';
 import { SearchInput } from '@components/SearchInput';
 import { SectionHeader } from '@components/SectionHeader';
 import { ShortGallery } from '@components/ShortGallery';
 import { SpecialGallery } from '@components/SpecialGallery';
+import { Main, SearchSection } from './styled';
 
 export function HomePage() {
   return (
-    <>
-      <HeadLine>
-        Let's Find Some <span>Art</span> <br /> Here!
-      </HeadLine>
-      <SearchInput />
+    <Main>
+      <SearchSection>
+        <HeadLine>
+          Let's Find Some <span>Art</span> <br /> Here!
+        </HeadLine>
+        <SearchInput />
+      </SearchSection>
       <SpecialGallery />
       <section>
         <SectionHeader
@@ -20,7 +22,6 @@ export function HomePage() {
         />
         <ShortGallery />
       </section>
-      <Footer />
-    </>
+    </Main>
   );
 }

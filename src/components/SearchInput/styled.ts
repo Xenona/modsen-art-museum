@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import searchIcon from '@assets/icons/search.svg';
 
 export const SearchContainer = styled.label`
-  width: 60%;
+  width: 80%;
   display: flex;
   justify-content: space-between;
   border-radius: 16px;
