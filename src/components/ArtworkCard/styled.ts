@@ -13,7 +13,10 @@ export const Img = styled.img`
 
 export const Text = styled.div`
   width: 80%;
-  position: relative;
-  top: -50px;
-  margin: 0 auto;
+  position: absolute;
+  bottom: -50px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 `;
