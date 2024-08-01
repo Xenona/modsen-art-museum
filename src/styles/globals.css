@@ -22,6 +22,8 @@
 body {
   background-color: #fafafa;
   font-family: 'Lexend Deca';
+  font-weight: 400;
+  color: var(--regular-text-color);
 }
 
 body > div > * {
