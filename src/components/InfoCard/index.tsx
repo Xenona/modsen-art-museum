@@ -19,7 +19,7 @@ export function InfoCard({
 }) {
   return (
     <Link to={`/artwork/${data.id}`}>
-      <Card>
+      <Card withImage={withImage}>
         {withImage && <Thumbnail src={data.imgSrc} alt={data.altText} />}
         <Content>
           <Title>{data.title}</Title>
