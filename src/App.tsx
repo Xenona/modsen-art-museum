@@ -3,13 +3,14 @@ import { HomePage } from '@pages/home';
 import { FavouritesPage } from '@pages/favourites';
 import { ArtworkPage } from '@pages/artwork';
 import { NotFound } from '@pages/404';
-import '@styles/globals.css';
 import { AppHeader } from '@components/Header';
+import { FavStorageProvider } from '@components/FavStorageProvider';
+import '@styles/globals.css';
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter>
+      <FavStorageProvider>
         <AppHeader />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -17,8 +18,8 @@ function App() {
           <Route path="/artwork/:id" element={<ArtworkPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
-    </>
+      </FavStorageProvider>
+    </BrowserRouter>
   );
 }
 
