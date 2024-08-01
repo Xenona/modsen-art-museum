@@ -5,7 +5,7 @@ export const ArtworkCard = styled.div`
   position: relative;
 `;
 
-export const Img = styled.img`
+export const SquareImg = styled.img`
   width: 100%;
   aspect-ratio: 1 / 1.42;
   object-fit: cover;
