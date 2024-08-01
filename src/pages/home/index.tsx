@@ -1,9 +1,12 @@
+import { HeadLine } from '@components/HeadLine';
 import { SearchInput } from '@components/SearchInput';
 
 export function HomePage() {
   return (
     <>
-      <h1>{"Let's Find Some Art Here!"}</h1>
+      <HeadLine>
+        Let's Find <span>Some</span> Art <br /> Here!
+      </HeadLine>
       <SearchInput />
     </>
   );
