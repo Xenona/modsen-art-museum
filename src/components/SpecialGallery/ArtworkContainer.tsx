@@ -5,15 +5,72 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { ApiController } from '@utils/ApiController';
 import { ArtworkContainer as Card } from './styled';
 import { StubImage } from '@components/StubImage';
+import { Art } from '@utils/schema';
 
-export function ArtworkContainer({ page }: { page: number }) {
+const getValidDate = (art: Art): number | null => {
+  const startDate = art.date_start ? new Date(art.date_start).getTime() : null;
+  const endDate = art.date_end ? new Date(art.date_end).getTime() : null;
+  if (startDate !== null && endDate !== null) {
+    return Math.min(startDate, endDate);
+  }
+  return startDate ?? endDate ?? null;
+};
 
+export const sortingInfo = [
+  {
+    type: 'Title (A-Z)',
+    cb: (a: Art, b: Art) => {
+      const titleA = a.title ?? '';
+      const titleB = b.title ?? '';
+      return titleA.localeCompare(titleB);
+    },
+  },
+  {
+    type: 'Title (Z-A)',
+    cb: (a: Art, b: Art) => {
+      const titleA = a.title ?? '';
+      const titleB = b.title ?? '';
+      return titleB.localeCompare(titleA);
+    },
+  },
+  {
+    type: 'Date (min-max)',
+    cb: (a: Art, b: Art) => {
+      const dateA = getValidDate(a);
+      const dateB = getValidDate(b);
+      if (dateA === null && dateB === null) return 0;
+      if (dateA === null) return 1;
+      if (dateB === null) return -1;
+      return dateA - dateB;
+    },
+  },
+  {
+    type: 'Date (max-min)',
+    cb: (a: Art, b: Art) => {
+      const dateA = getValidDate(a);
+      const dateB = getValidDate(b);
+      if (dateA === null && dateB === null) return 0;
+      if (dateA === null) return 1;
+      if (dateB === null) return -1;
+      return dateB - dateA;
+    },
+  },
+];
+
+export function ArtworkContainer({
+  page,
+  sortingId,
+}: {
+  page: number;
+  sortingId: number;
+}) {
   const { data: artworks, error } = useSuspenseQuery({
     queryKey: ['page', page],
     queryFn: () => ApiController.getPage({ page }),
   });
 
   if (error) throw error;
+  artworks.sort(sortingInfo[sortingId].cb);
 
   return (
     <Card>
