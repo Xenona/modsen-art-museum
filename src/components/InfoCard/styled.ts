@@ -42,11 +42,17 @@ export const Title = styled.h2`
   font-weight: 500;
   letter-spacing: -0.5px;
   line-height: 26px;
+  font-size: 18px;
+
+  /* @media screen and (max-width: 720px) {
+    font-size: 10px;
+  }; */
 `;
 
 export const Author = styled.h4`
   letter-spacing: -0.1px;
   line-height: 26px;
+  font-family: 'Inter';
 `;
 
 export const PublicDomain = styled.p`
