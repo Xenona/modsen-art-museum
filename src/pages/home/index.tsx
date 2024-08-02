@@ -4,6 +4,7 @@ import { ShortGallery } from '@components/ShortGallery';
 import { SpecialGallery } from '@components/SpecialGallery';
 import { Main, SearchSection } from './styled';
 import { StyledH1 } from '@components/HeadLine/styled';
+import { Suspense } from 'react';
 
 export function HomePage() {
   return (
@@ -14,7 +15,11 @@ export function HomePage() {
         </StyledH1>
         <SearchInput />
       </SearchSection>
-      <SpecialGallery />
+
+      <Suspense>
+        <SpecialGallery />
+      </Suspense>
+
       <section>
         <SectionHeader
           bottomText="Other works for you"
