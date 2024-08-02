@@ -1,9 +1,9 @@
-import { ErrorPage } from '@pages/Error';
+import { Error } from '@pages/Error';
 
 export function NotFound() {
   return (
-    <ErrorPage>
+    <Error>
       <span>404</span> — page was not found!
-    </ErrorPage>
+    </Error>
   );
 }
