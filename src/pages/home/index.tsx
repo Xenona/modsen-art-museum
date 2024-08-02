@@ -2,8 +2,7 @@ import { SearchInput } from '@components/SearchInput';
 import { SectionHeader } from '@components/SectionHeader';
 import { ShortGallery } from '@components/ShortGallery';
 import { SpecialGallery } from '@components/SpecialGallery';
-import { Main, SearchSection } from './styled';
-import { StyledH1 } from '@components/HeadLine/styled';
+import { Main, SearchSection, StyledH1 } from './styled';
 import { Suspense } from 'react';
 
 export function HomePage() {
