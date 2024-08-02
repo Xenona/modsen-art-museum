@@ -1,6 +1,6 @@
-import { Title } from "@components/InfoCard/styled";
-import { Main } from "@pages/home/styled";
-import styled from "styled-components";
+import { Title } from '@components/InfoCard/styled';
+import { Main } from '@pages/home/styled';
+import styled from 'styled-components';
 
 export const Figure = styled.figure`
   position: relative;
@@ -43,6 +43,7 @@ export const ArticleTitle = styled(Title)`
   font-size: 32px;
   margin-bottom: 32px;
   white-space: normal;
+  line-height: normal;
 `;
 
 export const ListItem = styled.li`
