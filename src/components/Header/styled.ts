@@ -17,7 +17,7 @@ export const Header = styled.header`
     flex-direction: column;
     height: fit-content;
     gap: 30px;
-    padding: 10px 30px 30px;
+    padding: 30px;
   }
   margin-bottom: 120px;
 `;
