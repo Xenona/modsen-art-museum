@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 
 export interface ErrorBoundaryProps {
   children: ReactNode;
+  customErrorC?: ReactNode;
 }
 
 export interface ErrorBoundaryState {
@@ -17,8 +18,10 @@ export class ErrorBoundary extends React.Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
 > {
+  private customErrorC: ReactNode | null;
   constructor(props: ErrorBoundaryProps) {
     super(props);
+    this.customErrorC = props.customErrorC;
     this.state = { hasError: false };
   }
 
@@ -30,7 +33,9 @@ export class ErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       // TODO not technically correct
-      return <ServerError />;
+      if (this.customErrorC) return this.customErrorC;
+      
+      return <ServerError /> ;
     }
     return this.props.children;
   }

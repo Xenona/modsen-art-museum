@@ -8,9 +8,9 @@ import {
   Title,
 } from "./styled";
 import { Link } from "react-router-dom";
-import { Art } from "@components/SpecialGallery";
 import { IMAGE_LOWQ_ENDPOINT } from "@constants/api";
 import { StubImage } from "@components/StubImage";
+import { Art } from "@utils/schema";
 
 export function InfoCard({
   data,
