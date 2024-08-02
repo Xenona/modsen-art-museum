@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const Card = styled.div<{ withImage: boolean }>`
+export const Card = styled.div<{ $withImage: boolean }>`
   padding: 16px;
   gap: 16px;
   display: grid;
@@ -10,7 +10,7 @@ export const Card = styled.div<{ withImage: boolean }>`
   border: 1px solid var(--surface-stroke-color);
   justify-content: space-between;
   ${(props) =>
-    props.withImage
+    props.$withImage
       ? css`
           grid-template-columns: 80px auto 60px;
         `
