@@ -7,4 +7,6 @@ export const StubImage = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+  min-height: 80px;
+  min-width: 80px;
 `;
