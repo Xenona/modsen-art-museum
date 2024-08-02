@@ -8,24 +8,30 @@ import {
   Title,
 } from './styled';
 import { Link } from 'react-router-dom';
-import { IData } from '@components/ArtworkCard';
+import { Art } from '@components/SpecialGallery';
+import { IMAGE_LOWQ_ENDPOINT } from '@constants/api';
 
 export function InfoCard({
   data,
   withImage,
 }: {
-  data: IData;
+  data: Art;
   withImage: boolean;
 }) {
   return (
     <Link to={`/artwork/${data.id}`}>
       <Card $withImage={withImage}>
-        {withImage && <Thumbnail src={data.imgSrc} alt={data.altText} />}
+        {withImage && (
+          <Thumbnail
+            src={IMAGE_LOWQ_ENDPOINT(data.image_id)}
+            alt={data.thumbnail?.alt_text ?? ''}
+          />
+        )}
         <Content>
           <Title>{data.title}</Title>
-          <Author>{data.artist}</Author>
+          <Author>{data.artist_title}</Author>
           <PublicDomain>
-            {data.isPublicDomain ? 'Public' : 'Private'}
+            {data.on_loan_display ? 'Public' : 'Private'}
           </PublicDomain>
         </Content>
         <BookmarkButton id={data.id} />
