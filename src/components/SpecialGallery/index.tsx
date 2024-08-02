@@ -13,8 +13,8 @@ export const dataSchema = z.object({
     z.object({
       id: z.number().int().positive(),
       artist_title: z.string().nullable(),
-      date_display: z.string(),
-      dimensions: z.string(),
+      date_display: z.string().nullable(),
+      dimensions: z.string().nullable(),
       image_id: z.string().nullable(),
       title: z.string(),
       credit_line: z.string(),
@@ -89,7 +89,7 @@ export function SpecialGallery() {
       </SelectorContainer>
 
       <Suspense fallback={<p>LOading...</p>}>
-        <ArtworkContainer page={1}></ArtworkContainer>
+        <ArtworkContainer page={currPage}></ArtworkContainer>
       </Suspense>
 
       <SelectorContainer>
