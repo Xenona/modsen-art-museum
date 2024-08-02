@@ -48,6 +48,7 @@ export const Article = styled.article`
 export const ArticleTitle = styled(Title)`
   font-size: 32px;
   margin-bottom: 32px;
+  white-space: normal;
 `;
 
 export const ListItem = styled.li`

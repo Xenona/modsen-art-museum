@@ -51,6 +51,7 @@ h4 {
 button {
   background: none;
   border: none;
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
 }
 
@@ -68,6 +69,6 @@ button:active {
   }
 
   button:hover {
-    background-color: transparent;
+    background-color: var(--surface-color);
   }
 }
