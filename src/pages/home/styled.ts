@@ -8,6 +8,7 @@ export const SearchSection = styled.section`
 
 export const Main = styled.main`
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 120px;
 `;
