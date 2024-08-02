@@ -21,14 +21,26 @@ export const ArtworkContainer = styled.div`
   }
 `;
 
-export const PaginatorContainer = styled.div`
+export const SelectorContainer = styled.div`
   display: flex;
   gap: 10px;
   justify-content: flex-end;
   align-items: center;
+  margin-top: 90px;
+  margin-bottom: 32px;
+
+  & button:first-of-type {
+    transform: rotateY(180deg);
+  }
 `;
 
-export const PaginatorButton = styled.button`
+export const SelectorParam = styled.p`
+  width: 150px;
+  background-color: var(--hovered-button-color);
+  text-align: center;
+`;
+
+export const SelectorButton = styled.button`
   height: 30px;
   width: 30px;
   padding: auto;
@@ -47,9 +59,5 @@ export const PaginatorButton = styled.button`
   &.active:hover,
   &.active:active:hover {
     background-color: var(--strong-accent-color);
-  }
-
-  &:first-child {
-    transform: rotateY(180deg);
   }
 `;
