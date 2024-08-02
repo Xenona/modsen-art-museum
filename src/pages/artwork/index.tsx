@@ -9,22 +9,18 @@ import {
   ListItem,
   MainHorizontal,
 } from "./styled";
-import { Art } from "@components/SpecialGallery";
 import { IMAGE_HIGHQ_ENDPOINT } from "@constants/api";
 import {
   Image,
   ImageFigure,
 } from "@components/SpecialGallery/ArtworkCard.styled";
 import { StubImage } from "@components/StubImage";
+import { Art } from "@utils/schema";
 export function ArtworkPage() {
   const { id } = useParams();
   const { state } = useLocation();
 
   const data: Art = state;
-
-  let a = !!data.image_id ? IMAGE_HIGHQ_ENDPOINT(data.image_id) : "";
-
-  console.log(data.image_id, a);
 
   return (
     <MainHorizontal>
