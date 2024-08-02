@@ -1,8 +1,7 @@
-import { StyledH1 } from '@components/HeadLine/styled';
 import { SectionHeader } from '@components/SectionHeader';
 import bookmarkIcom from '@assets/icons/bookmark_bright.svg';
 import { BigIcon } from './styled';
-import { Main } from '@pages/home/styled';
+import { Main, StyledH1 } from '@pages/home/styled';
 import { ShortGallery } from '@components/ShortGallery';
 
 export function FavouritesPage() {
