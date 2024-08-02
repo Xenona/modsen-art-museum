@@ -1,3 +1,9 @@
+import { ErrorPage } from '@pages/Error';
+
 export function ServerError() {
-  return <>500 - something has happened</>;
+  return (
+    <ErrorPage>
+      <span>500</span> — something wrong has happened!
+    </ErrorPage>
+  );
 }
