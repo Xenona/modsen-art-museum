@@ -1,7 +1,6 @@
 import { BookmarkButton } from "@components/BookmarkButton";
 import { Link, useLocation, useParams } from "react-router-dom";
 import {
-  RectImage,
   Article,
   ArticleTitle,
   Figure,
@@ -29,7 +28,7 @@ export function ArtworkPage() {
 
   return (
     <MainHorizontal>
-      <Figure style={data.image_id ? { cursor: "default" } : {}}>
+      <Figure >
         {!!data.image_id ? (
           <Link to={IMAGE_HIGHQ_ENDPOINT(data.image_id)}>
             <ImageFigure>
