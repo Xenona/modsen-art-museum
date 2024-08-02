@@ -14,8 +14,6 @@ export const RectImage = styled.img`
   height: auto;
   object-fit: cover;
   aspect-ratio: 1 / 1.2;
-
-  max-width: 100%;
 `;
 
 export const MainHorizontal = styled(Main)`

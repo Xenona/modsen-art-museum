@@ -5,9 +5,15 @@ export const ArtworkCard = styled.div`
   position: relative;
 `;
 
-export const SquareImg = styled.img`
+export const ImageFigure = styled.div`
   width: 100%;
-  aspect-ratio: 1 / 1.42;
+  height: auto;
+  aspect-ratio: 1 / 1.2;
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 `;
 

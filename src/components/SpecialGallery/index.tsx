@@ -1,20 +1,38 @@
 import { SectionHeader } from '@components/SectionHeader';
-import { ArtworkCard } from '@components/ArtworkCard';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import arrowIcon from '@assets/icons/arrow.svg';
-import {
-  ArtworkContainer,
-  SelectorButton,
-  SelectorContainer,
-  SelectorParam,
-} from './styled';
+import { SelectorButton, SelectorContainer, SelectorParam } from './styled';
+import { ArtworkContainer } from './ArtworkContainer';
+import { z } from 'zod';
+
+export const dataSchema = z.object({
+  pagination: z.object({
+    total_pages: z.number().int().nonnegative(),
+  }),
+  data: z.array(
+    z.object({
+      id: z.number().int().positive(),
+      artist_title: z.string().nullable(),
+      date_display: z.string(),
+      dimensions: z.string(),
+      image_id: z.string().nullable(),
+      title: z.string(),
+      credit_line: z.string(),
+      on_loan_display: z.string().nullable(),
+      artist_display: z.string().nullable(),
+      thumbnail: z.object({ alt_text: z.string().nullable() }).nullable(),
+    }),
+  ),
+});
+
+export type Art = z.infer<typeof dataSchema>['data'][number];
 
 export function SpecialGallery() {
   const [currPage, setCurrPage] = useState<number>(1);
   const [sortingParamId, setSortingParamId] = useState<number>(0);
+
   const maxVisibleButtons = 4;
-  // TODO fetch that
-  const maxPage = 10;
+  const maxPage = 10; //parsedData.data.pagination.total_pages;
 
   const getVisiblePageNumbers = () => {
     let start = Math.max(currPage - Math.floor(maxVisibleButtons / 2), 1);
@@ -70,15 +88,9 @@ export function SpecialGallery() {
         </SelectorButton>
       </SelectorContainer>
 
-      <ArtworkContainer>
-        <ArtworkCard id={1} />
-        <ArtworkCard id={2} />
-        <ArtworkCard id={2} />
-        <ArtworkCard id={1} />
-        <ArtworkCard id={1} />
-        <ArtworkCard id={2} />
-        <ArtworkCard id={1} />
-      </ArtworkContainer>
+      <Suspense fallback={<p>LOading...</p>}>
+        <ArtworkContainer page={1}></ArtworkContainer>
+      </Suspense>
 
       <SelectorContainer>
         <SelectorButton
