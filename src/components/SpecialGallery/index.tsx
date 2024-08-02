@@ -4,12 +4,14 @@ import { useState } from 'react';
 import arrowIcon from '@assets/icons/arrow.svg';
 import {
   ArtworkContainer,
-  PaginatorButton,
-  PaginatorContainer,
+  SelectorButton,
+  SelectorContainer,
+  SelectorParam,
 } from './styled';
 
 export function SpecialGallery() {
   const [currPage, setCurrPage] = useState<number>(1);
+  const [sortingParamId, setSortingParamId] = useState<number>(0);
   const maxVisibleButtons = 4;
   // TODO fetch that
   const maxPage = 10;
@@ -30,6 +32,12 @@ export function SpecialGallery() {
   };
 
   //TODO add sorting algo
+  const sortingInfo = [
+    'Title (A-Z)',
+    'Title (Z-A)',
+    'Date (min-max)',
+    'Date (max-min)',
+  ];
 
   return (
     <section>
@@ -37,6 +45,31 @@ export function SpecialGallery() {
         topText="Topics for you"
         bottomText="Our special gallery"
       />
+
+      <SelectorContainer>
+        <b>Sort by:</b>
+        <SelectorButton
+          onClick={() =>
+            setSortingParamId(
+              (sortingParamId - 1 + sortingInfo.length) % sortingInfo.length,
+            )
+          }
+        >
+          <img src={arrowIcon} aria-label="Previous" />
+        </SelectorButton>
+
+        <SelectorParam>{sortingInfo[sortingParamId]}</SelectorParam>
+        <SelectorButton
+          onClick={() =>
+            setSortingParamId(
+              (sortingParamId + 1 + sortingInfo.length) % sortingInfo.length,
+            )
+          }
+        >
+          <img src={arrowIcon} aria-label="Next" />
+        </SelectorButton>
+      </SelectorContainer>
+
       <ArtworkContainer>
         <ArtworkCard id={1} />
         <ArtworkCard id={2} />
@@ -47,27 +80,27 @@ export function SpecialGallery() {
         <ArtworkCard id={1} />
       </ArtworkContainer>
 
-      <PaginatorContainer className="paginator">
-        <PaginatorButton
+      <SelectorContainer>
+        <SelectorButton
           onClick={() => setCurrPage((prev) => Math.max(prev - 1, 1))}
         >
-          <img src={arrowIcon} alt="Previous" />
-        </PaginatorButton>
+          <img src={arrowIcon} aria-label="Previous" />
+        </SelectorButton>
         {getVisiblePageNumbers().map((page) => (
-          <PaginatorButton
+          <SelectorButton
             key={page}
             onClick={() => setCurrPage(page)}
             className={currPage === page ? 'active' : ''}
           >
             {page}
-          </PaginatorButton>
+          </SelectorButton>
         ))}
-        <PaginatorButton
+        <SelectorButton
           onClick={() => setCurrPage((prev) => Math.min(prev + 1, maxPage))}
         >
-          <img src={arrowIcon} alt="Next" />
-        </PaginatorButton>
-      </PaginatorContainer>
+          <img src={arrowIcon} aria-label="Next" />
+        </SelectorButton>
+      </SelectorContainer>
     </section>
   );
 }
