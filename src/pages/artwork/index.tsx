@@ -1,6 +1,5 @@
-import { IData } from '@components/ArtworkCard';
-import { BookmarkButton } from '@components/BookmarkButton';
-import { Link } from 'react-router-dom';
+import { BookmarkButton } from "@components/BookmarkButton";
+import { Link, useLocation, useParams } from "react-router-dom";
 import {
   RectImage,
   Article,
@@ -10,32 +9,40 @@ import {
   Key,
   ListItem,
   MainHorizontal,
-} from './styled';
+} from "./styled";
+import { Art } from "@components/SpecialGallery";
+import { IMAGE_HIGHQ_ENDPOINT } from "@constants/api";
+import {
+  Image,
+  ImageFigure,
+} from "@components/SpecialGallery/ArtworkCard.styled";
+import { StubImage } from "@components/StubImage";
 export function ArtworkPage() {
-  // const { id } = useParams();
+  const { id } = useParams();
+  const { state } = useLocation();
 
-  // TODO fetch actual data by that id
-  const data: IData = {
-    imgSrc:
-      'https://t4.ftcdn.net/jpg/03/28/70/65/360_F_328706579_bG2atiqLbtMa7VayR93qoJagX6hxxhLO.jpg',
-    title: 'The Beach at Sainte-Adresse',
-    artist: 'Claude Monet',
-    isPublicDomain: true,
-    altText:
-      'Painting of a beach on a cloudy day with several sailboats on the water, a few rowboats on the shore, and two groupings of people on the sand.',
-    id: 1,
-    year: '1234-5433',
-    artistNationality: 'German',
-    creditLine: 'Rogers Fund, 1917',
-    dimensions: ' 19 3/8 × 13 11/16 in. (49.2 × 34.8 cm)',
-    repository: 'Metropolitan Museum of Art, New York, NY',
-  };
+  const data: Art = state;
+  const linkProps = !data.image_id
+    ? {
+        style: { pointerEvents: "none", cursor: "default" },
+        tabIndex: "-1",
+      }
+    : {};
 
   return (
     <MainHorizontal>
       <Figure>
-        <Link to={data.imgSrc}>
-          <RectImage src={data.imgSrc} alt={data.altText} />
+        <Link to={!!data.image_id ? IMAGE_HIGHQ_ENDPOINT(data.image_id) : ""}>
+          <ImageFigure>
+            {data.image_id ? (
+              <Image
+                src={IMAGE_HIGHQ_ENDPOINT(data.image_id)}
+                alt={data.thumbnail?.alt_text ?? ""}
+              />
+            ) : (
+              <StubImage />
+            )}
+          </ImageFigure>
         </Link>
         <BookmarkButton
           profile={true}
@@ -47,8 +54,8 @@ export function ArtworkPage() {
       <Article>
         <header>
           <ArticleTitle>{data.title}</ArticleTitle>
-          <Important>{data.artist}</Important>
-          <b>{data.year}</b>
+          <Important>{data.artist_title}</Important>
+          <b>{data.date_display}</b>
         </header>
 
         <section>
@@ -56,19 +63,19 @@ export function ArtworkPage() {
 
           <ul>
             <ListItem>
-              <Key>Artist Nationality:</Key> {data.artistNationality}
+              <Key>Artist Nationality:</Key> {data.artist_display}
             </ListItem>
             <ListItem>
               <Key>Dimensions of Sheet:</Key> {data.dimensions}
             </ListItem>
             <ListItem>
-              <Key>Credit Line:</Key> {data.creditLine}
+              <Key>Credit Line:</Key> {data.credit_line}
             </ListItem>
             <ListItem>
-              <Key>Repository:</Key> {data.repository}
+              <Key>Repository:</Key> {data.on_loan_display}
             </ListItem>
           </ul>
-          <p>{data.isPublicDomain ? 'Public Domain' : 'Not Public Domain'}</p>
+          <p>{data.on_loan_display ? "Public" : "Private"}</p>
         </section>
       </Article>
     </MainHorizontal>
