@@ -1,51 +1,47 @@
-import { SectionHeader } from "@components/SectionHeader";
-import { Suspense, useCallback, useMemo, useState } from "react";
-import arrowIcon from "@assets/icons/arrow.svg";
-import { SelectorButton, SelectorContainer, SelectorParam } from "./styled";
-import { ArtworkContainer } from "./ArtworkContainer";
-import { ErrorBoundary } from "@components/ErrorBoundary";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { ApiController } from "@utils/ApiController";
-import { useDebounce } from "@utils/Debouncer";
+import { SectionHeader } from '@components/SectionHeader';
+import { Suspense, useEffect, useState } from 'react';
+import arrowIcon from '@assets/icons/arrow.svg';
+import { SelectorButton, SelectorContainer, SelectorParam } from './styled';
+import { ArtworkContainer, sortingInfo } from './ArtworkContainer';
+import { ErrorBoundary } from '@components/ErrorBoundary';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { ApiController } from '@utils/ApiController';
+import { useDebounce } from '@utils/Debouncer';
 
 export function SpecialGallery() {
   const [currPage, setCurrPage] = useState<number>(1);
   const [maxPage, setMaxPage] = useState<number>(1);
-  const [sortingParamId, setSortingParamId] = useState<number>(0);
+  const [sortIdx, setSortIdx] = useState<number>(0);
   const debouncedCurrPage = useDebounce(currPage);
+  const debouncedSortIdx = useDebounce(sortIdx);
 
-  // const getVisiblePageNumbers = useCallback(() =>  {
-  //   const maxVisibleButtons = 4;
+  const { data: newMaxPage, error } = useSuspenseQuery({
+    queryKey: ['maxPage', debouncedCurrPage],
+    queryFn: () => ApiController.getTotalPages(),
+  });
 
+  useEffect(() => {
+    setMaxPage(newMaxPage);
+  }, [newMaxPage]);
 
-  //   // const {data: maxPage, error} = useSuspenseQuery({
-  //   //   queryKey: ['maxPage', currPage],
-  //   //   queryFn: () => ApiController.getTotalPages()
-  //   // })
+  if (error) throw error;
 
-  //   // if (error) throw error;
-  //   setMaxPage(maxPage);
+  const getVisiblePageNumbers = () => {
+    const maxVisibleButtons = 4;
 
-  //   let start = Math.max(currPage - Math.floor(maxVisibleButtons / 2), 1);
-  //   const end = Math.min(start + maxVisibleButtons - 1, maxPage);
+    let start = Math.max(currPage - Math.floor(maxVisibleButtons / 2), 1);
+    const end = Math.min(start + maxVisibleButtons - 1, maxPage);
 
-  //   if (end - start + 1 < maxVisibleButtons) {
-  //     start = Math.max(end - maxVisibleButtons + 1, 1);
-  //   }
+    if (end - start + 1 < maxVisibleButtons) {
+      start = Math.max(end - maxVisibleButtons + 1, 1);
+    }
 
-  //   const pages = [];
-  //   for (let i = start; i <= end; i++) {
-  //     pages.push(i);
-  //   }
-  //   return pages;
-  // }, [debouncedCurrPage])
-  //TODO add sorting algo
-  const sortingInfo = [
-    "Title (A-Z)",
-    "Title (Z-A)",
-    "Date (min-max)",
-    "Date (max-min)",
-  ];
+    const pages = [];
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+    return pages;
+  };
 
   return (
     <section>
@@ -58,20 +54,16 @@ export function SpecialGallery() {
         <b>Sort by:</b>
         <SelectorButton
           onClick={() =>
-            setSortingParamId(
-              (sortingParamId - 1 + sortingInfo.length) % sortingInfo.length,
-            )
+            setSortIdx((sortIdx - 1 + sortingInfo.length) % sortingInfo.length)
           }
         >
           <img src={arrowIcon} aria-label="Previous" />
         </SelectorButton>
 
-        <SelectorParam>{sortingInfo[sortingParamId]}</SelectorParam>
+        <SelectorParam>{sortingInfo[sortIdx].type}</SelectorParam>
         <SelectorButton
           onClick={() =>
-            setSortingParamId(
-              (sortingParamId + 1 + sortingInfo.length) % sortingInfo.length,
-            )
+            setSortIdx((sortIdx + 1 + sortingInfo.length) % sortingInfo.length)
           }
         >
           <img src={arrowIcon} aria-label="Next" />
@@ -80,28 +72,30 @@ export function SpecialGallery() {
 
       <ErrorBoundary>
         <Suspense fallback={<p>Loading artworks...</p>}>
-          <ArtworkContainer page={currPage}></ArtworkContainer>
+          <ArtworkContainer
+            page={currPage}
+            sortingId={debouncedSortIdx}
+          ></ArtworkContainer>
         </Suspense>
       </ErrorBoundary>
 
       <ErrorBoundary>
         <Suspense fallback={<p>Loading paginator...</p>}>
-
           <SelectorContainer>
             <SelectorButton
               onClick={() => setCurrPage((prev) => Math.max(prev - 1, 1))}
             >
               <img src={arrowIcon} aria-label="Previous" />
             </SelectorButton>
-            {/* {getVisiblePageNumbers().map((page) => (
+            {getVisiblePageNumbers().map((page) => (
               <SelectorButton
                 key={page}
                 onClick={() => setCurrPage(page)}
-                className={currPage === page ? "active" : ""}
+                className={currPage === page ? 'active' : ''}
               >
                 {page}
               </SelectorButton>
-            ))} */}
+            ))}
             <SelectorButton
               onClick={() => setCurrPage((prev) => Math.min(prev + 1, maxPage))}
             >
