@@ -1,9 +1,9 @@
-import { ErrorPage } from '@pages/Error';
+import { Error } from '@pages/Error';
 
 export function ServerError() {
   return (
-    <ErrorPage>
+    <Error>
       <span>500</span> — something wrong has happened!
-    </ErrorPage>
+    </Error>
   );
 }

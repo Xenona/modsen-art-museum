@@ -7,19 +7,23 @@ import { AppHeader } from '@components/Header';
 import { FavStorageProvider } from '@components/FavStorageProvider';
 import { Footer } from '@components/Footer';
 import '@styles/globals.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
+  const queryClient = new QueryClient();
   return (
     <BrowserRouter>
-      <FavStorageProvider>
-        <AppHeader />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/fav" element={<FavouritesPage />} />
-          <Route path="/artwork/:id" element={<ArtworkPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </FavStorageProvider>
+      <QueryClientProvider client={queryClient}>
+        <FavStorageProvider>
+          <AppHeader />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/fav" element={<FavouritesPage />} />
+            <Route path="/artwork/:id" element={<ArtworkPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </FavStorageProvider>
+      </QueryClientProvider>
       <Footer />
     </BrowserRouter>
   );
