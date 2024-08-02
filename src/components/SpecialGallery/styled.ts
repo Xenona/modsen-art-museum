@@ -43,7 +43,6 @@ export const SelectorParam = styled.p`
 export const SelectorButton = styled.button`
   height: 30px;
   width: 30px;
-  padding: auto;
   border-radius: 4px;
   font-weight: 300;
   display: flex;
