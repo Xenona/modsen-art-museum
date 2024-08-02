@@ -19,6 +19,12 @@
   --hovered-button-color: #fbd7b24d;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
   background-color: #fafafa;
   font-family: 'Lexend Deca';
