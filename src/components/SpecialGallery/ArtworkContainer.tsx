@@ -13,7 +13,7 @@ export function ArtworkContainer({ page }: { page: number }) {
 
   const { data, error, isFetching } = useSuspenseQuery({
     queryKey: ['page', page],
-    queryFn: () => ApiController.getPage({ page: page - 1 }),
+    queryFn: () => ApiController.getPage({ page }),
   });
 
   if (error && !isFetching) {
@@ -41,7 +41,7 @@ export function ArtworkContainer({ page }: { page: number }) {
             )}
           </ImageFigure>
           <Text>
-            <InfoCard data={data} withImage={false} />
+            <InfoCard data={art} withImage={false} />
           </Text>
         </ArtworkCard>
       ))}

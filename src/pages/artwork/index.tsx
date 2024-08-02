@@ -22,28 +22,26 @@ export function ArtworkPage() {
   const { state } = useLocation();
 
   const data: Art = state;
-  const linkProps = !data.image_id
-    ? {
-        style: { pointerEvents: "none", cursor: "default" },
-        tabIndex: "-1",
-      }
-    : {};
+
+  let a = !!data.image_id ? IMAGE_HIGHQ_ENDPOINT(data.image_id) : "";
+
+  console.log(data.image_id, a);
 
   return (
     <MainHorizontal>
-      <Figure>
-        <Link to={!!data.image_id ? IMAGE_HIGHQ_ENDPOINT(data.image_id) : ""}>
-          <ImageFigure>
-            {data.image_id ? (
+      <Figure style={data.image_id ? { cursor: "default" } : {}}>
+        {!!data.image_id ? (
+          <Link to={IMAGE_HIGHQ_ENDPOINT(data.image_id)}>
+            <ImageFigure>
               <Image
                 src={IMAGE_HIGHQ_ENDPOINT(data.image_id)}
                 alt={data.thumbnail?.alt_text ?? ""}
               />
-            ) : (
-              <StubImage />
-            )}
-          </ImageFigure>
-        </Link>
+            </ImageFigure>
+          </Link>
+        ) : (
+          <StubImage />
+        )}
         <BookmarkButton
           profile={true}
           id={data.id}
@@ -72,7 +70,7 @@ export function ArtworkPage() {
               <Key>Credit Line:</Key> {data.credit_line}
             </ListItem>
             <ListItem>
-              <Key>Repository:</Key> {data.on_loan_display}
+              <Key>Repository:</Key> {data.on_loan_display ? data.on_loan_display : "Private collections"}
             </ListItem>
           </ul>
           <p>{data.on_loan_display ? "Public" : "Private"}</p>
