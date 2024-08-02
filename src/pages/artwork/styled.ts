@@ -1,19 +1,15 @@
-import { Title } from '@components/InfoCard/styled';
-import { Main } from '@pages/home/styled';
-import styled from 'styled-components';
+import { Title } from "@components/InfoCard/styled";
+import { Main } from "@pages/home/styled";
+import styled from "styled-components";
 
 export const Figure = styled.figure`
   position: relative;
-  cursor: zoom-in;
   width: 100%;
   flex: 1;
-`;
 
-export const RectImage = styled.img`
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  aspect-ratio: 1 / 1.2;
+  & img {
+    cursor: zoom-in;
+  }
 `;
 
 export const MainHorizontal = styled(Main)`
