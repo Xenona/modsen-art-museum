@@ -1,16 +1,10 @@
 import { BookmarkButton } from "@components/BookmarkButton";
-import {
-  Author,
-  Card,
-  Content,
-  PublicDomain,
-  Thumbnail,
-  Title,
-} from "./styled";
+import { Author, Card, Content, PublicDomain, Title } from "./styled";
 import { Link } from "react-router-dom";
 import { IMAGE_LOWQ_ENDPOINT } from "@constants/api";
 import { StubImage } from "@components/StubImage";
 import { Art } from "@utils/schema";
+import { SkeletonOrImage } from "@components/ImageOrSkeleton";
 
 export function InfoCard({
   data,
@@ -24,7 +18,8 @@ export function InfoCard({
       <Card $withImage={withImage}>
         {withImage ? (
           <StubImage condition={!!data.image_id}>
-            <Thumbnail
+            <SkeletonOrImage
+              isThumbnail={true}
               src={IMAGE_LOWQ_ENDPOINT(data.image_id as string)}
               alt={data.thumbnail?.alt_text ?? ""}
             />

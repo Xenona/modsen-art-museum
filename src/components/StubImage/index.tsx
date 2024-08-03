@@ -1,4 +1,4 @@
-import { StubImage as Image } from "./styled";
+import { StubImage as StImage } from "./styled";
 import GreekFacade from "@assets/icons/greek_facade.svg";
 
 export function StubImage({
@@ -10,9 +10,9 @@ export function StubImage({
 }) {
   if (!condition) {
     return (
-      <Image>
+      <StImage>
         <img src={GreekFacade} alt="Yellow Ancient Greek facade" />
-      </Image>
+      </StImage>
     );
   } else {
     return <>{children}</>;

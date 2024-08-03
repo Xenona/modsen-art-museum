@@ -1,5 +1,5 @@
 import { IMAGE_LOWQ_ENDPOINT } from "@constants/api";
-import { ArtworkCard, Image, ImageFigure, Text } from "./ArtworkCard.styled";
+import { ArtworkCard, ImageFigure, Text } from "./ArtworkCard.styled";
 import { InfoCard } from "@components/InfoCard";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ApiController } from "@utils/ApiController";
@@ -8,6 +8,7 @@ import { StubImage } from "@components/StubImage";
 import { Art } from "@utils/schema";
 import { ApiError } from "@utils/ApiError";
 import { ServerError } from "@pages/500";
+import { SkeletonOrImage } from "@components/ImageOrSkeleton";
 
 const getValidDate = (art: Art): number | null => {
   const startDate = art.date_start ? new Date(art.date_start).getTime() : null;
@@ -82,7 +83,7 @@ export function ArtworkContainer({
         <ArtworkCard key={art.id}>
           <ImageFigure>
             <StubImage condition={!!art.image_id}>
-              <Image
+              <SkeletonOrImage
                 src={IMAGE_LOWQ_ENDPOINT(art.image_id as string)}
                 alt={art.thumbnail?.alt_text ?? ""}
               />
