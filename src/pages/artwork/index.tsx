@@ -17,6 +17,7 @@ import { ApiController } from "@utils/ApiController";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ApiError } from "@utils/ApiError";
 import { SkeletonOrImage } from "@components/ImageOrSkeleton";
+import { SafeHtml } from "@utils/htmlStripper";
 export function ArtworkPage() {
   const { id } = useParams();
   const { state } = useLocation();
@@ -84,9 +85,9 @@ export function ArtworkPage() {
               <Key>Credit Line:</Key> {artwork.credit_line}
             </ListItem>
             <ListItem>
-              <Key>Repository:</Key>{" "}
+              <Key>Repository:</Key>
               {artwork.on_loan_display
-                ? artwork.on_loan_display
+                ? SafeHtml(artwork.on_loan_display)
                 : "Private collections"}
             </ListItem>
           </ul>

@@ -5533,6 +5533,20 @@ strip-json-comments@^3.1.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
 
+style-to-js@1.1.12:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/style-to-js/-/style-to-js-1.1.12.tgz#112dd054231e71643514013a4475d4649bb2b581"
+  integrity sha512-tv+/FkgNYHI2fvCoBMsqPHh5xovwiw+C3X0Gfnss/Syau0Nr3IqGOJ9XiOYXoPnToHVbllKFf5qCNFJGwFg5mg==
+  dependencies:
+    style-to-object "1.0.6"
+
+style-to-object@1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/style-to-object/-/style-to-object-1.0.6.tgz#0c28aed8be1813d166c60d962719b2907c26547b"
+  integrity sha512-khxq+Qm3xEyZfKd/y9L3oIWQimxuc4STrQKtQn8aSDRHb8mFgpukgX1hdzfrMEW6JCjyJ8p89x+IUMVnCBI1PA==
+  dependencies:
+    inline-style-parser "0.2.3"
+
 styled-components@^6.1.12:
   version "6.1.12"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-6.1.12.tgz#0d9d511aacfb9052936146dcc2856559e6fae4df"
