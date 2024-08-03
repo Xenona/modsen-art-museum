@@ -59,4 +59,26 @@ export class ApiController {
       return new ApiError(422, "Retrieved data is in wrong format");
     return art.data.data;
   }
+
+  public static async getArtworks(ids: number[]): Promise<Art[]> {
+    const fetchPromises = ids.map((id) => this.getArtwork(id));
+    const results = await Promise.all(fetchPromises);
+
+    const artworks: Art[] = [];
+    const errors: ApiError[] = [];
+
+    results.forEach((result) => {
+      if (result instanceof ApiError) {
+        errors.push(result);
+      } else {
+        artworks.push(result);
+      }
+    });
+
+    if (errors.length) {
+      console.error("Some artworks could not be fetched:", errors);
+    }
+
+    return artworks;
+  }
 }

@@ -1,14 +1,12 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const Card = styled.div<{ $withImage: boolean }>`
   padding: 16px;
   gap: 16px;
   display: grid;
-  grid-template-columns: 80px auto 60px;
   align-items: center;
   background-color: var(--surface-color);
   border: 1px solid var(--surface-stroke-color);
-  justify-content: space-between;
   ${(props) =>
     props.$withImage
       ? css`
@@ -38,21 +36,21 @@ export const Title = styled.h2`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  font-family: 'Inter';
+  font-family: "Inter";
   font-weight: 500;
   letter-spacing: -0.5px;
   line-height: 26px;
   font-size: 18px;
 
-  /* @media screen and (max-width: 720px) {
-    font-size: 10px;
-  }; */
+  @media screen and (max-width: 720px) {
+    font-size: 14px;
+  }
 `;
 
 export const Author = styled.h4`
   letter-spacing: -0.1px;
   line-height: 26px;
-  font-family: 'Inter';
+  font-family: "Inter";
 `;
 
 export const PublicDomain = styled.p`
