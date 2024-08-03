@@ -1,15 +1,15 @@
-import menu from '@assets/icons/menu.svg';
-import { useState } from 'react';
-import { Menu } from './Menu';
-import museumLogo from '@assets/logos/museum_logo.svg';
+import menu from "@assets/icons/menu.svg";
+import { useState } from "react";
+import { Menu } from "./Menu";
+import museumLogo from "@assets/logos/museum_logo.svg";
 import {
   DesktopMenu,
   Header,
   MobileMenu,
   MobileMenuButton,
   TopLine,
-} from './styled';
-import { LinkedLogo } from './LinkedLogo';
+} from "./styled";
+import { LinkedLogo } from "./LinkedLogo";
 export function AppHeader() {
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
 
@@ -18,13 +18,13 @@ export function AppHeader() {
       <TopLine>
         <LinkedLogo
           img={museumLogo}
-          link={'/'}
+          link={"/"}
           alt={
-            'Logo of the museum, depicts an Ancient Greek temple facade and words - Museum of Art'
+            "Logo of the museum, depicts an Ancient Greek temple facade and words - Museum of Art"
           }
         />
         <MobileMenuButton onClick={() => setIsMenuOpened(!isMenuOpened)}>
-          <img src={menu} alt="Menu icon" />
+          <img src={menu} aria-label="Open or close menu" />
         </MobileMenuButton>
       </TopLine>
 
