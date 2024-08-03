@@ -63,4 +63,11 @@ describe('FavStorage', () => {
       JSON.stringify([1, 2, 4]),
     );
   });
+
+  it('should check if an id exists in the list', () => {
+    localStorage.setItem(FavStorage.KEY, JSON.stringify([1, 2, 3]));
+
+    expect(FavStorage.idExists(2)).toBe(true);
+    expect(FavStorage.idExists(4)).toBe(false);
+  });
 });
