@@ -7,6 +7,7 @@ import { ErrorBoundary } from "@components/ErrorBoundary";
 import { useDebounce } from "@utils/Debouncer";
 import { Paginator } from "@components/Paginator";
 import { PaginatorSkeleton } from "@components/skeletons/PaginatorSkeleton";
+import { SpecialGallerySkeleton } from "@components/skeletons/SpecialGallerySkeleton";
 
 export function SpecialGallery() {
   const [currPage, setCurrPage] = useState<number>(1);
@@ -21,7 +22,7 @@ export function SpecialGallery() {
       />
 
       <ErrorBoundary>
-        <Suspense fallback={<p>Loading artworks...</p>}>
+        <Suspense fallback={<SpecialGallerySkeleton />}>
           <SelectorContainer>
             <b>Sort by:</b>
             <SelectorButton
