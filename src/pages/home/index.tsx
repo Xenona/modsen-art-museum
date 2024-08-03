@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { RandomGallery } from "@components/RandomGallery";
 import { ErrorBoundary } from "@components/ErrorBoundary";
 import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
+import { SectionHeader } from "@components/SectionHeader";
 
 export function HomePage() {
   return (
@@ -22,11 +23,17 @@ export function HomePage() {
         </Suspense>
       </ErrorBoundary>
 
-      <ErrorBoundary>
-        <Suspense fallback={<ShortGallerySkeleton />}>
-          <RandomGallery />
-        </Suspense>
-      </ErrorBoundary>
+      <section>
+        <SectionHeader
+          bottomText="Other works for you"
+          topText="Here some more"
+        />
+        <ErrorBoundary>
+          <Suspense fallback={<ShortGallerySkeleton />}>
+            <RandomGallery />
+          </Suspense>
+        </ErrorBoundary>
+      </section>
     </Main>
   );
 }
