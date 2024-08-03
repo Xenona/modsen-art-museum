@@ -1,5 +1,5 @@
-import { FavStorage } from '@utils/FavStorage';
-import { createContext, useContext } from 'react';
+import { FavStorage } from "@utils/FavStorage";
+import { createContext, useContext } from "react";
 
 interface IFavStorageContext {
   save: (id: number) => void;
@@ -10,16 +10,16 @@ interface IFavStorageContext {
 
 const FavStorageContext = createContext<IFavStorageContext>({
   save: () => {
-    throw new Error('Use context inside provider');
+    throw new Error("Use context inside provider");
   },
   remove: () => {
-    throw new Error('Use context inside provider');
+    throw new Error("Use context inside provider");
   },
   getAll: () => {
-    throw new Error('Use context inside provider');
+    throw new Error("Use context inside provider");
   },
   check: () => {
-    throw new Error('Use context inside provider');
+    throw new Error("Use context inside provider");
   },
 });
 

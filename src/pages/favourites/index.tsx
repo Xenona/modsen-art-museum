@@ -1,8 +1,9 @@
-import { SectionHeader } from '@components/SectionHeader';
-import bookmarkIcom from '@assets/icons/bookmark_bright.svg';
-import { BigIcon } from './styled';
-import { Main, StyledH1 } from '@pages/home/styled';
-import { ShortGallery } from '@components/ShortGallery';
+import bookmarkIcom from "@assets/icons/bookmark_bright.svg";
+import { BigIcon } from "./styled";
+import { Main, StyledH1 } from "@pages/home/styled";
+import { ErrorBoundary } from "@components/ErrorBoundary";
+import { Suspense } from "react";
+import { FavGallery } from "@components/FavGallery";
 
 export function FavouritesPage() {
   return (
@@ -13,14 +14,11 @@ export function FavouritesPage() {
         <BigIcon src={bookmarkIcom} alt="Yellow bookmark icon" />
         <span>Favourites</span>
       </StyledH1>
-
-      <section>
-        <SectionHeader
-          topText={'Saved by you'}
-          bottomText={'Your favorites list'}
-        />
-        <ShortGallery />
-      </section>
+      <ErrorBoundary>
+        <Suspense fallback={<p>Loading favs</p>}>
+          <FavGallery />
+        </Suspense>
+      </ErrorBoundary>
     </Main>
   );
 }
