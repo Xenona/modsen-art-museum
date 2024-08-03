@@ -48,18 +48,16 @@ export function ArtworkPage() {
   return (
     <MainHorizontal>
       <Figure>
-        {artwork.image_id ? (
-          <Link to={IMAGE_HIGHQ_ENDPOINT(artwork.image_id)}>
+        <StubImage condition={!!artwork.image_id}>
+          <Link to={IMAGE_HIGHQ_ENDPOINT(artwork.image_id as string)}>
             <ImageFigure>
               <Image
-                src={IMAGE_HIGHQ_ENDPOINT(artwork.image_id)}
+                src={IMAGE_HIGHQ_ENDPOINT(artwork.image_id as string)}
                 alt={artwork.thumbnail?.alt_text ?? ""}
               />
             </ImageFigure>
           </Link>
-        ) : (
-          <StubImage />
-        )}
+        </StubImage>
         <BookmarkButton
           profile={true}
           id={artwork.id}

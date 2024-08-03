@@ -23,14 +23,12 @@ export function InfoCard({
     <Link to={`/artwork/${data.id}`} state={data}>
       <Card $withImage={withImage}>
         {withImage ? (
-          data.image_id ? (
+          <StubImage condition={!!data.image_id}>
             <Thumbnail
-              src={IMAGE_LOWQ_ENDPOINT(data.image_id)}
+              src={IMAGE_LOWQ_ENDPOINT(data.image_id as string)}
               alt={data.thumbnail?.alt_text ?? ""}
             />
-          ) : (
-            <StubImage />
-          )
+          </StubImage>
         ) : null}
         <Content>
           <Title>{data.title}</Title>

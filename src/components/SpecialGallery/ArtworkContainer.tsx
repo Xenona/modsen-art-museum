@@ -81,14 +81,12 @@ export function ArtworkContainer({
       {artworks.map((art) => (
         <ArtworkCard key={art.id}>
           <ImageFigure>
-            {art.image_id ? (
+            <StubImage condition={!!art.image_id}>
               <Image
-                src={IMAGE_LOWQ_ENDPOINT(art.image_id)}
+                src={IMAGE_LOWQ_ENDPOINT(art.image_id as string)}
                 alt={art.thumbnail?.alt_text ?? ""}
               />
-            ) : (
-              <StubImage />
-            )}
+            </StubImage>
           </ImageFigure>
           <Text>
             <InfoCard data={art} withImage={false} />
