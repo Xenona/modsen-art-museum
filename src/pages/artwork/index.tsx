@@ -1,5 +1,5 @@
 import { BookmarkButton } from "@components/BookmarkButton";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, Navigate, useLocation, useParams } from "react-router-dom";
 import {
   Article,
   ArticleTitle,
@@ -16,21 +16,44 @@ import {
 } from "@components/SpecialGallery/ArtworkCard.styled";
 import { StubImage } from "@components/StubImage";
 import { Art } from "@utils/schema";
+import { ApiController } from "@utils/ApiController";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { ApiError } from "@utils/ApiError";
 export function ArtworkPage() {
   const { id } = useParams();
   const { state } = useLocation();
 
-  const data: Art = state;
+  const artId = Number(id);
+  if (!id || isNaN(artId)) {
+    return <Navigate to="/404" replace />;
+  }
+
+  let artwork: Art = state;
+
+  if (!state) {
+    const { data, error } = useSuspenseQuery({
+      queryKey: ["artwork", artId],
+      queryFn: () => ApiController.getArtwork(artId),
+    });
+
+    if (error) throw error;
+
+    if (data instanceof ApiError) {
+      return <Navigate to={`/${data.errorCode === 404 ? 404 : 500}`} replace />;
+    } else {
+      artwork = data;
+    }
+  }
 
   return (
     <MainHorizontal>
-      <Figure >
-        {!!data.image_id ? (
-          <Link to={IMAGE_HIGHQ_ENDPOINT(data.image_id)}>
+      <Figure>
+        {artwork.image_id ? (
+          <Link to={IMAGE_HIGHQ_ENDPOINT(artwork.image_id)}>
             <ImageFigure>
               <Image
-                src={IMAGE_HIGHQ_ENDPOINT(data.image_id)}
-                alt={data.thumbnail?.alt_text ?? ""}
+                src={IMAGE_HIGHQ_ENDPOINT(artwork.image_id)}
+                alt={artwork.thumbnail?.alt_text ?? ""}
               />
             </ImageFigure>
           </Link>
@@ -39,16 +62,16 @@ export function ArtworkPage() {
         )}
         <BookmarkButton
           profile={true}
-          id={data.id}
+          id={artwork.id}
           aria-label="Bookmark this item"
         />
       </Figure>
 
       <Article>
         <header>
-          <ArticleTitle>{data.title}</ArticleTitle>
-          <Important>{data.artist_title}</Important>
-          <b>{data.date_display}</b>
+          <ArticleTitle>{artwork.title}</ArticleTitle>
+          <Important>{artwork.artist_title}</Important>
+          <b>{artwork.date_display}</b>
         </header>
 
         <section>
@@ -56,19 +79,22 @@ export function ArtworkPage() {
 
           <ul>
             <ListItem>
-              <Key>Artist Nationality:</Key> {data.artist_display}
+              <Key>Artist Nationality:</Key> {artwork.artist_display}
             </ListItem>
             <ListItem>
-              <Key>Dimensions of Sheet:</Key> {data.dimensions}
+              <Key>Dimensions of Sheet:</Key> {artwork.dimensions}
             </ListItem>
             <ListItem>
-              <Key>Credit Line:</Key> {data.credit_line}
+              <Key>Credit Line:</Key> {artwork.credit_line}
             </ListItem>
             <ListItem>
-              <Key>Repository:</Key> {data.on_loan_display ? data.on_loan_display : "Private collections"}
+              <Key>Repository:</Key>{" "}
+              {artwork.on_loan_display
+                ? artwork.on_loan_display
+                : "Private collections"}
             </ListItem>
           </ul>
-          <p>{data.on_loan_display ? "Public" : "Private"}</p>
+          <p>{artwork.on_loan_display ? "Public" : "Private"}</p>
         </section>
       </Article>
     </MainHorizontal>
