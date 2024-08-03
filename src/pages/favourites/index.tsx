@@ -4,6 +4,8 @@ import { Main, StyledH1 } from "@pages/home/styled";
 import { ErrorBoundary } from "@components/ErrorBoundary";
 import { Suspense } from "react";
 import { FavGallery } from "@components/FavGallery";
+import { SectionHeader } from "@components/SectionHeader";
+import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
 
 export function FavouritesPage() {
   return (
@@ -14,11 +16,17 @@ export function FavouritesPage() {
         <BigIcon src={bookmarkIcom} alt="Yellow bookmark icon" />
         <span>Favourites</span>
       </StyledH1>
-      <ErrorBoundary>
-        <Suspense fallback={<p>Loading favs</p>}>
-          <FavGallery />
-        </Suspense>
-      </ErrorBoundary>
+      <section>
+        <SectionHeader
+          topText={"Saved by you"}
+          bottomText={"Your favorites list"}
+        />
+        <ErrorBoundary>
+          <Suspense fallback={<ShortGallerySkeleton />}>
+            <FavGallery />
+          </Suspense>
+        </ErrorBoundary>
+      </section>
     </Main>
   );
 }

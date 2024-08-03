@@ -1,5 +1,4 @@
 import { useFavStorageContext } from "@components/FavStorageProvider";
-import { SectionHeader } from "@components/SectionHeader";
 import { BottomText } from "@components/SectionHeader/styles";
 import { ShortGallery } from "@components/ShortGallery";
 import { useSuspenseQuery } from "@tanstack/react-query";
@@ -16,11 +15,7 @@ export function FavGallery() {
   if (error) throw error;
 
   return (
-    <section>
-      <SectionHeader
-        topText={"Saved by you"}
-        bottomText={"Your favorites list"}
-      />
+    <>
       {artworks.length ? (
         <ShortGallery artworks={artworks} />
       ) : (
@@ -29,6 +24,6 @@ export function FavGallery() {
           button on artworks!
         </BottomText>
       )}
-    </section>
+    </>
   );
 }
