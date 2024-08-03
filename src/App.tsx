@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Suspense } from "react";
 import { ErrorBoundary } from "@components/ErrorBoundary";
 import { ArtworkPageSkeleton } from "@components/skeletons/ArtworkPageSkeleton";
+import ScrollToTop from "@utils/ScrollToTop";
 
 function App() {
   const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ function App() {
               element={
                 <ErrorBoundary>
                   <Suspense fallback={<ArtworkPageSkeleton />}>
+                    <ScrollToTop />
                     <ArtworkPage />
                   </Suspense>
                 </ErrorBoundary>
