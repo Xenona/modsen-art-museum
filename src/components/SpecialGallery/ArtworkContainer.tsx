@@ -9,6 +9,7 @@ import { Art } from "@utils/schema";
 import { ApiError } from "@utils/ApiError";
 import { ServerError } from "@pages/500";
 import { SkeletonOrImage } from "@components/ImageOrSkeleton";
+import { Link } from "react-router-dom";
 
 const getValidDate = (art: Art): number | null => {
   const startDate = art.date_start ? new Date(art.date_start).getTime() : null;
@@ -81,14 +82,16 @@ export function ArtworkContainer({
     <Container>
       {artworks.map((art) => (
         <ArtworkCard key={art.id}>
-          <ImageFigure>
-            <StubImage condition={!!art.image_id}>
-              <SkeletonOrImage
-                src={IMAGE_LOWQ_ENDPOINT(art.image_id as string)}
-                alt={art.thumbnail?.alt_text ?? ""}
-              />
-            </StubImage>
-          </ImageFigure>
+          <Link to={`/artwork/${art.id}`} state={art}>
+            <ImageFigure>
+              <StubImage condition={!!art.image_id}>
+                <SkeletonOrImage
+                  src={IMAGE_LOWQ_ENDPOINT(art.image_id as string)}
+                  alt={art.thumbnail?.alt_text ?? ""}
+                />
+              </StubImage>
+            </ImageFigure>
+          </Link>
           <Text>
             <InfoCard data={art} withImage={false} />
           </Text>
