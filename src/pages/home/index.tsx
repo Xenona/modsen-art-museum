@@ -17,11 +17,7 @@ export function HomePage() {
         <SearchInput />
       </SearchSection>
 
-      <ErrorBoundary>
-        <Suspense fallback={<p>loading full stuff</p>}>
-          <SpecialGallery />
-        </Suspense>
-      </ErrorBoundary>
+      <SpecialGallery />
 
       <section>
         <SectionHeader
