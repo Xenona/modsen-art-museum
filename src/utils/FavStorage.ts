@@ -5,6 +5,12 @@ export class FavStorage {
     const ids: number[] = JSON.parse(
       localStorage.getItem(FavStorage.KEY) ?? '[]',
     );
+
+    if (!Array.isArray(ids)) {
+      localStorage.setItem(FavStorage.KEY, '[]');
+      return [];
+    }
+
     const filteredIds = ids.filter((id) => {
       if (typeof id === 'number') {
         if (id > 0 && id <= Number.MAX_SAFE_INTEGER) {
