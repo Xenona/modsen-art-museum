@@ -34,8 +34,15 @@ export const artObjectArraySchema = z.object({
 export const artAndPaginationSchema =
   paginationObjectSchema.merge(artObjectArraySchema);
 
-export type ArtAndPagination = z.infer<typeof artAndPaginationSchema>;
-export type Art = z.infer<typeof artSchema>;
+export const searchSchema = z.object({
+  id: z.number().int().positive(),
+});
 
-export type Pagination = z.infer<typeof paginationSchema>;
-export type PaginationObject = z.infer<typeof paginationObjectSchema>;
+export const searchObjectSchema = z.object({
+  data: z.array(searchSchema),
+});
+
+export const searchAndPaginationSchema =
+  paginationObjectSchema.merge(searchObjectSchema);
+
+export type Art = z.infer<typeof artSchema>;
