@@ -4,6 +4,7 @@ import { Main, SearchSection, StyledH1 } from "./styled";
 import { Suspense } from "react";
 import { RandomGallery } from "@components/RandomGallery";
 import { ErrorBoundary } from "@components/ErrorBoundary";
+import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
 
 export function HomePage() {
   return (
@@ -22,7 +23,7 @@ export function HomePage() {
       </ErrorBoundary>
 
       <ErrorBoundary>
-        <Suspense fallback={<p>loading rando</p>}>
+        <Suspense fallback={<ShortGallerySkeleton />}>
           <RandomGallery />
         </Suspense>
       </ErrorBoundary>
