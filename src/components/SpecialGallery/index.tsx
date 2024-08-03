@@ -15,13 +15,13 @@ export function SpecialGallery() {
 
   return (
     <section>
+      <SectionHeader
+        topText="Topics for you"
+        bottomText="Our special gallery"
+      />
+
       <ErrorBoundary>
         <Suspense fallback={<p>Loading artworks...</p>}>
-          <SectionHeader
-            topText="Topics for you"
-            bottomText="Our special gallery"
-          />
-
           <SelectorContainer>
             <b>Sort by:</b>
             <SelectorButton
