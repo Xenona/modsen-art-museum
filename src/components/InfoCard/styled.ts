@@ -51,6 +51,9 @@ export const Author = styled.h4`
   letter-spacing: -0.1px;
   line-height: 26px;
   font-family: "Inter";
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const PublicDomain = styled.p`
