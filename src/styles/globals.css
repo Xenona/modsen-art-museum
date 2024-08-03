@@ -17,6 +17,7 @@
   --surface-stroke-color: #f0f1f1;
   --button-color: #f9f9f9;
   --hovered-button-color: #fbd7b24d;
+  --hovered-button-color-opaque: #fbd7b2;
 }
 
 html,
@@ -32,7 +33,7 @@ body,
 
 body {
   background-color: #fafafa;
-  font-family: 'Lexend Deca';
+  font-family: "Lexend Deca";
   font-weight: 400;
   color: var(--regular-text-color);
 }
@@ -76,10 +77,10 @@ button:active {
 
 @media screen and (max-width: 720px) {
   button:active:hover {
-    background-color: var(--hovered-button-color);
+    background-color: var(--hovered-button-color-opaque);
   }
 
   button:hover {
-    background-color: var(--surface-color);
+    background-color: transparent;
   }
 }
