@@ -4,9 +4,7 @@ import arrowIcon from "@assets/icons/arrow.svg";
 import { SelectorButton, SelectorContainer, SelectorParam } from "./styled";
 import { ArtworkContainer } from "./ArtworkContainer";
 import { ErrorBoundary } from "@components/ErrorBoundary";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { ApiController } from "@utils/ApiController";
-import { useDebounce } from "@utils/Debouncer";
+import { useDebounce } from "@utils/useDebounce";
 
 export function SpecialGallery() {
   const [currPage, setCurrPage] = useState<number>(1);

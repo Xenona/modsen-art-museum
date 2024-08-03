@@ -1,6 +1,14 @@
-// SearchInput.tsx
-import { useSearchParams } from 'react-router-dom';
-import { SearchContainer, SearchInput as Input, SearchIcon } from './styled';
+import { useSearchParams } from "react-router-dom";
+import { SearchContainer, SearchInput as Input, SearchIcon } from "./styled";
+
+const validateQuery = (query: string) => {
+  const maxLength = 100;
+  const trimmedQuery = query.trim();
+  if (trimmedQuery.length === 0 || trimmedQuery.length > maxLength) {
+    return "";
+  }
+  return trimmedQuery;
+};
 
 export function SearchInput() {
   const [searchParams, setSearchParams] = useSearchParams();
