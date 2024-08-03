@@ -4,7 +4,7 @@ import { blinkAnimation } from "./ShortGallerySkeleton.styled";
 export const SkeletonMainHorizontal = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  gap: 120px;
   padding: 16px;
   animation: ${blinkAnimation} 1.5s infinite;
 

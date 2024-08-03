@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ArtworkContainer = styled.div`
   display: grid;
@@ -9,13 +9,13 @@ export const ArtworkContainer = styled.div`
   margin-bottom: 50px;
 
   @media screen and (max-width: 1000px) {
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 45%);
     justify-content: center;
     column-gap: 5%;
   }
 
   @media screen and (max-width: 820px) {
-    grid-template-columns: repeat(1, auto);
+    grid-template-columns: repeat(1, 100%);
     justify-content: center;
     column-gap: 5%;
   }
