@@ -1,12 +1,14 @@
-import { SectionHeader } from '@components/SectionHeader';
-import { Suspense, useEffect, useState } from 'react';
-import arrowIcon from '@assets/icons/arrow.svg';
-import { SelectorButton, SelectorContainer, SelectorParam } from './styled';
-import { ArtworkContainer, sortingInfo } from './ArtworkContainer';
-import { ErrorBoundary } from '@components/ErrorBoundary';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { ApiController } from '@utils/ApiController';
-import { useDebounce } from '@utils/Debouncer';
+import { SectionHeader } from "@components/SectionHeader";
+import { Suspense, useEffect, useState } from "react";
+import arrowIcon from "@assets/icons/arrow.svg";
+import { SelectorButton, SelectorContainer, SelectorParam } from "./styled";
+import { ArtworkContainer, sortingInfo } from "./ArtworkContainer";
+import { ErrorBoundary } from "@components/ErrorBoundary";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { ApiController } from "@utils/ApiController";
+import { useDebounce } from "@utils/Debouncer";
+import { ApiError } from "@utils/ApiError";
+import { ServerError } from "@pages/500";
 
 export function SpecialGallery() {
   const [currPage, setCurrPage] = useState<number>(1);
@@ -16,15 +18,16 @@ export function SpecialGallery() {
   const debouncedSortIdx = useDebounce(sortIdx);
 
   const { data: newMaxPage, error } = useSuspenseQuery({
-    queryKey: ['maxPage', debouncedCurrPage],
+    queryKey: ["maxPage", debouncedCurrPage],
     queryFn: () => ApiController.getTotalPages(),
   });
+
+  if (newMaxPage instanceof ApiError) return <ServerError />;
+  if (error) throw error;
 
   useEffect(() => {
     setMaxPage(newMaxPage);
   }, [newMaxPage]);
-
-  if (error) throw error;
 
   const getVisiblePageNumbers = () => {
     const maxVisibleButtons = 4;
@@ -91,7 +94,7 @@ export function SpecialGallery() {
               <SelectorButton
                 key={page}
                 onClick={() => setCurrPage(page)}
-                className={currPage === page ? 'active' : ''}
+                className={currPage === page ? "active" : ""}
               >
                 {page}
               </SelectorButton>

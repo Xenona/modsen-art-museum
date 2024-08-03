@@ -1,11 +1,13 @@
-import { IMAGE_LOWQ_ENDPOINT } from '@constants/api';
-import { ArtworkCard, Image, ImageFigure, Text } from './ArtworkCard.styled';
-import { InfoCard } from '@components/InfoCard';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { ApiController } from '@utils/ApiController';
-import { ArtworkContainer as Card } from './styled';
-import { StubImage } from '@components/StubImage';
-import { Art } from '@utils/schema';
+import { IMAGE_LOWQ_ENDPOINT } from "@constants/api";
+import { ArtworkCard, Image, ImageFigure, Text } from "./ArtworkCard.styled";
+import { InfoCard } from "@components/InfoCard";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { ApiController } from "@utils/ApiController";
+import { ArtworkContainer as Container } from "./styled";
+import { StubImage } from "@components/StubImage";
+import { Art } from "@utils/schema";
+import { ApiError } from "@utils/ApiError";
+import { ServerError } from "@pages/500";
 
 const getValidDate = (art: Art): number | null => {
   const startDate = art.date_start ? new Date(art.date_start).getTime() : null;
@@ -18,23 +20,23 @@ const getValidDate = (art: Art): number | null => {
 
 export const sortingInfo = [
   {
-    type: 'Title (A-Z)',
+    type: "Title (A-Z)",
     cb: (a: Art, b: Art) => {
-      const titleA = a.title ?? '';
-      const titleB = b.title ?? '';
+      const titleA = a.title ?? "";
+      const titleB = b.title ?? "";
       return titleA.localeCompare(titleB);
     },
   },
   {
-    type: 'Title (Z-A)',
+    type: "Title (Z-A)",
     cb: (a: Art, b: Art) => {
-      const titleA = a.title ?? '';
-      const titleB = b.title ?? '';
+      const titleA = a.title ?? "";
+      const titleB = b.title ?? "";
       return titleB.localeCompare(titleA);
     },
   },
   {
-    type: 'Date (min-max)',
+    type: "Date (min-max)",
     cb: (a: Art, b: Art) => {
       const dateA = getValidDate(a);
       const dateB = getValidDate(b);
@@ -45,7 +47,7 @@ export const sortingInfo = [
     },
   },
   {
-    type: 'Date (max-min)',
+    type: "Date (max-min)",
     cb: (a: Art, b: Art) => {
       const dateA = getValidDate(a);
       const dateB = getValidDate(b);
@@ -65,22 +67,24 @@ export function ArtworkContainer({
   sortingId: number;
 }) {
   const { data: artworks, error } = useSuspenseQuery({
-    queryKey: ['page', page],
+    queryKey: ["page", page],
     queryFn: () => ApiController.getPage({ page }),
   });
 
+  if (artworks instanceof ApiError) return <ServerError />;
   if (error) throw error;
+
   artworks.sort(sortingInfo[sortingId].cb);
 
   return (
-    <Card>
+    <Container>
       {artworks.map((art) => (
         <ArtworkCard key={art.id}>
           <ImageFigure>
             {art.image_id ? (
               <Image
                 src={IMAGE_LOWQ_ENDPOINT(art.image_id)}
-                alt={art.thumbnail?.alt_text ?? ''}
+                alt={art.thumbnail?.alt_text ?? ""}
               />
             ) : (
               <StubImage />
@@ -91,6 +95,6 @@ export function ArtworkContainer({
           </Text>
         </ArtworkCard>
       ))}
-    </Card>
+    </Container>
   );
 }

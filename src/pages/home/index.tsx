@@ -1,9 +1,9 @@
-import { SearchInput } from '@components/SearchInput';
-import { SectionHeader } from '@components/SectionHeader';
-import { ShortGallery } from '@components/ShortGallery';
-import { SpecialGallery } from '@components/SpecialGallery';
-import { Main, SearchSection, StyledH1 } from './styled';
-import { Suspense } from 'react';
+import { SearchInput } from "@components/SearchInput";
+import { SpecialGallery } from "@components/SpecialGallery";
+import { Main, SearchSection, StyledH1 } from "./styled";
+import { Suspense } from "react";
+import { RandomGallery } from "@components/RandomGallery";
+import { ErrorBoundary } from "@components/ErrorBoundary";
 
 export function HomePage() {
   return (
@@ -15,17 +15,17 @@ export function HomePage() {
         <SearchInput />
       </SearchSection>
 
-      <Suspense>
-        <SpecialGallery />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<p>loading full stuff</p>}>
+          <SpecialGallery />
+        </Suspense>
+      </ErrorBoundary>
 
-      <section>
-        <SectionHeader
-          bottomText="Other works for you"
-          topText="Here some more"
-        />
-        <ShortGallery />
-      </section>
+      <ErrorBoundary>
+        <Suspense fallback={<p>loading rando</p>}>
+          <RandomGallery />
+        </Suspense>
+      </ErrorBoundary>
     </Main>
   );
 }

@@ -28,8 +28,12 @@ export class ApiController {
     return art;
   }
 
-  public static async getTotalPages(): Promise<number | ApiError> {
-    const response = await fetch(`${ARTWORKS_ENDPOINT}?fields=''`);
+  public static async getTotalPages(
+    { limit }: { limit?: number } = { limit: 12 },
+  ): Promise<number | ApiError> {
+    const response = await fetch(
+      `${ARTWORKS_ENDPOINT}?fields=''&limit=${limit}`,
+    );
     if (!response.ok)
       return new ApiError(
         response.status,
