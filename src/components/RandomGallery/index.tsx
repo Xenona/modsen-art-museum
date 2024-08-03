@@ -1,4 +1,3 @@
-import { SectionHeader } from "@components/SectionHeader";
 import { ShortGallery } from "@components/ShortGallery";
 import { ServerError } from "@pages/500";
 import { useSuspenseQuery } from "@tanstack/react-query";
@@ -26,13 +25,5 @@ export function RandomGallery() {
   if (artworks instanceof ApiError) return <ServerError />;
   if (artError) throw artError;
 
-  return (
-    <section>
-      <SectionHeader
-        bottomText="Other works for you"
-        topText="Here some more"
-      />
-      <ShortGallery artworks={artworks} />
-    </section>
-  );
+  return <ShortGallery artworks={artworks} />;
 }
