@@ -10,6 +10,7 @@ import "@styles/globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Suspense } from "react";
 import { ErrorBoundary } from "@components/ErrorBoundary";
+import { ArtworkPageSkeleton } from "@components/skeletons/ArtworkPageSkeleton";
 
 function App() {
   const queryClient = new QueryClient();
@@ -25,7 +26,7 @@ function App() {
               path="/artwork/:id"
               element={
                 <ErrorBoundary>
-                  <Suspense fallback={<p>Loading work by id</p>}>
+                  <Suspense fallback={<ArtworkPageSkeleton />}>
                     <ArtworkPage />
                   </Suspense>
                 </ErrorBoundary>
