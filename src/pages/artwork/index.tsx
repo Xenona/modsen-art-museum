@@ -86,9 +86,11 @@ export function ArtworkPage() {
             </ListItem>
             <ListItem>
               <Key>Repository:</Key>
-              {artwork.on_loan_display
-                ? SafeHtml(artwork.on_loan_display)
-                : "Private collections"}
+              {artwork.on_loan_display ? (
+                SafeHtml(artwork.on_loan_display)
+              ) : (
+                <p>"Private collections"</p>
+              )}
             </ListItem>
           </ul>
           <p>{artwork.on_loan_display ? "Public" : "Private"}</p>
