@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ArtworkCard = styled.div`
   width: 100%;
@@ -11,7 +11,7 @@ export const ImageFigure = styled.div`
   aspect-ratio: 1 / 1.2;
 `;
 
-export const Image = styled.img`
+export const BigImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;

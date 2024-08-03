@@ -10,15 +10,13 @@ import {
   MainHorizontal,
 } from "./styled";
 import { IMAGE_HIGHQ_ENDPOINT } from "@constants/api";
-import {
-  Image,
-  ImageFigure,
-} from "@components/SpecialGallery/ArtworkCard.styled";
+import { ImageFigure } from "@components/SpecialGallery/ArtworkCard.styled";
 import { StubImage } from "@components/StubImage";
 import { Art } from "@utils/schema";
 import { ApiController } from "@utils/ApiController";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ApiError } from "@utils/ApiError";
+import { SkeletonOrImage } from "@components/ImageOrSkeleton";
 export function ArtworkPage() {
   const { id } = useParams();
   const { state } = useLocation();
@@ -51,7 +49,7 @@ export function ArtworkPage() {
         <StubImage condition={!!artwork.image_id}>
           <Link to={IMAGE_HIGHQ_ENDPOINT(artwork.image_id as string)}>
             <ImageFigure>
-              <Image
+              <SkeletonOrImage
                 src={IMAGE_HIGHQ_ENDPOINT(artwork.image_id as string)}
                 alt={artwork.thumbnail?.alt_text ?? ""}
               />
