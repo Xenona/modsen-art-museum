@@ -1,5 +1,11 @@
-import { API_ENDPOINT } from '@constants/api';
-import { Art, artSchema, paginationObjectSchema } from './schema';
+import { ARTWORKS_ENDPOINT } from "@constants/api";
+import {
+  Art,
+  artAndPaginationSchema,
+  artObjectSchema,
+  paginationObjectSchema,
+} from "./schema";
+import { ApiError } from "./ApiError";
 
 export class ApiController {
   public static async getPage({
@@ -8,25 +14,45 @@ export class ApiController {
   }: {
     page: number;
     limit?: number;
-  }): Promise<Art[]> {
-    const response = await fetch(`${API_ENDPOINT}?page=${page}&limit=${limit}`);
-    if (!response.ok) throw new Error('Could not fetch page');
+  }): Promise<Art[] | ApiError> {
+    const response = await fetch(
+      `${ARTWORKS_ENDPOINT}?page=${page}&limit=${limit}`,
+    );
+    if (!response.ok)
+      return new ApiError(response.status, "Could not fetch page");
     const data = await response.json();
-    const artAndPagination = artSchema.safeParse(data);
+    const artAndPagination = artAndPaginationSchema.safeParse(data);
     if (!artAndPagination.success)
-      throw new Error('Retrieved data is in wrong format');
+      return new ApiError(422, "Retrieved data is in wrong format");
     const art: Art[] = artAndPagination.data.data;
     return art;
   }
 
-  public static async getTotalPages(): Promise<number> {
-    const response = await fetch(`${API_ENDPOINT}?fields=''`);
-    if (!response.ok) throw new Error('Could not fetch total number of pages');
+  public static async getTotalPages(): Promise<number | ApiError> {
+    const response = await fetch(`${ARTWORKS_ENDPOINT}?fields=''`);
+    if (!response.ok)
+      return new ApiError(
+        response.status,
+        "Could not fetch total number of pages",
+      );
     const data = await response.json();
     const pagination = paginationObjectSchema.safeParse(data);
     if (!pagination.success)
-      throw new Error('Retrieved data is in wrong format');
+      return new ApiError(422, "Retrieved data is in wrong format");
     const numOfPages = pagination.data.pagination.total_pages;
     return numOfPages;
+  }
+
+  public static async getArtwork(id: number): Promise<Art | ApiError> {
+    const response = await fetch(`${ARTWORKS_ENDPOINT}/${id}`);
+    if (response.status === 404)
+      return new ApiError(404, "Artwork can not be found");
+    if (!response.ok)
+      return new ApiError(response.status, "Could not fetch the artwork");
+    const data = await response.json();
+    const art = artObjectSchema.safeParse(data);
+    if (!art.success)
+      return new ApiError(422, "Retrieved data is in wrong format");
+    return art.data.data;
   }
 }
