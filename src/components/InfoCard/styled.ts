@@ -29,6 +29,7 @@ export const Content = styled.div`
   position: relative;
   max-width: 100%;
   overflow: hidden;
+  min-width: 100%;
 `;
 
 export const Title = styled.h2`

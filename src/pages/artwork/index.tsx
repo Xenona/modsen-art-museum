@@ -89,7 +89,7 @@ export function ArtworkPage() {
               {artwork.on_loan_display ? (
                 SafeHtml(artwork.on_loan_display)
               ) : (
-                <p>"Private collections"</p>
+                <p>Private collections</p>
               )}
             </ListItem>
           </ul>
