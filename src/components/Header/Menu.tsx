@@ -1,7 +1,16 @@
-import { NavLink } from 'react-router-dom';
-import homeIcon from '@assets/icons/home.svg';
-import bookmarkIcon from '@assets/icons/bookmark.svg';
-import { Nav } from './styled';
+import { NavLink } from "react-router-dom";
+import homeIcon from "@assets/icons/home.svg";
+import bookmarkIcon from "@assets/icons/bookmark.svg";
+import { Nav } from "./styled";
+import { memo } from "react";
+
+const MemoizedHomeIcon = memo(function HomeIcon() {
+  return <img src={homeIcon} alt="Home icon" />;
+});
+
+const MemoizedBookmarkIcon = memo(function BookmarkIcon() {
+  return <img src={bookmarkIcon} alt="Bookmark icon" />;
+});
 
 export function Menu() {
   return (
@@ -9,13 +18,13 @@ export function Menu() {
       <ul>
         <li>
           <NavLink to="/">
-            <img src={homeIcon} alt="Home icon" />
+            <MemoizedHomeIcon />
             Home
           </NavLink>
         </li>
         <li>
           <NavLink to="/fav">
-            <img src={bookmarkIcon} alt="Bookmark icon" />
+            <MemoizedBookmarkIcon />
             Your favorites
           </NavLink>
         </li>
