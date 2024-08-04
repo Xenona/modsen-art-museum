@@ -1,6 +1,6 @@
-import { ServerError } from '@pages/500';
-import React from 'react';
-import { ReactNode } from 'react';
+import { ServerError } from "@pages/500";
+import React from "react";
+import { ReactNode } from "react";
 
 export interface ErrorBoundaryProps {
   children: ReactNode;
@@ -32,10 +32,9 @@ export class ErrorBoundary extends React.Component<
 
   render() {
     if (this.state.hasError) {
-      // TODO not technically correct
       if (this.customErrorC) return this.customErrorC;
-      
-      return <ServerError /> ;
+
+      return <ServerError />;
     }
     return this.props.children;
   }
