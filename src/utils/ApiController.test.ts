@@ -1,5 +1,4 @@
 import { ApiController } from './ApiController';
-import { ApiError } from './ApiError';
 import {
   artSchema,
   artAndPaginationSchema,
