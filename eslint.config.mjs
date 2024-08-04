@@ -21,7 +21,7 @@ export default [
     "prettier",
   ),
   {
-    ignores: ["*.test.tsx", "*.test.ts"],
+    ignores: ["**/*.test.tsx", "**/*.test.ts"],
   },
   {
     plugins: {
@@ -45,7 +45,6 @@ export default [
       "prettier/prettier": "error",
       "react/react-in-jsx-scope": "off",
       "react/no-unescaped-entities": "off",
-      "@typescript-eslint/no-loss-of-precision": "off",
       "@typescript-eslint/no-explicit-any": "off",
     },
   },

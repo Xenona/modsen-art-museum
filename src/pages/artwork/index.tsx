@@ -17,7 +17,7 @@ import { ApiController } from "@utils/ApiController";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ApiError } from "@utils/ApiError";
 import { SkeletonOrImage } from "@components/ImageOrSkeleton";
-import { SafeHtml } from "@utils/htmlStripper";
+import { SafeHtml } from "@utils/HtmlStripper";
 export function ArtworkPage() {
   const { id } = useParams();
   const { state } = useLocation();
