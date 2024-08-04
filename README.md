@@ -64,6 +64,34 @@ And every page of the web app has a way to save the pic to or remove from the fa
 
 Also from this page one can centralized remove the artworks from their favs. In case the click was erroneous, I don't remove the artwork from the page until it reloaded - it's just the bookmark that becomes empty again.
 
+## Build and testing
+
+For development, use:
+
+```bash
+  yarn install
+  yarn run dev
+```
+
+For building:
+
+```bash
+  yarn build
+  yarn preview
+```
+
+To test:
+
+```bash
+  yarn test
+```
+
+This will also print coverage as a last thing to your console. Currently I have the following values, which correspond to requested 30% of coverage in the test case description:
+
+| File      | % Stmts | % Funcs | % Lines |
+| --------- | ------- | ------- | ------- |
+| All files | 35.88   | 31.73   | 37.77   |
+
 ## Media
 
 ![Loading](readme/gif.gif)
