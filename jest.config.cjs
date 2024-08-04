@@ -24,4 +24,16 @@ module.exports = {
   roots: ["."],
   setupFilesAfterEnv: ["./jest.setup.js"],
   testEnvironment: "jsdom",
+  
+  collectCoverage: true,
+  coverageDirectory: "<rootDir>/coverage",
+  collectCoverageFrom: [
+    "src/**/*.{ts,tsx}",
+    "!src/**/*.styled.ts",
+    "!src/**/*.d.ts",
+    "!src/index.tsx",
+    "!src/serviceWorker.ts",
+    "!src/setupTests.ts",
+  ],
+  coverageReporters: ["json", "lcov", "text", "clover"],
 };
