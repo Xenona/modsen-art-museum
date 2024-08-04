@@ -21,5 +21,6 @@
       "@constants/*": ["src/constants/*"]
     },
     "types": ["jest", "@testing-library/jest-dom"]
-  }
+  },
+  "exclude": ["**/*.test.*"]
 }
