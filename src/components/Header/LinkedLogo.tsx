@@ -1,5 +1,5 @@
-import { Logo } from './LinkedLogo.styled';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { Logo } from "./LinkedLogo.styled";
 export function LinkedLogo({
   img,
   link,

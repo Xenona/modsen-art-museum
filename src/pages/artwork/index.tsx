@@ -12,7 +12,6 @@ import {
 import { IMAGE_HIGHQ_ENDPOINT } from "@constants/api";
 import { ImageFigure } from "@components/SpecialGallery/ArtworkCard.styled";
 import { StubImage } from "@components/StubImage";
-import { Art } from "@utils/schema";
 import { ApiController } from "@utils/ApiController";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ApiError } from "@utils/ApiError";
@@ -27,21 +26,18 @@ export function ArtworkPage() {
     return <Navigate to="/404" replace />;
   }
 
-  let artwork: Art = state;
+  const { data: artwork, error } = useSuspenseQuery({
+    queryKey: ["artwork", artId],
+    queryFn: () => ApiController.getArtwork(artId),
+    initialData: state ?? undefined,
+  });
 
-  if (!state) {
-    const { data, error } = useSuspenseQuery({
-      queryKey: ["artwork", artId],
-      queryFn: () => ApiController.getArtwork(artId),
-    });
+  if (error) throw error;
 
-    if (error) throw error;
-
-    if (data instanceof ApiError) {
-      return <Navigate to={`/${data.errorCode === 404 ? 404 : 500}`} replace />;
-    } else {
-      artwork = data;
-    }
+  if (artwork instanceof ApiError) {
+    return (
+      <Navigate to={`/${artwork.errorCode === 404 ? 404 : 500}`} replace />
+    );
   }
 
   return (
