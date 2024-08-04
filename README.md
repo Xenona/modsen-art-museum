@@ -1,4 +1,4 @@
-# [Modsen Art Museum](https://modsen-art-museum-kctgccrau-xenonas-projects.vercel.app/fav)
+# [Modsen Art Museum](https://modsen-art-museum-three.vercel.app/)
 
 Welcome to my solution of Modsen test case, dedicated to the creation of the art museum with the help of [external API](https://api.artic.edu/docs/#quick-start).
 
