@@ -12,9 +12,9 @@ import {
 import { IMAGE_HIGHQ_ENDPOINT } from "@constants/api";
 import { ImageFigure } from "@components/SpecialGallery/ArtworkCard.styled";
 import { StubImage } from "@components/StubImage";
-import { ApiController } from "@utils/ApiController";
+import { ApiController } from "@utils/api/ApiController";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ApiError } from "@utils/ApiError";
+import { ApiError } from "@utils/api/ApiError";
 import { SkeletonOrImage } from "@components/ImageOrSkeleton";
 import { SafeHtml } from "@utils/HtmlStripper";
 export function ArtworkPage() {

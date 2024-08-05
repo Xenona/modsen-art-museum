@@ -4,7 +4,7 @@ export const paginationSchema = z.object({
   total_pages: z.number().int().nonnegative(),
 });
 
-export const paginationObjectSchema = z.object({
+export const paginationDataSchema = z.object({
   pagination: paginationSchema,
 });
 
@@ -23,26 +23,26 @@ export const artSchema = z.object({
   thumbnail: z.object({ alt_text: z.string().nullable() }).nullable(),
 });
 
-export const artObjectSchema = z.object({
+export const artDataSchema = z.object({
   data: artSchema,
 });
 
-export const artObjectArraySchema = z.object({
+export const artDataArraySchema = z.object({
   data: z.array(artSchema),
 });
 
 export const artAndPaginationSchema =
-  paginationObjectSchema.merge(artObjectArraySchema);
+  paginationDataSchema.merge(artDataArraySchema);
 
 export const searchSchema = z.object({
   id: z.number().int().positive(),
 });
 
-export const searchObjectSchema = z.object({
+export const searchDataSchema = z.object({
   data: z.array(searchSchema),
 });
 
 export const searchAndPaginationSchema =
-  paginationObjectSchema.merge(searchObjectSchema);
+  paginationDataSchema.merge(searchDataSchema);
 
 export type Art = z.infer<typeof artSchema>;

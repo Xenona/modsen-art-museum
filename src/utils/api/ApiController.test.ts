@@ -3,10 +3,10 @@ import { ApiError } from "./ApiError";
 import {
   artSchema,
   artAndPaginationSchema,
-  paginationObjectSchema,
+  paginationDataSchema,
   searchAndPaginationSchema,
-  artObjectSchema,
-} from "./schema";
+  artDataSchema,
+} from "./ApiSchema";
 import { z } from "zod";
 
 jest.mock("./ApiController", () => ({
@@ -78,7 +78,7 @@ describe("ApiController", () => {
     const limit = 12;
     const result = await ApiController.getTotalPages({ limit });
 
-    const parsedResult = paginationObjectSchema.parse(result);
+    const parsedResult = paginationDataSchema.parse(result);
     expect(parsedResult).toEqual(mockPagination);
     expect(ApiController.getTotalPages).toHaveBeenCalledWith({ limit });
   });
@@ -106,7 +106,7 @@ describe("ApiController", () => {
     const id = 1;
     const result = await ApiController.getArtwork(id);
 
-    const parsedResult = artObjectSchema.parse(result);
+    const parsedResult = artDataSchema.parse(result);
     expect(parsedResult).toEqual(mockArt);
     expect(ApiController.getArtwork).toHaveBeenCalledWith(id);
   });
