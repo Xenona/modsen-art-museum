@@ -1,4 +1,4 @@
-import { FavStorage } from './FavStorage';
+import { FavStorage } from "./FavStorage";
 
 const localStorageMock = (() => {
   let store: Record<string, string> = {};
@@ -19,29 +19,29 @@ const localStorageMock = (() => {
   };
 })();
 
-Object.defineProperty(window, 'localStorage', {
+Object.defineProperty(window, "localStorage", {
   value: localStorageMock,
 });
 
-describe('FavStorage', () => {
+describe("FavStorage", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     localStorage.clear();
   });
 
-  it('should return an empty array if localStorage is empty or contains invalid data', () => {
-    localStorage.setItem(FavStorage.KEY, JSON.stringify('invalid data'));
+  it("should return an empty array if localStorage is empty or contains invalid data", () => {
+    localStorage.setItem(FavStorage.KEY, JSON.stringify("invalid data"));
     expect(FavStorage.getAllIds()).toEqual([]);
 
     localStorage.setItem(
       FavStorage.KEY,
-      JSON.stringify([1, 2, 'string', -1, 99999999999999999999]),
+      JSON.stringify([1, 2, "string", -1, 99999999999999999999]),
     );
-    expect(FavStorage.getAllIds()).toEqual([1, 2]);
+    expect(FavStorage.getAllIds()).toEqual([]);
   });
 
-  it('should add a new id to the list', () => {
-    const setItemSpy = jest.spyOn(localStorage, 'setItem');
+  it("should add a new id to the list", () => {
+    const setItemSpy = jest.spyOn(localStorage, "setItem");
 
     localStorage.setItem(FavStorage.KEY, JSON.stringify([1, 2, 3]));
     FavStorage.setId(4);
@@ -52,8 +52,8 @@ describe('FavStorage', () => {
     );
   });
 
-  it('should remove an id from the list', () => {
-    const setItemSpy = jest.spyOn(localStorage, 'setItem');
+  it("should remove an id from the list", () => {
+    const setItemSpy = jest.spyOn(localStorage, "setItem");
 
     localStorage.setItem(FavStorage.KEY, JSON.stringify([1, 2, 3, 4]));
     FavStorage.removeId(3);
@@ -64,7 +64,7 @@ describe('FavStorage', () => {
     );
   });
 
-  it('should check if an id exists in the list', () => {
+  it("should check if an id exists in the list", () => {
     localStorage.setItem(FavStorage.KEY, JSON.stringify([1, 2, 3]));
 
     expect(FavStorage.idExists(2)).toBe(true);

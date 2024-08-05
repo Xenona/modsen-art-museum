@@ -1,8 +1,8 @@
 import { ShortGallery } from "@components/ShortGallery";
 import { ServerError } from "@pages/500";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ApiController } from "@utils/ApiController";
-import { ApiError } from "@utils/ApiError";
+import { ApiController } from "@utils/api/ApiController";
+import { ApiError } from "@utils/api/ApiError";
 
 export function RandomGallery() {
   const { data: maxPage, error: pageError } = useSuspenseQuery({

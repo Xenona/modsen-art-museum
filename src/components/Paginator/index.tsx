@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import arrowIcon from "@assets/icons/arrow.svg";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useDebounce } from "@utils/useDebounce";
-import { ApiController } from "@utils/ApiController";
-import { ApiError } from "@utils/ApiError";
+import { ApiController } from "@utils/api/ApiController";
+import { ApiError } from "@utils/api/ApiError";
 import { ServerError } from "@pages/500";
 
 export function Paginator({

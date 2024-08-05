@@ -3,11 +3,11 @@ global.React = React;
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { ArtworkPage } from ".";
-import { ApiError } from "@utils/ApiError";
-import { Art } from "@utils/schema";
-import { FavStorageProvider } from "@components/FavStorageProvider";
+import { Art } from "@utils/api/ApiSchema.ts";
+import { FavStorageProvider } from "@components/FavStorageProvider/index.tsx";
+import { ApiError } from "@utils/api/ApiError.ts";
 
-jest.mock("@utils/ApiController", () => ({
+jest.mock("@utils/api/ApiController", () => ({
   ApiController: {
     getArtwork: jest.fn(),
   },

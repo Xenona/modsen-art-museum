@@ -1,26 +1,24 @@
+import { favStorageSchema } from "./FavStorageSchema";
+
 export class FavStorage {
-  static KEY = 'favs';
+  static KEY = "favs";
 
   public static getAllIds(): number[] {
-    const ids: number[] = JSON.parse(
-      localStorage.getItem(FavStorage.KEY) ?? '[]',
-    );
+    let rawIds: unknown[];
+    try {
+      rawIds = JSON.parse(localStorage.getItem(FavStorage.KEY) ?? "[]");
+    } catch (e) {
+      localStorage.setItem(FavStorage.KEY, "[]");
+      rawIds = [];
+    }
 
-    if (!Array.isArray(ids)) {
-      localStorage.setItem(FavStorage.KEY, '[]');
+    const parsedIds = favStorageSchema.safeParse(rawIds);
+    if (!parsedIds.success) {
+      localStorage.setItem(FavStorage.KEY, "[]");
       return [];
     }
 
-    const filteredIds = ids.filter((id) => {
-      if (typeof id === 'number') {
-        if (id > 0 && id <= Number.MAX_SAFE_INTEGER) {
-          return true;
-        }
-      }
-      return false;
-    });
-
-    return filteredIds;
+    return parsedIds.data;
   }
 
   public static setId(id: number) {

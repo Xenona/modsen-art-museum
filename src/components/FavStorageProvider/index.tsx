@@ -1,4 +1,4 @@
-import { FavStorage } from "@utils/FavStorage";
+import { FavStorage } from "@utils/storage/FavStorage";
 import { createContext, useContext } from "react";
 
 interface IFavStorageContext {

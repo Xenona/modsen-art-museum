@@ -3,7 +3,7 @@ import { Author, Card, Content, PublicDomain, Title } from "./styled";
 import { Link } from "react-router-dom";
 import { IMAGE_LOWQ_ENDPOINT } from "@constants/api";
 import { StubImage } from "@components/StubImage";
-import { Art } from "@utils/schema";
+import { Art } from "@utils/api/ApiSchema";
 import { SkeletonOrImage } from "@components/ImageOrSkeleton";
 
 export function InfoCard({

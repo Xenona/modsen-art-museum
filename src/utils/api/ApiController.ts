@@ -2,12 +2,12 @@ import { ARTWORKS_ENDPOINT } from "@constants/api";
 import {
   Art,
   artAndPaginationSchema,
-  artObjectSchema,
-  paginationObjectSchema,
+  artDataSchema,
+  paginationDataSchema,
   searchAndPaginationSchema,
-} from "./schema";
+} from "./ApiSchema";
 import { ApiError } from "./ApiError";
-import { FavStorage } from "./FavStorage";
+import { FavStorage } from "../storage/FavStorage";
 
 export class ApiController {
   public static async getPage({
@@ -42,7 +42,7 @@ export class ApiController {
         "Could not fetch total number of pages",
       );
     const data = await response.json();
-    const pagination = paginationObjectSchema.safeParse(data);
+    const pagination = paginationDataSchema.safeParse(data);
     if (!pagination.success)
       return new ApiError(422, "Retrieved data is in wrong format");
     const numOfPages = pagination.data.pagination.total_pages;
@@ -56,7 +56,7 @@ export class ApiController {
     if (!response.ok)
       return new ApiError(response.status, "Could not fetch the artwork", [id]);
     const data = await response.json();
-    const art = artObjectSchema.safeParse(data);
+    const art = artDataSchema.safeParse(data);
     if (!art.success)
       return new ApiError(422, "Retrieved data is in wrong format", [id]);
     return art.data.data;

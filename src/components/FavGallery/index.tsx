@@ -2,7 +2,7 @@ import { useFavStorageContext } from "@components/FavStorageProvider";
 import { BottomText } from "@components/SectionHeader/styles";
 import { ShortGallery } from "@components/ShortGallery";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ApiController } from "@utils/ApiController";
+import { ApiController } from "@utils/api/ApiController";
 export function FavGallery() {
   const favStorageContext = useFavStorageContext();
   const ids = favStorageContext.getAll();

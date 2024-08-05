@@ -1,11 +1,11 @@
 import { useSearchParams } from "react-router-dom";
 import { SearchContainer, SearchInput as Input, SearchIcon } from "./styled";
-import { ApiController } from "@utils/ApiController";
+import { ApiController } from "@utils/api/ApiController";
 import { useDebounce } from "@utils/useDebounce";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ShortGallery } from "@components/ShortGallery";
-import { ApiError } from "@utils/ApiError";
+import { ApiError } from "@utils/api/ApiError";
 import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
 import { ServerError } from "@pages/500";
 import { BottomText } from "@components/SectionHeader/styles";

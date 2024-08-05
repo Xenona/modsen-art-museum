@@ -8,7 +8,7 @@ module.exports = {
     "^(?!.*\\.module\\.css$).*\\.css$":
       "<rootDir>/src/__mocks__/style-mock.ts",
     "^@components(.*)$": "<rootDir>/src/components$1",
-    "^@utils(.*)$": "<rootDir>/src/utils$1",
+    '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     "^@pages(.*)$": "<rootDir>/src/pages$1",
     "^@assets(.*)$": "<rootDir>/src/assets$1",
     "^@styles(.*)$": "<rootDir>/src/styles$1",
@@ -24,7 +24,7 @@ module.exports = {
   roots: ["."],
   setupFilesAfterEnv: ["./jest.setup.js"],
   testEnvironment: "jsdom",
-  
+
   collectCoverage: true,
   coverageDirectory: "<rootDir>/coverage",
   collectCoverageFrom: [
