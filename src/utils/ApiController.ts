@@ -7,6 +7,7 @@ import {
   searchAndPaginationSchema,
 } from "./schema";
 import { ApiError } from "./ApiError";
+import { FavStorage } from "./FavStorage";
 
 export class ApiController {
   public static async getPage({
@@ -51,13 +52,13 @@ export class ApiController {
   public static async getArtwork(id: number): Promise<Art | ApiError> {
     const response = await fetch(`${ARTWORKS_ENDPOINT}/${id}`);
     if (response.status === 404)
-      return new ApiError(404, "Artwork can not be found");
+      return new ApiError(404, "Artwork can not be found", [id]);
     if (!response.ok)
-      return new ApiError(response.status, "Could not fetch the artwork");
+      return new ApiError(response.status, "Could not fetch the artwork", [id]);
     const data = await response.json();
     const art = artObjectSchema.safeParse(data);
     if (!art.success)
-      return new ApiError(422, "Retrieved data is in wrong format");
+      return new ApiError(422, "Retrieved data is in wrong format", [id]);
     return art.data.data;
   }
 
@@ -77,6 +78,11 @@ export class ApiController {
     });
 
     if (errors.length) {
+      for (const err of errors) {
+        if (err.errorCode === 404) {
+          FavStorage.removeId(err.data[0]);
+        }
+      }
       console.error("Some artworks could not be fetched:", errors);
     }
 
