@@ -1,4 +1,4 @@
-import { IMAGE_LOWQ_ENDPOINT } from "@constants/api";
+import { IMAGE_ENDPOINT } from "@constants/api";
 import { ArtworkCard, ImageFigure, Text } from "./ArtworkCard.styled";
 import { InfoCard } from "@components/InfoCard";
 import { useSuspenseQuery } from "@tanstack/react-query";
@@ -86,7 +86,7 @@ export function ArtworkContainer({
             <ImageFigure>
               <StubImage condition={!!art.image_id}>
                 <SkeletonOrImage
-                  src={IMAGE_LOWQ_ENDPOINT(art.image_id as string)}
+                  src={IMAGE_ENDPOINT(art.image_id as string)}
                   alt={art.thumbnail?.alt_text ?? ""}
                 />
               </StubImage>

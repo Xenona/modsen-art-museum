@@ -9,7 +9,7 @@ import {
   ListItem,
   MainHorizontal,
 } from "./styled";
-import { IMAGE_HIGHQ_ENDPOINT } from "@constants/api";
+import { IMAGE_ENDPOINT } from "@constants/api";
 import { ImageFigure } from "@components/SpecialGallery/ArtworkCard.styled";
 import { StubImage } from "@components/StubImage";
 import { ApiController } from "@utils/api/ApiController";
@@ -44,10 +44,10 @@ export function ArtworkPage() {
     <MainHorizontal>
       <Figure>
         <StubImage condition={!!artwork.image_id}>
-          <Link to={IMAGE_HIGHQ_ENDPOINT(artwork.image_id as string)}>
+          <Link to={IMAGE_ENDPOINT(artwork.image_id as string)}>
             <ImageFigure>
               <SkeletonOrImage
-                src={IMAGE_HIGHQ_ENDPOINT(artwork.image_id as string)}
+                src={IMAGE_ENDPOINT(artwork.image_id as string)}
                 alt={artwork.thumbnail?.alt_text ?? ""}
               />
             </ImageFigure>

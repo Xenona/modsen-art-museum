@@ -1,7 +1,7 @@
 import { BookmarkButton } from "@components/BookmarkButton";
 import { Author, Card, Content, PublicDomain, Title } from "./styled";
 import { Link } from "react-router-dom";
-import { IMAGE_LOWQ_ENDPOINT } from "@constants/api";
+import { IMAGE_ENDPOINT } from "@constants/api";
 import { StubImage } from "@components/StubImage";
 import { Art } from "@utils/api/ApiSchema";
 import { SkeletonOrImage } from "@components/ImageOrSkeleton";
@@ -20,7 +20,7 @@ export function InfoCard({
           <StubImage condition={!!data.image_id}>
             <SkeletonOrImage
               isThumbnail={true}
-              src={IMAGE_LOWQ_ENDPOINT(data.image_id as string)}
+              src={IMAGE_ENDPOINT(data.image_id as string)}
               alt={data.thumbnail?.alt_text ?? ""}
             />
           </StubImage>
