@@ -1,8 +1,8 @@
-import bookmarkIcon from '@assets/icons/bookmark.svg';
-import bookmarkFilledIcon from '@assets/icons/bookmark_filled.svg';
-import { useFavStorageContext } from '@components/FavStorageProvider';
-import { useState } from 'react';
-import { ButtonIcon, MainButton } from './styled';
+import bookmarkIcon from "@assets/icons/bookmark.svg";
+import bookmarkFilledIcon from "@assets/icons/bookmark_filled.svg";
+import { useFavStorageContext } from "@components/FavStorageProvider";
+import { useState } from "react";
+import { ButtonIcon, BookmarkButtonStyled } from "./styled";
 
 export function BookmarkButton({
   id,
@@ -26,7 +26,7 @@ export function BookmarkButton({
   };
 
   return (
-    <MainButton
+    <BookmarkButtonStyled
       $profile={profile}
       onClick={(e) => {
         e.stopPropagation();
@@ -45,6 +45,6 @@ export function BookmarkButton({
           alt="Empty bookmark icon meaning the artwork is not in the favourites"
         />
       )}
-    </MainButton>
+    </BookmarkButtonStyled>
   );
 }

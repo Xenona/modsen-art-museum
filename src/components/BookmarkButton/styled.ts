@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
-export const MainButton = styled.button<{ $profile?: boolean }>`
+export const BookmarkButtonStyled = styled.button<{ $profile?: boolean }>`
   --side: 59px;
   min-width: var(--side);
   min-height: var(--side);
@@ -17,6 +17,14 @@ export const MainButton = styled.button<{ $profile?: boolean }>`
       position: absolute;
       top: 16px;
       right: 16px;
+
+      &:active:hover {
+        background-color: var(--hovered-button-color-opaque);
+      }
+
+      &:hover {
+        background-color: var(--surface-color);
+      }
     `}
 `;
 
