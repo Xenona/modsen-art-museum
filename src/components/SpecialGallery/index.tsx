@@ -4,7 +4,7 @@ import arrowIcon from "@assets/icons/arrow.svg";
 import { SelectorButton, SelectorContainer, SelectorParam } from "./styled";
 import { ArtworkContainer, sortingInfo } from "./ArtworkContainer";
 import { ErrorBoundary } from "@components/ErrorBoundary";
-import { useDebounce } from "@utils/useDebounce";
+import { useDebounce } from "@utils/hooks/useDebounce";
 import { Paginator } from "@components/Paginator";
 import { PaginatorSkeleton } from "@components/skeletons/PaginatorSkeleton";
 import { SpecialGallerySkeleton } from "@components/skeletons/SpecialGallerySkeleton";

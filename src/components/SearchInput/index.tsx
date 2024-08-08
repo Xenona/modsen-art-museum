@@ -1,14 +1,10 @@
 import { useSearchParams } from "react-router-dom";
 import { SearchContainer, SearchInput as Input, SearchIcon } from "./styled";
-import { ApiController } from "@utils/api/ApiController";
-import { useDebounce } from "@utils/useDebounce";
-import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { ShortGallery } from "@components/ShortGallery";
-import { ApiError } from "@utils/api/ApiError";
+import { useDebounce } from "@utils/hooks/useDebounce";
+import { Suspense, useEffect, useState } from "react";
+
+import { SearchResults } from "./SearchResults";
 import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
-import { ServerError } from "@pages/500";
-import { BottomText } from "@components/SectionHeader/styles";
 
 const validateQuery = (query: string) => {
   const maxLength = 100;
@@ -33,12 +29,6 @@ export function SearchInput() {
     setSearchParams(searchParams);
   }, [debouncedQuery]);
 
-  const { data, error, isPending } = useQuery({
-    queryKey: ["search", debouncedQuery],
-    queryFn: () => ApiController.getSearch({ q: debouncedQuery }),
-    enabled: debouncedQuery.length > 0,
-  });
-
   return (
     <>
       <SearchContainer>
@@ -51,17 +41,9 @@ export function SearchInput() {
         />
         <SearchIcon />
       </SearchContainer>
-      {debouncedQuery.length > 0 ? (
-        isPending ? (
-          <ShortGallerySkeleton />
-        ) : data instanceof ApiError || error ? (
-          <ServerError />
-        ) : data && data.length ? (
-          <ShortGallery artworks={data} />
-        ) : (
-          <BottomText>nothing was found!</BottomText>
-        )
-      ) : null}
+      <Suspense fallback={<ShortGallerySkeleton />}>
+        <SearchResults debouncedQuery={debouncedQuery} />
+      </Suspense>
     </>
   );
 }
