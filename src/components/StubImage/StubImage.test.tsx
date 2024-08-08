@@ -1,7 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { StubImage } from ".";
-import React from "react";
-global.React = React;
 
 jest.mock("@assets/icons/greek_facade.svg", () => "mocked_greek_facade.svg");
 

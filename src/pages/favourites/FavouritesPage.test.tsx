@@ -1,5 +1,3 @@
-import React from "react";
-global.React = React;
 import { render, screen, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { FavouritesPage } from ".";

@@ -1,4 +1,3 @@
-import React from "react";
 import { render } from "@testing-library/react";
 import DOMPurify from "dompurify";
 import { SafeHtml } from "./HtmlStripper";

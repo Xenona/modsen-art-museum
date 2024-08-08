@@ -1,6 +1,5 @@
 import { render, act } from "@testing-library/react";
 import { useDebounce } from "./useDebounce";
-import React from "react";
 
 const TestComponent = ({ value }: { value: string }) => {
   const debouncedValue = useDebounce(value, 300);

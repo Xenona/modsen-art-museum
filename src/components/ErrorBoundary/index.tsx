@@ -1,5 +1,5 @@
 import { ServerError } from "@pages/500";
-import React from "react";
+import { Component, ErrorInfo } from "react";
 import { ReactNode } from "react";
 
 export interface ErrorBoundaryProps {
@@ -14,7 +14,7 @@ export interface ErrorBoundaryState {
 function log(...args: any[]) {
   console.log(args);
 }
-export class ErrorBoundary extends React.Component<
+export class ErrorBoundary extends Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
 > {
@@ -25,7 +25,7 @@ export class ErrorBoundary extends React.Component<
     this.state = { hasError: false };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     log(error, errorInfo);
     this.setState({ hasError: true });
   }

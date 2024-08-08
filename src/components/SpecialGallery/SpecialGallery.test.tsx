@@ -1,5 +1,3 @@
-import React from "react";
-global.React = React;
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { SpecialGallery } from ".";

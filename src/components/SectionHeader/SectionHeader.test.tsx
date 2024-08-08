@@ -1,10 +1,8 @@
-import React from 'react';
-global.React = React;
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import { SectionHeader } from '.';
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import { SectionHeader } from ".";
 
-jest.mock('./styles', () => ({
+jest.mock("./styles", () => ({
   HeaderGroup: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="header-group">{children}</div>
   ),
@@ -13,25 +11,25 @@ jest.mock('./styles', () => ({
   ),
 }));
 
-describe('SectionHeader', () => {
-  it('renders topText and bottomText correctly', () => {
-    const topText = 'Top Header';
-    const bottomText = 'Bottom Text';
+describe("SectionHeader", () => {
+  it("renders topText and bottomText correctly", () => {
+    const topText = "Top Header";
+    const bottomText = "Bottom Text";
 
     render(<SectionHeader topText={topText} bottomText={bottomText} />);
 
-    expect(screen.getByRole('heading', { level: 4 })).toHaveTextContent(
+    expect(screen.getByRole("heading", { level: 4 })).toHaveTextContent(
       topText,
     );
 
-    expect(screen.getByTestId('bottom-text')).toHaveTextContent(bottomText);
+    expect(screen.getByTestId("bottom-text")).toHaveTextContent(bottomText);
   });
 
-  it('uses the correct components for styling', () => {
+  it("uses the correct components for styling", () => {
     render(<SectionHeader topText="Test" bottomText="Test" />);
 
-    expect(screen.getByTestId('header-group')).toBeInTheDocument();
+    expect(screen.getByTestId("header-group")).toBeInTheDocument();
 
-    expect(screen.getByTestId('bottom-text')).toBeInTheDocument();
+    expect(screen.getByTestId("bottom-text")).toBeInTheDocument();
   });
 });

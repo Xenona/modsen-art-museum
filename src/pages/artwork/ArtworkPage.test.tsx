@@ -1,5 +1,3 @@
-import React from "react";
-global.React = React;
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { ArtworkPage } from ".";
