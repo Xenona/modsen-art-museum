@@ -12,8 +12,27 @@ import { Suspense } from "react";
 import { ErrorBoundary } from "@components/ErrorBoundary";
 import { ArtworkPageSkeleton } from "@components/skeletons/ArtworkPageSkeleton";
 import ScrollToTop from "@utils/ScrollToTop";
+import { useQuery } from "@utils/hooks/useFetch";
+
+
+function LazyComponent() {
+  const data = useQuery('https://dummyjson.com/comments')
+
+
+  // @ts-ignore
+  return <div>{JSON.stringify(data)}</div>;
+}
+
 
 function App() {
+  return (
+    <ErrorBoundary>
+      <Suspense fallback={<p>Loading...........</p>}>
+      <LazyComponent/>
+      </Suspense>
+    </ErrorBoundary>
+  );
+
   const queryClient = new QueryClient();
   return (
     <BrowserRouter>
