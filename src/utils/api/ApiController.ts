@@ -1,4 +1,8 @@
-import { ARTWORKS_ENDPOINT } from "@constants/api";
+import {
+  ARTWORK_ID_ENDPOINT,
+  ARTWORKS_PARAMETRIZED_ENDPOINT,
+  SEARCH_ENDPOINT,
+} from "@constants/api";
 import { MAIN_PAGE_PAGINATION_LIMIT } from "@constants/pagination";
 
 import { FavStorage } from "../storage/FavStorage";
@@ -20,7 +24,7 @@ export class ApiController {
     limit?: number;
   }): Promise<Art[] | ApiError> {
     const response = await fetch(
-      `${ARTWORKS_ENDPOINT}?page=${page}&limit=${limit}`,
+      ARTWORKS_PARAMETRIZED_ENDPOINT({ limit, page }),
     );
     if (!response.ok)
       return new ApiError(response.status, "Could not fetch page");
@@ -33,11 +37,9 @@ export class ApiController {
   }
 
   public static async getTotalPages(
-    { limit }: { limit?: number } = { limit: MAIN_PAGE_PAGINATION_LIMIT },
+    { limit }: { limit: number } = { limit: MAIN_PAGE_PAGINATION_LIMIT },
   ): Promise<number | ApiError> {
-    const response = await fetch(
-      `${ARTWORKS_ENDPOINT}?fields=''&limit=${limit}`,
-    );
+    const response = await fetch(ARTWORKS_PARAMETRIZED_ENDPOINT({ limit }));
     if (!response.ok)
       return new ApiError(
         response.status,
@@ -52,7 +54,7 @@ export class ApiController {
   }
 
   public static async getArtwork(id: number): Promise<Art | ApiError> {
-    const response = await fetch(`${ARTWORKS_ENDPOINT}/${id}`);
+    const response = await fetch(ARTWORK_ID_ENDPOINT(id));
     if (response.status === 404)
       return new ApiError(404, "Artwork can not be found", [id]);
     if (!response.ok)
@@ -98,9 +100,7 @@ export class ApiController {
     q: string;
     size?: number;
   }): Promise<Art[] | ApiError> {
-    const response = await fetch(
-      `${ARTWORKS_ENDPOINT}/search?q=${q}&size=${size}`,
-    );
+    const response = await fetch(SEARCH_ENDPOINT(size, q));
     if (response.status === 404)
       return new ApiError(404, "Artworks can not be found");
     if (!response.ok)
