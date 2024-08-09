@@ -1,5 +1,4 @@
 import prettier from "eslint-plugin-prettier";
-import globals from "globals";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
@@ -26,13 +25,6 @@ export default [
   {
     plugins: {
       prettier,
-    },
-
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
     },
 
     settings: {
