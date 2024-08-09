@@ -1,5 +1,5 @@
 import { InfoCard } from "@components/InfoCard";
-import { Art } from "@utils/api/ApiSchema";
+import { Art } from "src/types/schema";
 
 import { ShortGalleryContainer } from "./styled";
 

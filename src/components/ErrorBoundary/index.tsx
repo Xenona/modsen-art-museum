@@ -1,15 +1,10 @@
 import { ServerError } from "@pages/500";
 import { Component, ErrorInfo } from "react";
 import { ReactNode } from "react";
-
-export interface ErrorBoundaryProps {
-  children: ReactNode;
-  customErrorC?: ReactNode;
-}
-
-export interface ErrorBoundaryState {
-  hasError: boolean;
-}
+import {
+  ErrorBoundaryProps,
+  ErrorBoundaryState,
+} from "src/types/errorBoundary";
 
 function log(...args: any[]) {
   console.log(args);

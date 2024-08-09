@@ -5,11 +5,11 @@ import { IMAGE_ENDPOINT } from "@constants/api";
 import { ServerError } from "@pages/500";
 import { ApiController } from "@utils/api/ApiController";
 import { ApiError } from "@utils/api/ApiError";
-import { Art } from "@utils/api/ApiSchema";
 import { getValidDate } from "@utils/getValidDate";
 import { useSuspenseQuery } from "@utils/hooks/useFetch";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { Art } from "src/types/schema";
 
 import { ArtworkCard, ImageFigure, Text } from "./ArtworkCard.styled";
 import { ArtworkContainer as Container } from "./styled";

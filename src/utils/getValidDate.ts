@@ -1,4 +1,4 @@
-import { Art } from "./api/ApiSchema";
+import { Art } from "src/types/schema";
 
 export const getValidDate = (art: Art): number | null => {
   const startDate = art.date_start ? new Date(art.date_start).getTime() : null;

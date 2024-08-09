@@ -1,12 +1,6 @@
 import { FavStorage } from "@utils/storage/FavStorage";
 import { createContext, useContext } from "react";
-
-interface IFavStorageContext {
-  save: (id: number) => void;
-  remove: (id: number) => void;
-  getAll: () => number[];
-  check: (id: number) => boolean;
-}
+import { IFavStorageContext } from "src/types/favStorage";
 
 const FavStorageContext = createContext<IFavStorageContext>({
   save: () => {
