@@ -1,23 +1,13 @@
-import {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useState,
-} from "react";
+import { createContext, useContext, useState } from "react";
 
-type Cache = { [key: string]: { read: () => unknown } };
+type Cache = { [key: string]: () => unknown };
 
 interface IQueryClientContext {
   cache: Cache;
-  setCache: Dispatch<SetStateAction<Cache>>;
 }
 
 const QueryClientContext = createContext<IQueryClientContext>({
   cache: {},
-  setCache: () => {
-    throw new Error("Use context inside provider");
-  },
 });
 
 export function QueryClientProvider({
@@ -25,14 +15,13 @@ export function QueryClientProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [cache, setCache] = useState<Cache>({});
+  const [cache, _] = useState<Cache>({});
 
   console.log(cache);
   return (
     <QueryClientContext.Provider
       value={{
         cache,
-        setCache,
       }}
     >
       {children}

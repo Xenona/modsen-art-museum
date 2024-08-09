@@ -19,13 +19,12 @@ export function Paginator({
 }) {
   const debouncedCurrPage = useDebounce(currPage);
   const [maxPage, setMaxPage] = useState<number>(1);
-  const { data: newMaxPage, error } = useSuspenseQuery({
+  const newMaxPage = useSuspenseQuery({
     queryKey: ["maxPage", debouncedCurrPage],
     queryFn: () => ApiController.getTotalPages(),
   });
 
   if (newMaxPage instanceof ApiError) return <ServerError />;
-  if (error) throw error;
 
   useEffect(() => {
     setMaxPage(newMaxPage);

@@ -17,7 +17,7 @@ export function SearchResults({ debouncedQuery }: { debouncedQuery: string }) {
   return (
     <>
       {debouncedQuery.length > 0 ? (
-        data instanceof ApiError || error ? (
+        data instanceof ApiError ? (
           <ServerError />
         ) : data && data.length ? (
           <ShortGallery artworks={data} />

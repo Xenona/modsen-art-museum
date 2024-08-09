@@ -1,8 +1,8 @@
 import { useQueryClientContext } from "./QueryClientProvider";
 
-function wrapPromise(promise: Promise<unknown>) {
+function wrapPromise<T>(promise: Promise<T>) {
   let status = "pending";
-  let response: unknown;
+  let response: T;
 
   const suspender = promise.then(
     (res) => {
@@ -14,7 +14,6 @@ function wrapPromise(promise: Promise<unknown>) {
   );
 
   const read = () => {
-    console.log("sta", status);
     if (status === "pending") {
       throw suspender;
     } else if (status === "error") {
@@ -22,26 +21,23 @@ function wrapPromise(promise: Promise<unknown>) {
     } else return response;
   };
 
-  return { read };
+  return read;
 }
 
-export function useSuspenseQuery({
+export function useSuspenseQuery<T>({
   queryKey,
   queryFn,
 }: {
   queryKey: any[];
-  queryFn: () => Promise<any>;
-}) {
+  queryFn: () => Promise<T>;
+}): T {
   const cacheContext = useQueryClientContext();
   const strQueryKey = JSON.stringify(queryKey);
   if (strQueryKey in cacheContext.cache) {
-    return cacheContext.cache[strQueryKey].read();
+    return (cacheContext.cache[strQueryKey] as () => T)();
   }
 
-  const updCache = cacheContext.cache;
-  updCache[strQueryKey] = wrapPromise(queryFn());
-  cacheContext.setCache(updCache);
-  console.log(cacheContext.cache);
+  cacheContext.cache[strQueryKey] = wrapPromise<T>(queryFn());
 
-  return cacheContext.cache[strQueryKey].read();
+  return (cacheContext.cache[strQueryKey] as () => T)();
 }
