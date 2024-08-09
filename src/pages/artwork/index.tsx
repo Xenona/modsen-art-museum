@@ -1,5 +1,6 @@
 import { BookmarkButton } from "@components/BookmarkButton";
 import { SkeletonOrImage } from "@components/ImageOrSkeleton";
+import { Popup } from "@components/Popup";
 import { ImageFigure } from "@components/SpecialGallery/ArtworkCard.styled";
 import { StubImage } from "@components/StubImage";
 import { IMAGE_ENDPOINT } from "@constants/api";
@@ -7,7 +8,8 @@ import { ApiController } from "@utils/api/ApiController";
 import { ApiError } from "@utils/api/ApiError";
 import { useSuspenseQuery } from "@utils/hooks/useFetch";
 import { SafeHtml } from "@utils/HtmlStripper";
-import { Link, Navigate, useLocation, useParams } from "react-router-dom";
+import { useState } from "react";
+import { Navigate, useLocation, useParams } from "react-router-dom";
 
 import {
   Article,
@@ -18,9 +20,11 @@ import {
   ListItem,
   MainHorizontal,
 } from "./styled";
+
 export function ArtworkPage() {
   const { id } = useParams();
   const { state } = useLocation();
+  const [showingPopup, setShowingPopup] = useState<boolean>(false);
 
   const artId = Number(id);
   if (!id || isNaN(artId)) {
@@ -45,16 +49,16 @@ export function ArtworkPage() {
 
   return (
     <MainHorizontal>
-      <Figure>
+      <Figure onClick={() => setShowingPopup(true)}>
         <StubImage condition={!!artwork.image_id}>
-          <Link to={IMAGE_ENDPOINT(artwork.image_id as string)}>
-            <ImageFigure>
-              <SkeletonOrImage
-                src={IMAGE_ENDPOINT(artwork.image_id as string)}
-                alt={artwork.thumbnail?.alt_text ?? ""}
-              />
-            </ImageFigure>
-          </Link>
+          {/* <Link to={IMAGE_ENDPOINT(artwork.image_id as string)}> */}
+          <ImageFigure>
+            <SkeletonOrImage
+              src={IMAGE_ENDPOINT(artwork.image_id as string)}
+              alt={artwork.thumbnail?.alt_text ?? ""}
+            />
+          </ImageFigure>
+          {/* </Link> */}
         </StubImage>
         <BookmarkButton
           profile={true}
@@ -62,6 +66,15 @@ export function ArtworkPage() {
           aria-label="Bookmark this item"
         />
       </Figure>
+
+      {showingPopup && (
+        <Popup onClose={() => setShowingPopup(false)}>
+          <img
+            src={IMAGE_ENDPOINT(artwork.image_id as string)}
+            alt={artwork.thumbnail?.alt_text ?? ""}
+          />
+        </Popup>
+      )}
 
       <Article>
         <header>

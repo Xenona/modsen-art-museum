@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const BookmarkButtonStyled = styled.button<{ $profile?: boolean }>`
+export const ButtonStyled = styled.button`
   --side: 59px;
   min-width: var(--side);
   min-height: var(--side);
@@ -8,7 +8,11 @@ export const BookmarkButtonStyled = styled.button<{ $profile?: boolean }>`
   width: var(--side);
   background-color: var(--button-color);
   border-radius: 100%;
+`;
 
+export const BookmarkButtonStyled = styled(ButtonStyled)<{
+  $profile?: boolean;
+}>`
   ${({ $profile }) =>
     $profile &&
     css`
