@@ -13,11 +13,14 @@ import { ErrorBoundary } from "@components/ErrorBoundary";
 import { ArtworkPageSkeleton } from "@components/skeletons/ArtworkPageSkeleton";
 import ScrollToTop from "@utils/ScrollToTop";
 import { useQuery } from "@utils/hooks/useFetch";
+import { ApiController } from "@utils/api/ApiController";
 
 
 function LazyComponent() {
-  const data = useQuery('https://dummyjson.com/comments')
-
+  const data = useQuery({
+    queryKey: ['data'],
+    queryFn: () => ApiController.getTotalPages(),
+  })
 
   // @ts-ignore
   return <div>{JSON.stringify(data)}</div>;

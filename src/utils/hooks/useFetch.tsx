@@ -26,25 +26,22 @@ function wrapPromise(promise: Promise<unknown>) {
 const cache: { [k: string]: { read: () => unknown } } = {}
 
 export function useQuery(
-  //   {
-  //   queryKey,
-  //   queryFn,
+    {
+    queryKey,
+    queryFn,
 
-  // } : {
-  //   queryKey: any[],
-  //   queryFn: () => Promise<any>,
+  } : {
+    queryKey: any[],
+    queryFn: () => Promise<any>,
 
-  // }
-  url: string,
+  }
 ) {
-  if(url in cache) {
-    return cache[url].read();
+  const strQueryKey = JSON.stringify(queryKey);
+  if(strQueryKey in cache) {
+    return cache[strQueryKey].read();
   }
 
-  cache[url] = wrapPromise(fetch(url)
-    .then((res) => res.json())
-    // @ts-ignore
-    .then((res) => res));
+  cache[strQueryKey] = wrapPromise(queryFn());
 
-  return cache[url].read();
+  return cache[strQueryKey].read();
 }
