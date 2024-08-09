@@ -30,6 +30,7 @@ export default [
     settings: {
       react: {
         version: "detect",
+        "simple-import-sort": simpleImportSort,
       },
     },
 
@@ -46,7 +47,9 @@ export default [
           "varsIgnorePattern": "^_",
           "caughtErrorsIgnorePattern": "^_"
         }
-      ]
+      ],
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
     },
   },
 ];
