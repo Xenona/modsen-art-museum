@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { AppHeader } from ".";
 
-// Mock components
 jest.mock("./Menu", () => ({
   Menu: () => <div data-testid="menu">Menu</div>,
 }));

@@ -1,9 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { ArtworkPage } from ".";
-import { Art } from "@utils/api/ApiSchema.ts";
+import { Art } from "@utils/api/ApiSchema";
 import { FavStorageProvider } from "@utils/hooks/FavStorageProvider";
-import { ApiError } from "@utils/api/ApiError.ts";
+import { ApiError } from "@utils/api/ApiError";
 
 jest.mock("@utils/api/ApiController", () => ({
   ApiController: {
@@ -11,12 +11,12 @@ jest.mock("@utils/api/ApiController", () => ({
   },
 }));
 
-jest.mock("@tanstack/react-query", () => ({
+jest.mock("@utils/hooks/useFetch", () => ({
   useSuspenseQuery: jest.fn(),
 }));
 
 describe("ArtworkPage", () => {
-  it("renders the artwork details correctly", () => {
+  it("renders the artwork details correctly", async () => {
     const artworkMock: Art = {
       id: 1,
       image_id: "image123",
@@ -33,11 +33,8 @@ describe("ArtworkPage", () => {
     };
 
     (
-      require("@tanstack/react-query").useSuspenseQuery as jest.Mock
-    ).mockReturnValue({
-      data: artworkMock,
-      error: null,
-    });
+      require("@utils/hooks/useFetch").useSuspenseQuery as jest.Mock
+    ).mockReturnValue(artworkMock);
 
     render(
       <FavStorageProvider>
@@ -51,17 +48,19 @@ describe("ArtworkPage", () => {
       </FavStorageProvider>,
     );
 
-    expect(screen.getByText("Artwork Title")).toBeInTheDocument();
-    expect(screen.getByText("Artist Title")).toBeInTheDocument();
-    expect(screen.getByText("2024")).toBeInTheDocument();
-    expect(screen.getByText("Artist Nationality")).toBeInTheDocument();
-    expect(screen.getByText("20x30 cm")).toBeInTheDocument();
-    expect(screen.getByText("Credit Line")).toBeInTheDocument();
-    expect(screen.getByText("On Loan")).toBeInTheDocument();
-    expect(screen.getByAltText("Artwork Thumbnail")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("Artwork Title")).toBeInTheDocument();
+      expect(screen.getByText("Artist Title")).toBeInTheDocument();
+      expect(screen.getByText("2024")).toBeInTheDocument();
+      expect(screen.getByText("Artist Nationality")).toBeInTheDocument();
+      expect(screen.getByText("20x30 cm")).toBeInTheDocument();
+      expect(screen.getByText("Credit Line")).toBeInTheDocument();
+      expect(screen.getByText("On Loan")).toBeInTheDocument();
+      expect(screen.getByAltText("Artwork Thumbnail")).toBeInTheDocument();
+    });
   });
 
-  it("redirects to 404 if the ID is invalid", () => {
+  it("redirects to 404 if the ID is invalid", async () => {
     render(
       <FavStorageProvider>
         <MemoryRouter initialEntries={["/artwork/invalid"]}>
@@ -73,16 +72,15 @@ describe("ArtworkPage", () => {
       </FavStorageProvider>,
     );
 
-    expect(screen.getByText("404 Page")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("404 Page")).toBeInTheDocument();
+    });
   });
 
-  it("handles API errors and redirects accordingly", () => {
+  it("handles API errors and redirects accordingly", async () => {
     (
-      require("@tanstack/react-query").useSuspenseQuery as jest.Mock
-    ).mockReturnValue({
-      data: new ApiError(500, "Server error"),
-      error: null,
-    });
+      require("@utils/hooks/useFetch").useSuspenseQuery as jest.Mock
+    ).mockReturnValue(new ApiError(500, "Server error"));
 
     render(
       <FavStorageProvider>
@@ -95,6 +93,8 @@ describe("ArtworkPage", () => {
       </FavStorageProvider>,
     );
 
-    expect(screen.getByText("500 Page")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("500 Page")).toBeInTheDocument();
+    });
   });
 });

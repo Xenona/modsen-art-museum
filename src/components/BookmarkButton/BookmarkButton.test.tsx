@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import { BookmarkButton } from ".";
 import { useFavStorageContext } from "@utils/hooks/FavStorageProvider";
 
-jest.mock("@components/FavStorageProvider", () => ({
+jest.mock("@utils/hooks/FavStorageProvider", () => ({
   useFavStorageContext: jest.fn(),
 }));
 
