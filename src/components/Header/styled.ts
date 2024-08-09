@@ -74,13 +74,12 @@ export const MobileMenu = styled.div`
     display: block;
   }
 `;
-
 export const Nav = styled.nav`
   ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 16px;
+    gap: ${(props) => props.theme.spacing.medium};
     padding: 0;
     margin: 0;
     list-style-type: none;
@@ -90,7 +89,7 @@ export const Nav = styled.nav`
     font-family: "Inter";
 
     a {
-      color: var(--surface-color);
+      color: ${(props) => props.theme.colors.surface};
       text-decoration: none;
       white-space: nowrap;
       cursor: pointer;
@@ -100,7 +99,7 @@ export const Nav = styled.nav`
     }
 
     img {
-      fill: var(--weak-accent-color);
+      fill: ${(props) => props.theme.colors.weakAccent};
     }
   }
 

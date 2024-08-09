@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
 
 export const Card = styled.div<{ $withImage: boolean }>`
-  padding: 16px;
-  gap: 16px;
+  padding: ${(props) => props.theme.spacing.medium};
+  gap: ${(props) => props.theme.spacing.medium};
   display: grid;
   align-items: center;
-  background-color: var(--surface-color);
-  border: 1px solid var(--surface-stroke-color);
+  background-color: ${(props) => props.theme.colors.surface};
+  border: 1px solid ${(props) => props.theme.colors.surfaceStroke};
   ${(props) =>
     props.$withImage
       ? css`

@@ -2,6 +2,8 @@ import { render } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "../../src/utils/ScrollToTop";
 import { useLocation } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { theme } from "@styles/theme";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
@@ -17,11 +19,13 @@ describe("ScrollToTop", () => {
 
   it("should scroll to the top on initial render", () => {
     render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Routes>
-          <Route path="/" element={<ScrollToTop />} />
-        </Routes>
-      </MemoryRouter>,
+      <ThemeProvider theme={theme}>
+        <MemoryRouter initialEntries={["/"]}>
+          <Routes>
+            <Route path="/" element={<ScrollToTop />} />
+          </Routes>
+        </MemoryRouter>
+      </ThemeProvider>,
     );
 
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
@@ -29,21 +33,25 @@ describe("ScrollToTop", () => {
 
   it("should not scroll to the top if pathname does not change", () => {
     const { rerender } = render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Routes>
-          <Route path="/" element={<ScrollToTop />} />
-        </Routes>
-      </MemoryRouter>,
+      <ThemeProvider theme={theme}>
+        <MemoryRouter initialEntries={["/"]}>
+          <Routes>
+            <Route path="/" element={<ScrollToTop />} />
+          </Routes>
+        </MemoryRouter>
+      </ThemeProvider>,
     );
 
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
 
     rerender(
-      <MemoryRouter initialEntries={["/"]}>
-        <Routes>
-          <Route path="/" element={<ScrollToTop />} />
-        </Routes>
-      </MemoryRouter>,
+      <ThemeProvider theme={theme}>
+        <MemoryRouter initialEntries={["/"]}>
+          <Routes>
+            <Route path="/" element={<ScrollToTop />} />
+          </Routes>
+        </MemoryRouter>
+      </ThemeProvider>,
     );
 
     expect(window.scrollTo).toHaveBeenCalledTimes(1);

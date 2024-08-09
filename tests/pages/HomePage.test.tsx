@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { HomePage } from "../../src/pages/home";
+import { ThemeProvider } from "styled-components";
+import { theme } from "@styles/theme";
 
 jest.mock("@components/SearchInput", () => ({
   SearchInput: () => <div data-testid="search-input">SearchInput</div>,
@@ -38,7 +40,11 @@ jest.mock("@components/ErrorBoundary", () => ({
 
 describe("HomePage", () => {
   it("renders correctly", async () => {
-    render(<HomePage />);
+    render(
+      <ThemeProvider theme={theme}>
+        <HomePage />
+      </ThemeProvider>,
+    );
 
     const heading = screen.getByRole("heading", { level: 1 });
     expect(heading).toHaveTextContent("Let's Find Some");

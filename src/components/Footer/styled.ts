@@ -6,6 +6,6 @@ export const Footer = styled.footer`
   justify-content: space-between;
   align-items: center;
   padding: 32px 8%;
-  background-color: var(--surface-color);
+  background-color: ${(props) => props.theme.colors.surface};
   margin-top: 120px;
 `;

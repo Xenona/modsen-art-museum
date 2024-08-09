@@ -4,6 +4,8 @@ import { ArtworkPage } from "../../src/pages/artwork";
 import { Art } from "@utils/api/ApiSchema";
 import { FavStorageProvider } from "@utils/hooks/FavStorageProvider";
 import { ApiError } from "@utils/api/ApiError";
+import { ThemeProvider } from "styled-components";
+import { theme } from "@styles/theme";
 
 jest.mock("@utils/api/ApiController", () => ({
   ApiController: {
@@ -37,15 +39,17 @@ describe("ArtworkPage", () => {
     ).mockReturnValue(artworkMock);
 
     render(
-      <FavStorageProvider>
-        <MemoryRouter initialEntries={["/artwork/1"]}>
-          <Routes>
-            <Route path="/artwork/:id" element={<ArtworkPage />} />
-            <Route path="/404" element={<div>404 Page</div>} />
-            <Route path="/500" element={<div>500 Page</div>} />
-          </Routes>
-        </MemoryRouter>
-      </FavStorageProvider>,
+      <ThemeProvider theme={theme}>
+        <FavStorageProvider>
+          <MemoryRouter initialEntries={["/artwork/1"]}>
+            <Routes>
+              <Route path="/artwork/:id" element={<ArtworkPage />} />
+              <Route path="/404" element={<div>404 Page</div>} />
+              <Route path="/500" element={<div>500 Page</div>} />
+            </Routes>
+          </MemoryRouter>
+        </FavStorageProvider>
+      </ThemeProvider>,
     );
 
     await waitFor(() => {
@@ -62,14 +66,16 @@ describe("ArtworkPage", () => {
 
   it("redirects to 404 if the ID is invalid", async () => {
     render(
-      <FavStorageProvider>
-        <MemoryRouter initialEntries={["/artwork/invalid"]}>
-          <Routes>
-            <Route path="/artwork/:id" element={<ArtworkPage />} />
-            <Route path="/404" element={<div>404 Page</div>} />
-          </Routes>
-        </MemoryRouter>
-      </FavStorageProvider>,
+      <ThemeProvider theme={theme}>
+        <FavStorageProvider>
+          <MemoryRouter initialEntries={["/artwork/invalid"]}>
+            <Routes>
+              <Route path="/artwork/:id" element={<ArtworkPage />} />
+              <Route path="/404" element={<div>404 Page</div>} />
+            </Routes>
+          </MemoryRouter>
+        </FavStorageProvider>
+      </ThemeProvider>,
     );
 
     await waitFor(() => {
@@ -83,14 +89,16 @@ describe("ArtworkPage", () => {
     ).mockReturnValue(new ApiError(500, "Server error"));
 
     render(
-      <FavStorageProvider>
-        <MemoryRouter initialEntries={["/artwork/1"]}>
-          <Routes>
-            <Route path="/artwork/:id" element={<ArtworkPage />} />
-            <Route path="/500" element={<div>500 Page</div>} />
-          </Routes>
-        </MemoryRouter>
-      </FavStorageProvider>,
+      <ThemeProvider theme={theme}>
+        <FavStorageProvider>
+          <MemoryRouter initialEntries={["/artwork/1"]}>
+            <Routes>
+              <Route path="/artwork/:id" element={<ArtworkPage />} />
+              <Route path="/500" element={<div>500 Page</div>} />
+            </Routes>
+          </MemoryRouter>
+        </FavStorageProvider>
+      </ThemeProvider>,
     );
 
     await waitFor(() => {

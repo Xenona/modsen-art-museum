@@ -1,6 +1,8 @@
 import { render, screen, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { FavouritesPage } from "../../src/pages/favourites";
+import { ThemeProvider } from "styled-components";
+import { theme } from "@styles/theme";
 
 jest.mock("@components/FavGallery", () => ({
   FavGallery: () => <div data-testid="fav-gallery">FavGallery</div>,
@@ -32,7 +34,11 @@ jest.mock("@components/ErrorBoundary", () => ({
 
 describe("FavouritesPage", () => {
   it("renders correctly", async () => {
-    render(<FavouritesPage />);
+    render(
+      <ThemeProvider theme={theme}>
+        <FavouritesPage />
+      </ThemeProvider>,
+    );
 
     const heading = screen.getByRole("heading", { level: 1 });
     expect(within(heading).getByText("Here Are Your")).toBeInTheDocument();

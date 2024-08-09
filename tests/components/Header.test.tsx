@@ -1,6 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { AppHeader } from "@components/Header";
+import { ThemeProvider } from "styled-components";
+import { theme } from "@styles/theme";
 
 jest.mock("@components/Header/Menu.tsx", () => ({
   Menu: () => <div data-testid="menu">Menu</div>,
@@ -24,7 +26,11 @@ jest.mock("@components/Header/LinkedLogo.tsx", () => ({
 
 describe("AppHeader", () => {
   it("renders LinkedLogo with correct props", () => {
-    render(<AppHeader />);
+    render(
+      <ThemeProvider theme={theme}>
+        <AppHeader />
+      </ThemeProvider>,
+    );
 
     expect(
       screen.getByAltText(
@@ -34,7 +40,11 @@ describe("AppHeader", () => {
   });
 
   it("toggles menu visibility on button click", () => {
-    render(<AppHeader />);
+    render(
+      <ThemeProvider theme={theme}>
+        <AppHeader />
+      </ThemeProvider>,
+    );
 
     fireEvent.click(screen.getByLabelText("Open or close menu"));
 

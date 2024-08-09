@@ -6,7 +6,7 @@ export const ButtonStyled = styled.button`
   min-height: var(--side);
   height: var(--side);
   width: var(--side);
-  background-color: var(--button-color);
+  background-color: ${(props) => props.theme.colors.button};
   border-radius: 100%;
 `;
 
@@ -16,18 +16,18 @@ export const BookmarkButtonStyled = styled(ButtonStyled)<{
   ${({ $profile }) =>
     $profile &&
     css`
-      background-color: var(--surface-color);
-      border: 1px solid var(--surface-stroke-color);
+      background-color: ${(props) => props.theme.colors.surface};
+      border: 1px solid ${(props) => props.theme.colors.surfaceStroke};
       position: absolute;
       top: 16px;
       right: 16px;
 
       &:active:hover {
-        background-color: var(--hovered-button-color-opaque);
+        background-color: ${(props) => props.theme.colors.hoveredButtonOpaque};
       }
 
       &:hover {
-        background-color: var(--surface-color);
+        background-color: ${(props) => props.theme.colors.surface};
       }
     `}
 `;
