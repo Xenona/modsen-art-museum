@@ -6,20 +6,13 @@ import { ServerError } from "@pages/500";
 import { ApiController } from "@utils/api/ApiController";
 import { ApiError } from "@utils/api/ApiError";
 import { Art } from "@utils/api/ApiSchema";
+import { getValidDate } from "@utils/getValidDate";
 import { useSuspenseQuery } from "@utils/hooks/useFetch";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 
 import { ArtworkCard, ImageFigure, Text } from "./ArtworkCard.styled";
 import { ArtworkContainer as Container } from "./styled";
-
-const getValidDate = (art: Art): number | null => {
-  const startDate = art.date_start ? new Date(art.date_start).getTime() : null;
-  const endDate = art.date_end ? new Date(art.date_end).getTime() : null;
-  if (startDate !== null && endDate !== null) {
-    return Math.min(startDate, endDate);
-  }
-  return startDate ?? endDate ?? null;
-};
 
 export const sortingInfo = [
   {
@@ -76,11 +69,18 @@ export function ArtworkContainer({
 
   if (artworks instanceof ApiError) return <ServerError />;
 
-  artworks.sort(sortingInfo[sortingId].cb);
+  const sortFn = useMemo(() => sortingInfo[sortingId].cb, [sortingId]);
+  artworks.sort(sortFn);
 
-  return (
-    <Container>
-      {artworks.map((art) => (
+  const sortedArtworks = useMemo(() => {
+    const sorted = [...artworks];
+    sorted.sort(sortFn);
+    return sorted;
+  }, [artworks, sortFn]);
+
+  const artworkElements = useMemo(
+    () =>
+      sortedArtworks.map((art) => (
         <ArtworkCard key={art.id}>
           <Link to={`/artwork/${art.id}`} state={art}>
             <ImageFigure>
@@ -96,7 +96,9 @@ export function ArtworkContainer({
             <InfoCard data={art} withImage={false} />
           </Text>
         </ArtworkCard>
-      ))}
-    </Container>
+      )),
+    [sortedArtworks],
   );
+
+  return <Container>{artworkElements}</Container>;
 }

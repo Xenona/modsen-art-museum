@@ -1,5 +1,3 @@
-import React from "react";
-
 export const sanitizeHtml = (htmlString: string): HTMLElement | null => {
   const allowedTags = ["P", "I"];
 
