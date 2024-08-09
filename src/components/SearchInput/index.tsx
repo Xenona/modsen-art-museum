@@ -46,11 +46,13 @@ export function SearchInput() {
         />
         <SearchIcon />
       </SearchContainer>
-      <ErrorBoundary>
-        <Suspense fallback={<ShortGallerySkeleton />}>
-          <SearchResults debouncedQuery={debouncedQuery} />
-        </Suspense>
-      </ErrorBoundary>
+      {debouncedQuery && (
+        <ErrorBoundary>
+          <Suspense fallback={<ShortGallerySkeleton />}>
+            <SearchResults debouncedQuery={debouncedQuery} />
+          </Suspense>
+        </ErrorBoundary>
+      )}
     </>
   );
 }
