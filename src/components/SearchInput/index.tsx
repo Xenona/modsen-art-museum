@@ -5,20 +5,20 @@ import { Suspense, useEffect, useState } from "react";
 
 import { SearchResults } from "./SearchResults";
 import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
+import { ErrorBoundary } from "@components/ErrorBoundary";
 
-const validateQuery = (query: string) => {
-  const maxLength = 100;
-  const trimmedQuery = query.trim();
-  if (trimmedQuery.length === 0 || trimmedQuery.length > maxLength) {
-    return "";
-  }
+const validateAndSetQuery = (query: string) => {
+  const sanitizedQuery = query.replace(/[<>]/g, "");
+  const trimmedQuery = sanitizedQuery.trimStart();
   return trimmedQuery;
 };
 
 export function SearchInput() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [query, setQuery] = useState(searchParams.get("search") || "");
-  const debouncedQuery = validateQuery(useDebounce(query));
+  const [query, setQuery] = useState(
+    validateAndSetQuery(searchParams.get("search") || ""),
+  );
+  const debouncedQuery = validateAndSetQuery(useDebounce(query));
 
   useEffect(() => {
     if (debouncedQuery) {
@@ -29,6 +29,11 @@ export function SearchInput() {
     setSearchParams(searchParams);
   }, [debouncedQuery]);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuery = validateAndSetQuery(e.target.value);
+    setQuery(newQuery);
+  };
+
   return (
     <>
       <SearchContainer>
@@ -36,14 +41,17 @@ export function SearchInput() {
           id="searchbar"
           type="text"
           placeholder="Search Art, Artist, Work..."
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={handleInputChange}
+          maxLength={100}
           value={query}
         />
         <SearchIcon />
       </SearchContainer>
-      <Suspense fallback={<ShortGallerySkeleton />}>
-        <SearchResults debouncedQuery={debouncedQuery} />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<ShortGallerySkeleton />}>
+          <SearchResults debouncedQuery={debouncedQuery} />
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 }
