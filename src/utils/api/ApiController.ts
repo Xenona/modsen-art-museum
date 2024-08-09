@@ -12,7 +12,7 @@ import { FavStorage } from "../storage/FavStorage";
 export class ApiController {
   public static async getPage({
     page,
-    limit = 12,
+    limit = 4,
   }: {
     page: number;
     limit?: number;
@@ -31,7 +31,7 @@ export class ApiController {
   }
 
   public static async getTotalPages(
-    { limit }: { limit?: number } = { limit: 12 },
+    { limit }: { limit?: number } = { limit: 4 },
   ): Promise<number | ApiError> {
     const response = await fetch(
       `${ARTWORKS_ENDPOINT}?fields=''&limit=${limit}`,
@@ -91,7 +91,7 @@ export class ApiController {
 
   public static async getSearch({
     q,
-    size = 12,
+    size = 4,
   }: {
     q: string;
     size?: number;

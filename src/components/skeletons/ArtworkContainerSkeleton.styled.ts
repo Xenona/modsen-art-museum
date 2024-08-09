@@ -3,7 +3,7 @@ import { blinkAnimation } from "./ShortGallerySkeleton.styled";
 
 export const ArtworkWrapperSkeleton = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 35%));
+  grid-template-columns: repeat(2, minmax(0, 45%));
   justify-content: space-between;
   row-gap: 100px;
   column-gap: 5%;
