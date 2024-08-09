@@ -10,7 +10,8 @@ export const ARTWORKS_PARAMETRIZED_ENDPOINT = ({
   fields: string;
   limit: number;
   page: number;
-}>) => `${ARTWORKS_ENDPOINT}?page=${page}&limit=${limit}$fields=${fields}`;
+}>) =>
+  `${ARTWORKS_ENDPOINT}?page=${page}&limit=${limit}${fields ? `&fields="${fields}"` : ""}`;
 
 export const IMAGE_ENDPOINT = (id: number | string) =>
   `https://www.artic.edu/iiif/2/${id}/full/full/0/default.jpg`;
