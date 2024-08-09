@@ -1,12 +1,12 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { AppHeader } from ".";
+import { AppHeader } from "@components/Header";
 
-jest.mock("./Menu", () => ({
+jest.mock("@components/Header/Menu.tsx", () => ({
   Menu: () => <div data-testid="menu">Menu</div>,
 }));
 
-jest.mock("./LinkedLogo", () => ({
+jest.mock("@components/Header/LinkedLogo.tsx", () => ({
   LinkedLogo: ({
     img,
     link,

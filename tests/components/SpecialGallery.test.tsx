@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { SpecialGallery } from ".";
+import { SpecialGallery } from "@components/SpecialGallery";
 
 jest.mock("@components/SectionHeader", () => ({
   SectionHeader: ({
@@ -17,7 +17,7 @@ jest.mock("@components/SectionHeader", () => ({
   ),
 }));
 
-jest.mock("./ArtworkContainer", () => ({
+jest.mock("@components/SpecialGallery/ArtworkContainer.tsx", () => ({
   ArtworkContainer: ({
     page,
     sortingId,

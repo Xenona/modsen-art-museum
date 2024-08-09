@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Footer } from ".";
+import { Footer } from "../../src/components/Footer";
 
 jest.mock("@components/Header/LinkedLogo", () => ({
   LinkedLogo: ({

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { BookmarkButton } from ".";
+import { BookmarkButton } from "../../src/components/BookmarkButton";
 import { useFavStorageContext } from "@utils/hooks/FavStorageProvider";
 
 jest.mock("@utils/hooks/FavStorageProvider", () => ({
@@ -63,6 +63,8 @@ describe("BookmarkButton", () => {
 
     const { container } = render(<BookmarkButton id={1} profile={true} />);
 
-    expect(container.querySelector("button")).toHaveClass("sc-braxZu fPOUfE");
+    expect(container.querySelector("button")).toHaveClass(
+      "sc-braxZu sc-gJhJTp eKSLbX qTdSa",
+    );
   });
 });

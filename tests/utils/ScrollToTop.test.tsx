@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import ScrollToTop from "./ScrollToTop";
+import ScrollToTop from "../../src/utils/ScrollToTop";
 import { useLocation } from "react-router-dom";
 
 jest.mock("react-router-dom", () => ({

@@ -24,5 +24,23 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*",
+    "tests/utils/ScrollToTop.test.tsx",
+    "tests/utils/HtmlStripper.test.tsx",
+    "tests/utils/useDebounce.test.tsx",
+    "tests/utils/ApiController.test.ts",
+    "tests/pages/HomePage.test.tsx",
+    "tests/pages/FavouritesPage.test.tsx",
+    "tests/pages/Error.test.tsx",
+    "tests/pages/ArtworkPage.test.tsx",
+    "tests/pages/500.test.tsx",
+    "tests/components/StubImage.test.tsx",
+    "tests/components/SpecialGallery.test.tsx",
+    "tests/components/SectionHeader.test.tsx",
+    "tests/components/Footer.test.tsx",
+    "tests/components/BookmarkButton.test.tsx",
+    "tests/components/Header.test.tsx",
+    "tests/utils/FavStorage.test.ts"
+  ]
 }
