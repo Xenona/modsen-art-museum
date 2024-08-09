@@ -51,14 +51,12 @@ export function ArtworkPage() {
     <MainHorizontal>
       <Figure onClick={() => setShowingPopup(true)}>
         <StubImage condition={!!artwork.image_id}>
-          {/* <Link to={IMAGE_ENDPOINT(artwork.image_id as string)}> */}
           <ImageFigure>
             <SkeletonOrImage
               src={IMAGE_ENDPOINT(artwork.image_id as string)}
               alt={artwork.thumbnail?.alt_text ?? ""}
             />
           </ImageFigure>
-          {/* </Link> */}
         </StubImage>
         <BookmarkButton
           profile={true}
