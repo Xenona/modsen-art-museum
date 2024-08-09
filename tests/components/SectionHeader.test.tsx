@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { SectionHeader } from ".";
+import { SectionHeader } from "@components/SectionHeader";
 
-jest.mock("./styles", () => ({
+jest.mock("@components/SectionHeader/styles.ts", () => ({
   HeaderGroup: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="header-group">{children}</div>
   ),

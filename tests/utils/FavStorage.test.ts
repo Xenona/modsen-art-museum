@@ -1,4 +1,4 @@
-import { FavStorage } from "./FavStorage";
+import { FavStorage } from "../../src/utils/storage/FavStorage";
 
 const localStorageMock = (() => {
   let store: Record<string, string> = {};

@@ -1,15 +1,15 @@
-import { ApiController } from "./ApiController";
-import { ApiError } from "./ApiError";
+import { ApiController } from "@utils/api/ApiController";
+import { ApiError } from "@utils/api/ApiError";
 import {
   artSchema,
   artAndPaginationSchema,
   paginationDataSchema,
   searchAndPaginationSchema,
   artDataSchema,
-} from "./ApiSchema";
+} from "@utils/api/ApiSchema";
 import { z } from "zod";
 
-jest.mock("./ApiController", () => ({
+jest.mock("@utils/api/ApiController", () => ({
   ApiController: {
     getPage: jest.fn(),
     getTotalPages: jest.fn(),

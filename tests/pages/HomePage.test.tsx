@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { HomePage } from ".";
+import { HomePage } from "../../src/pages/home";
 
 jest.mock("@components/SearchInput", () => ({
   SearchInput: () => <div data-testid="search-input">SearchInput</div>,

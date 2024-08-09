@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Error } from ".";
+import { Error } from "../../src/pages/Error";
 
 jest.mock("@pages/home/styled", () => ({
   Main: ({ children }: { children: React.ReactNode }) => (

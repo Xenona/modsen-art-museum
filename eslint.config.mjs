@@ -21,7 +21,7 @@ export default [
     "prettier",
   ),
   {
-    ignores: ['node_modules/*'],
+    ignores: ['node_modules/*', '**/*.test.*'],
   },
   {
     plugins: {
@@ -43,6 +43,7 @@ export default [
       "react/no-unescaped-entities": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "no-unused-vars": "off",
+      "@typescript-eslint/no-loss-of-precision": "off",
       "@typescript-eslint/no-unused-vars": [
         "error",
         {

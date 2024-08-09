@@ -1,6 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { FavouritesPage } from ".";
+import { FavouritesPage } from "../../src/pages/favourites";
 
 jest.mock("@components/FavGallery", () => ({
   FavGallery: () => <div data-testid="fav-gallery">FavGallery</div>,

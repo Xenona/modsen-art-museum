@@ -1,5 +1,9 @@
 import { render } from "@testing-library/react";
-import { convertToReactNode, SafeHtml, sanitizeHtml } from "./HtmlStripper";
+import {
+  convertToReactNode,
+  SafeHtml,
+  sanitizeHtml,
+} from "../../src/utils/HtmlStripper";
 
 describe("SafeHtml", () => {
   test("should render allowed tags", () => {

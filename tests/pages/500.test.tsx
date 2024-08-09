@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { ServerError } from ".";
+import { ServerError } from "../../src/pages/500";
 
 describe("ServerError", () => {
   it("renders correctly", () => {
