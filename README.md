@@ -104,3 +104,7 @@ This will also print coverage as a last thing to your console. Currently I have 
 ![Saved](readme/saved.png)
 ![Search](readme/search.png)
 ![Random](readme/random.png)
+
+### Search Debounce
+
+![Search Debounce](readme/search-debounce.gif)
