@@ -6,7 +6,7 @@ export const StyledDialog = styled.dialog`
   max-height: 80%;
   align-self: center;
   justify-self: center;
-  position: relative;
+  position: fixed;
   overflow: hidden;
 
   &::backdrop {
