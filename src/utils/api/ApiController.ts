@@ -4,11 +4,11 @@ import {
   SEARCH_ENDPOINT,
 } from "@constants/api";
 import { MAIN_PAGE_PAGINATION_LIMIT } from "@constants/pagination";
+import { Art } from "src/types/schema";
 
 import { FavStorage } from "../storage/FavStorage";
 import { ApiError } from "./ApiError";
 import {
-  Art,
   artAndPaginationSchema,
   artDataSchema,
   paginationDataSchema,
