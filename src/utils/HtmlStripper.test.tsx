@@ -82,7 +82,6 @@ describe("sanitizeHtml", () => {
       container.appendChild(sanitizedDom);
     }
 
-    console.log(container.innerHTML);
     expect(container.querySelector("div")).toBeNull();
     expect(container.querySelector("span")).toBeNull();
   });

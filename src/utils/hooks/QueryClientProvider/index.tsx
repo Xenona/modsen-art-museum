@@ -17,7 +17,6 @@ export function QueryClientProvider({
 }) {
   const [cache, _] = useState<Cache>({});
 
-  console.log(cache);
   return (
     <QueryClientContext.Provider
       value={{
