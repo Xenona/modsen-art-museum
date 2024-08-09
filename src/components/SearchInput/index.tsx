@@ -2,24 +2,19 @@ import { ErrorBoundary } from "@components/ErrorBoundary";
 import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
 import { MAX_CHARS_SEARCH_INPUT } from "@constants/ui";
 import { useDebounce } from "@utils/hooks/useDebounce";
+import { validateSearchQuery } from "@utils/validateSearchQuery";
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { SearchResults } from "./SearchResults";
 import { SearchContainer, SearchIcon, SearchInput as Input } from "./styled";
 
-const validateAndSetQuery = (query: string) => {
-  const sanitizedQuery = query.replace(/[<>]/g, "");
-  const trimmedQuery = sanitizedQuery.trimStart();
-  return trimmedQuery;
-};
-
 export function SearchInput() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(
-    validateAndSetQuery(searchParams.get("search") || ""),
+    validateSearchQuery(searchParams.get("search") || ""),
   );
-  const debouncedQuery = validateAndSetQuery(useDebounce(query));
+  const debouncedQuery = validateSearchQuery(useDebounce(query));
 
   useEffect(() => {
     if (debouncedQuery) {
