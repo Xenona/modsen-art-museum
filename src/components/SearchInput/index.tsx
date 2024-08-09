@@ -1,5 +1,6 @@
 import { ErrorBoundary } from "@components/ErrorBoundary";
 import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
+import { MAX_CHARS_SEARCH_INPUT } from "@constants/ui";
 import { useDebounce } from "@utils/hooks/useDebounce";
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -42,7 +43,7 @@ export function SearchInput() {
           type="text"
           placeholder="Search Art, Artist, Work..."
           onChange={handleInputChange}
-          maxLength={100}
+          maxLength={MAX_CHARS_SEARCH_INPUT}
           value={query}
         />
         <SearchIcon />

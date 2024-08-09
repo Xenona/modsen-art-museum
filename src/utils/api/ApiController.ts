@@ -1,4 +1,5 @@
 import { ARTWORKS_ENDPOINT } from "@constants/api";
+import { MAIN_PAGE_PAGINATION_LIMIT } from "@constants/pagination";
 
 import { FavStorage } from "../storage/FavStorage";
 import { ApiError } from "./ApiError";
@@ -13,7 +14,7 @@ import {
 export class ApiController {
   public static async getPage({
     page,
-    limit = 4,
+    limit = MAIN_PAGE_PAGINATION_LIMIT,
   }: {
     page: number;
     limit?: number;
@@ -32,7 +33,7 @@ export class ApiController {
   }
 
   public static async getTotalPages(
-    { limit }: { limit?: number } = { limit: 4 },
+    { limit }: { limit?: number } = { limit: MAIN_PAGE_PAGINATION_LIMIT },
   ): Promise<number | ApiError> {
     const response = await fetch(
       `${ARTWORKS_ENDPOINT}?fields=''&limit=${limit}`,
@@ -92,7 +93,7 @@ export class ApiController {
 
   public static async getSearch({
     q,
-    size = 4,
+    size = MAIN_PAGE_PAGINATION_LIMIT,
   }: {
     q: string;
     size?: number;
