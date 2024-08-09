@@ -16,10 +16,10 @@ export const Main = styled.main`
 export const StyledH1 = styled.h1`
   font-weight: 700;
   font-size: 64px;
-  color: var(--regular-text-color);
+  color: ${(props) => props.theme.colors.regularText};
   text-align: center;
 
   span {
-    color: var(--strong-accent-color);
+    color: ${(props) => props.theme.colors.strongAccent};
   }
 `;

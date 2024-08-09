@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Footer } from "../../src/components/Footer";
+import { ThemeProvider } from "styled-components";
+import { theme } from "@styles/theme";
 
 jest.mock("@components/Header/LinkedLogo", () => ({
   LinkedLogo: ({
@@ -20,7 +22,11 @@ jest.mock("@components/Header/LinkedLogo", () => ({
 
 describe("Footer", () => {
   it("renders LinkedLogo components with correct props", () => {
-    render(<Footer />);
+    render(
+      <ThemeProvider theme={theme}>
+        <Footer />
+      </ThemeProvider>,
+    );
 
     const museumLogoAltText =
       "Logo of the museum, depicts an Ancient Greek temple facade and words - Museum of Art";

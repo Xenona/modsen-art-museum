@@ -22,14 +22,15 @@ export const MainHorizontal = styled(Main)`
 
 export const Important = styled.p`
   font-size: 24px;
-  margin-bottom: 16px;
-  color: var(--weak-accent-color);
+  margin-bottom: ${(props) => props.theme.spacing.medium};
+  color: ${(props) => props.theme.colors.weakAccent};
 `;
 
 export const Key = styled.span`
   font-size: 16px;
-  color: var(--weak-accent-color);
+  color: ${(props) => props.theme.colors.weakAccent};
 `;
+
 export const Article = styled.article`
   display: flex;
   flex-direction: column;

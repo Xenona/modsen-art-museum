@@ -2,6 +2,8 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BookmarkButton } from "../../src/components/BookmarkButton";
 import { useFavStorageContext } from "@utils/hooks/FavStorageProvider";
+import { theme } from "@styles/theme";
+import { ThemeProvider } from "styled-components";
 
 jest.mock("@utils/hooks/FavStorageProvider", () => ({
   useFavStorageContext: jest.fn(),
@@ -27,7 +29,11 @@ describe("BookmarkButton", () => {
   it("renders with bookmark icon when not saved to favorites", () => {
     mockCheck.mockReturnValue(false);
 
-    render(<BookmarkButton id={1} />);
+    render(
+      <ThemeProvider theme={theme}>
+        <BookmarkButton id={1} />
+      </ThemeProvider>,
+    );
 
     expect(
       screen.getByAltText(
@@ -44,8 +50,11 @@ describe("BookmarkButton", () => {
   it("renders with filled bookmark icon when saved to favorites", () => {
     mockCheck.mockReturnValue(true);
 
-    render(<BookmarkButton id={1} />);
-
+    render(
+      <ThemeProvider theme={theme}>
+        <BookmarkButton id={1} />
+      </ThemeProvider>,
+    );
     expect(
       screen.getByAltText(
         "Filled bookmark icon meaning the work was marked as favourite",
@@ -61,10 +70,14 @@ describe("BookmarkButton", () => {
   it("handles profile prop correctly", () => {
     mockCheck.mockReturnValue(false);
 
-    const { container } = render(<BookmarkButton id={1} profile={true} />);
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <BookmarkButton id={1} profile={true} />
+      </ThemeProvider>,
+    );
 
     expect(container.querySelector("button")).toHaveClass(
-      "sc-braxZu sc-gJhJTp eKSLbX qTdSa",
+      "sc-braxZu sc-gJhJTp dMbdYc hSLfxx",
     );
   });
 });

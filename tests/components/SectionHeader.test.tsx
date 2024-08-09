@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { SectionHeader } from "@components/SectionHeader";
+import { ThemeProvider } from "styled-components";
+import { theme } from "@styles/theme";
 
 jest.mock("@components/SectionHeader/styles.ts", () => ({
   HeaderGroup: ({ children }: { children: React.ReactNode }) => (
@@ -16,7 +18,11 @@ describe("SectionHeader", () => {
     const topText = "Top Header";
     const bottomText = "Bottom Text";
 
-    render(<SectionHeader topText={topText} bottomText={bottomText} />);
+    render(
+      <ThemeProvider theme={theme}>
+        <SectionHeader topText={topText} bottomText={bottomText} />
+      </ThemeProvider>,
+    );
 
     expect(screen.getByRole("heading", { level: 4 })).toHaveTextContent(
       topText,
@@ -26,7 +32,11 @@ describe("SectionHeader", () => {
   });
 
   it("uses the correct components for styling", () => {
-    render(<SectionHeader topText="Test" bottomText="Test" />);
+    render(
+      <ThemeProvider theme={theme}>
+        <SectionHeader topText="Test" bottomText="Test" />
+      </ThemeProvider>,
+    );
 
     expect(screen.getByTestId("header-group")).toBeInTheDocument();
 

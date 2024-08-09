@@ -36,27 +36,27 @@ export const SelectorContainer = styled.div`
 
 export const SelectorParam = styled.p`
   width: 150px;
-  background-color: var(--hovered-button-color);
+  background-color: ${(props) => props.theme.colors.hoveredButton};
   text-align: center;
 `;
 
 export const SelectorButton = styled.button`
   height: 30px;
   width: 30px;
-  border-radius: 4px;
+  border-radius: ${(props) => props.theme.borderRadius};
   font-weight: 300;
   display: flex;
   justify-content: center;
   align-items: center;
 
   &.active {
-    background-color: var(--strong-accent-color);
+    background-color: ${(props) => props.theme.colors.strongAccent};
     font-weight: 600 !important;
-    color: var(--surface-color);
+    color: ${(props) => props.theme.colors.surface};
   }
 
   &.active:hover,
   &.active:active:hover {
-    background-color: var(--strong-accent-color);
+    background-color: ${(props) => props.theme.colors.strongAccent};
   }
 `;

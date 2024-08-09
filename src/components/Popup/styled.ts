@@ -40,7 +40,7 @@ export const CloseCross = styled(ButtonStyled)`
   height: 20px;
   display: flex;
   font-size: 30px;
-  color: var(--weak-accent-color);
+  color: ${(props) => props.theme.colors.weakAccent};
   justify-content: center;
   align-items: center;
 `;

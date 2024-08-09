@@ -1,6 +1,8 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { SpecialGallery } from "@components/SpecialGallery";
+import { theme } from "@styles/theme";
+import { ThemeProvider } from "styled-components";
 
 jest.mock("@components/SectionHeader", () => ({
   SectionHeader: ({
@@ -72,7 +74,11 @@ jest.mock("@components/Paginator", () => ({
 
 describe("SpecialGallery", () => {
   it("renders section header and other components", () => {
-    render(<SpecialGallery />);
+    render(
+      <ThemeProvider theme={theme}>
+        <SpecialGallery />
+      </ThemeProvider>,
+    );
 
     expect(screen.getByTestId("section-header")).toBeInTheDocument();
     expect(screen.getByText("Topics for you")).toBeInTheDocument();
@@ -80,7 +86,11 @@ describe("SpecialGallery", () => {
   });
 
   it("handles sorting functionality correctly", async () => {
-    render(<SpecialGallery />);
+    render(
+      <ThemeProvider theme={theme}>
+        <SpecialGallery />
+      </ThemeProvider>,
+    );
 
     expect(screen.getByText("Title (A-Z)")).toBeInTheDocument();
 
@@ -98,8 +108,11 @@ describe("SpecialGallery", () => {
   });
 
   it('updates the page number in Paginator when clicking "Next Page"', async () => {
-    render(<SpecialGallery />);
-
+    render(
+      <ThemeProvider theme={theme}>
+        <SpecialGallery />
+      </ThemeProvider>,
+    );
     expect(screen.getByTestId("paginator")).toHaveTextContent(
       "Current Page: 1",
     );
