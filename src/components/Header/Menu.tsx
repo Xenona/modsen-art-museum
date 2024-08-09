@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom";
-import homeIcon from "@assets/icons/home.svg";
 import bookmarkIcon from "@assets/icons/bookmark.svg";
-import { Nav } from "./styled";
+import homeIcon from "@assets/icons/home.svg";
 import { memo } from "react";
+import { NavLink } from "react-router-dom";
+
+import { Nav } from "./styled";
 
 const MemoizedHomeIcon = memo(function HomeIcon() {
   return <img src={homeIcon} aria-label="Navigate home" />;

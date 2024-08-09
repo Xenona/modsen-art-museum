@@ -1,4 +1,4 @@
-import { Error } from '@pages/Error';
+import { Error } from "@pages/Error";
 
 export function NotFound() {
   return (

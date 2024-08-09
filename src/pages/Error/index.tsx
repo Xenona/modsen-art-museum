@@ -1,4 +1,4 @@
-import { Main, StyledH1 } from '@pages/home/styled';
+import { Main, StyledH1 } from "@pages/home/styled";
 
 export function Error({ children }: { children: React.ReactNode }) {
   return (

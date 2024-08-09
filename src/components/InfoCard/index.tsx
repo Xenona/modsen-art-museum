@@ -1,10 +1,11 @@
 import { BookmarkButton } from "@components/BookmarkButton";
-import { Author, Card, Content, PublicDomain, Title } from "./styled";
-import { Link } from "react-router-dom";
-import { IMAGE_ENDPOINT } from "@constants/api";
-import { StubImage } from "@components/StubImage";
-import { Art } from "@utils/api/ApiSchema";
 import { SkeletonOrImage } from "@components/ImageOrSkeleton";
+import { StubImage } from "@components/StubImage";
+import { IMAGE_ENDPOINT } from "@constants/api";
+import { Art } from "@utils/api/ApiSchema";
+import { Link } from "react-router-dom";
+
+import { Author, Card, Content, PublicDomain, Title } from "./styled";
 
 export function InfoCard({
   data,

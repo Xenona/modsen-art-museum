@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import searchIcon from '@assets/icons/search.svg';
+import searchIcon from "@assets/icons/search.svg";
+import styled from "styled-components";
 
 export const SearchContainer = styled.label`
   width: 80%;
@@ -16,7 +16,7 @@ export const SearchInput = styled.input`
   background: none;
   border: none;
   font-size: 14px;
-  font-family: 'Inter';
+  font-family: "Inter";
   height: 100%;
   outline: none;
   flex: 1;
@@ -28,7 +28,7 @@ export const SearchInput = styled.input`
 
 export const SearchIcon = styled.img.attrs({
   src: searchIcon,
-  alt: 'Search icon',
+  alt: "Search icon",
 })`
   height: 32px;
   width: 32px;

@@ -1,8 +1,8 @@
-import { useFavStorageContext } from "@utils/hooks/FavStorageProvider";
 import { BottomText } from "@components/SectionHeader/styles";
 import { ShortGallery } from "@components/ShortGallery";
-import { useSuspenseQuery } from "@utils/hooks/useFetch";
 import { ApiController } from "@utils/api/ApiController";
+import { useFavStorageContext } from "@utils/hooks/FavStorageProvider";
+import { useSuspenseQuery } from "@utils/hooks/useFetch";
 export function FavGallery() {
   const favStorageContext = useFavStorageContext();
   const ids = favStorageContext.getAll();

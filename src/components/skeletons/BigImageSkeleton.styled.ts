@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { blinkAnimation } from "./ShortGallerySkeleton.styled";
 
 export const BigImageSkeleton = styled.div`

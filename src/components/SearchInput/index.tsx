@@ -1,11 +1,11 @@
-import { useSearchParams } from "react-router-dom";
-import { SearchContainer, SearchInput as Input, SearchIcon } from "./styled";
+import { ErrorBoundary } from "@components/ErrorBoundary";
+import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
 import { useDebounce } from "@utils/hooks/useDebounce";
 import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { SearchResults } from "./SearchResults";
-import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
-import { ErrorBoundary } from "@components/ErrorBoundary";
+import { SearchContainer, SearchIcon, SearchInput as Input } from "./styled";
 
 const validateAndSetQuery = (query: string) => {
   const sanitizedQuery = query.replace(/[<>]/g, "");

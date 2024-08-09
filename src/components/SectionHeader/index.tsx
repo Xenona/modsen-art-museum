@@ -1,4 +1,4 @@
-import { BottomText, HeaderGroup } from './styles';
+import { BottomText, HeaderGroup } from "./styles";
 
 export function SectionHeader({
   topText,

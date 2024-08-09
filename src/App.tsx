@@ -1,17 +1,18 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HomePage } from "@pages/home";
-import { FavouritesPage } from "@pages/favourites";
-import { ArtworkPage } from "@pages/artwork";
-import { NotFound } from "@pages/404";
-import { AppHeader } from "@components/Header";
-import { FavStorageProvider } from "@utils/hooks/FavStorageProvider";
-import { Footer } from "@components/Footer";
 import "@styles/globals.css";
-import { Suspense } from "react";
+
 import { ErrorBoundary } from "@components/ErrorBoundary";
+import { Footer } from "@components/Footer";
+import { AppHeader } from "@components/Header";
 import { ArtworkPageSkeleton } from "@components/skeletons/ArtworkPageSkeleton";
-import ScrollToTop from "@utils/ScrollToTop";
+import { NotFound } from "@pages/404";
+import { ArtworkPage } from "@pages/artwork";
+import { FavouritesPage } from "@pages/favourites";
+import { HomePage } from "@pages/home";
+import { FavStorageProvider } from "@utils/hooks/FavStorageProvider";
 import { QueryClientProvider } from "@utils/hooks/QueryClientProvider";
+import ScrollToTop from "@utils/ScrollToTop";
+import { Suspense } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (

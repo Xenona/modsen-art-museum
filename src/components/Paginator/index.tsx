@@ -1,14 +1,14 @@
+import arrowIcon from "@assets/icons/arrow.svg";
 import {
   SelectorButton,
   SelectorContainer,
 } from "@components/SpecialGallery/styled";
-import { useEffect, useState } from "react";
-import arrowIcon from "@assets/icons/arrow.svg";
-import { useSuspenseQuery } from "@utils/hooks/useFetch";
-import { useDebounce } from "@utils/hooks/useDebounce";
+import { ServerError } from "@pages/500";
 import { ApiController } from "@utils/api/ApiController";
 import { ApiError } from "@utils/api/ApiError";
-import { ServerError } from "@pages/500";
+import { useDebounce } from "@utils/hooks/useDebounce";
+import { useSuspenseQuery } from "@utils/hooks/useFetch";
+import { useEffect, useState } from "react";
 
 export function Paginator({
   currPage,

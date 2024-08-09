@@ -1,4 +1,7 @@
 import { ARTWORKS_ENDPOINT } from "@constants/api";
+
+import { FavStorage } from "../storage/FavStorage";
+import { ApiError } from "./ApiError";
 import {
   Art,
   artAndPaginationSchema,
@@ -6,8 +9,6 @@ import {
   paginationDataSchema,
   searchAndPaginationSchema,
 } from "./ApiSchema";
-import { ApiError } from "./ApiError";
-import { FavStorage } from "../storage/FavStorage";
 
 export class ApiController {
   public static async getPage({

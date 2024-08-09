@@ -1,11 +1,12 @@
-import { SearchInput } from "@components/SearchInput";
-import { SpecialGallery } from "@components/SpecialGallery";
-import { Main, SearchSection, StyledH1 } from "./styled";
-import { Suspense } from "react";
-import { RandomGallery } from "@components/RandomGallery";
 import { ErrorBoundary } from "@components/ErrorBoundary";
-import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
+import { RandomGallery } from "@components/RandomGallery";
+import { SearchInput } from "@components/SearchInput";
 import { SectionHeader } from "@components/SectionHeader";
+import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
+import { SpecialGallery } from "@components/SpecialGallery";
+import { Suspense } from "react";
+
+import { Main, SearchSection, StyledH1 } from "./styled";
 
 export function HomePage() {
   return (

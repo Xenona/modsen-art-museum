@@ -1,11 +1,12 @@
 import bookmarkIcom from "@assets/icons/bookmark_bright.svg";
-import { BigIcon } from "./styled";
-import { Main, StyledH1 } from "@pages/home/styled";
 import { ErrorBoundary } from "@components/ErrorBoundary";
-import { Suspense } from "react";
 import { FavGallery } from "@components/FavGallery";
 import { SectionHeader } from "@components/SectionHeader";
 import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
+import { Main, StyledH1 } from "@pages/home/styled";
+import { Suspense } from "react";
+
+import { BigIcon } from "./styled";
 
 export function FavouritesPage() {
   return (

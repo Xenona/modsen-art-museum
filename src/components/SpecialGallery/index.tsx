@@ -1,13 +1,14 @@
-import { SectionHeader } from "@components/SectionHeader";
-import { Suspense, useState } from "react";
 import arrowIcon from "@assets/icons/arrow.svg";
-import { SelectorButton, SelectorContainer, SelectorParam } from "./styled";
-import { ArtworkContainer, sortingInfo } from "./ArtworkContainer";
 import { ErrorBoundary } from "@components/ErrorBoundary";
-import { useDebounce } from "@utils/hooks/useDebounce";
 import { Paginator } from "@components/Paginator";
+import { SectionHeader } from "@components/SectionHeader";
 import { PaginatorSkeleton } from "@components/skeletons/PaginatorSkeleton";
 import { SpecialGallerySkeleton } from "@components/skeletons/SpecialGallerySkeleton";
+import { useDebounce } from "@utils/hooks/useDebounce";
+import { Suspense, useState } from "react";
+
+import { ArtworkContainer, sortingInfo } from "./ArtworkContainer";
+import { SelectorButton, SelectorContainer, SelectorParam } from "./styled";
 
 export function SpecialGallery() {
   const [currPage, setCurrPage] = useState<number>(1);

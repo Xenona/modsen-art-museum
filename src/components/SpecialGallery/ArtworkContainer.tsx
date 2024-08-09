@@ -1,15 +1,16 @@
-import { IMAGE_ENDPOINT } from "@constants/api";
-import { ArtworkCard, ImageFigure, Text } from "./ArtworkCard.styled";
-import { InfoCard } from "@components/InfoCard";
-import { useSuspenseQuery } from "@utils/hooks/useFetch";
-import { ApiController } from "@utils/api/ApiController";
-import { ArtworkContainer as Container } from "./styled";
-import { StubImage } from "@components/StubImage";
-import { Art } from "@utils/api/ApiSchema";
-import { ApiError } from "@utils/api/ApiError";
-import { ServerError } from "@pages/500";
 import { SkeletonOrImage } from "@components/ImageOrSkeleton";
+import { InfoCard } from "@components/InfoCard";
+import { StubImage } from "@components/StubImage";
+import { IMAGE_ENDPOINT } from "@constants/api";
+import { ServerError } from "@pages/500";
+import { ApiController } from "@utils/api/ApiController";
+import { ApiError } from "@utils/api/ApiError";
+import { Art } from "@utils/api/ApiSchema";
+import { useSuspenseQuery } from "@utils/hooks/useFetch";
 import { Link } from "react-router-dom";
+
+import { ArtworkCard, ImageFigure, Text } from "./ArtworkCard.styled";
+import { ArtworkContainer as Container } from "./styled";
 
 const getValidDate = (art: Art): number | null => {
   const startDate = art.date_start ? new Date(art.date_start).getTime() : null;

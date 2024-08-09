@@ -1,7 +1,9 @@
 import menu from "@assets/icons/menu.svg";
-import { useState } from "react";
-import { Menu } from "./Menu";
 import museumLogo from "@assets/logos/museum_logo.svg";
+import { useState } from "react";
+
+import { LinkedLogo } from "./LinkedLogo";
+import { Menu } from "./Menu";
 import {
   DesktopMenu,
   Header,
@@ -10,7 +12,6 @@ import {
   Overlay,
   TopLine,
 } from "./styled";
-import { LinkedLogo } from "./LinkedLogo";
 export function AppHeader() {
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
 

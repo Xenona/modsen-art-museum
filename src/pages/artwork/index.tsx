@@ -1,5 +1,14 @@
 import { BookmarkButton } from "@components/BookmarkButton";
+import { SkeletonOrImage } from "@components/ImageOrSkeleton";
+import { ImageFigure } from "@components/SpecialGallery/ArtworkCard.styled";
+import { StubImage } from "@components/StubImage";
+import { IMAGE_ENDPOINT } from "@constants/api";
+import { ApiController } from "@utils/api/ApiController";
+import { ApiError } from "@utils/api/ApiError";
+import { useSuspenseQuery } from "@utils/hooks/useFetch";
+import { SafeHtml } from "@utils/HtmlStripper";
 import { Link, Navigate, useLocation, useParams } from "react-router-dom";
+
 import {
   Article,
   ArticleTitle,
@@ -9,14 +18,6 @@ import {
   ListItem,
   MainHorizontal,
 } from "./styled";
-import { IMAGE_ENDPOINT } from "@constants/api";
-import { ImageFigure } from "@components/SpecialGallery/ArtworkCard.styled";
-import { StubImage } from "@components/StubImage";
-import { ApiController } from "@utils/api/ApiController";
-import { useSuspenseQuery } from "@utils/hooks/useFetch";
-import { ApiError } from "@utils/api/ApiError";
-import { SkeletonOrImage } from "@components/ImageOrSkeleton";
-import { SafeHtml } from "@utils/HtmlStripper";
 export function ArtworkPage() {
   const { id } = useParams();
   const { state } = useLocation();

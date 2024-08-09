@@ -1,8 +1,8 @@
 import { ShortGallery } from "@components/ShortGallery";
 import { ServerError } from "@pages/500";
-import { useSuspenseQuery } from "@utils/hooks/useFetch";
 import { ApiController } from "@utils/api/ApiController";
 import { ApiError } from "@utils/api/ApiError";
+import { useSuspenseQuery } from "@utils/hooks/useFetch";
 
 export function RandomGallery() {
   const maxPage = useSuspenseQuery({
