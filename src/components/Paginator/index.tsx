@@ -3,6 +3,7 @@ import {
   SelectorButton,
   SelectorContainer,
 } from "@components/SpecialGallery/styled";
+import { MAX_VISIBLE_BUTTONS } from "@constants/ui";
 import { ServerError } from "@pages/500";
 import { ApiController } from "@utils/api/ApiController";
 import { ApiError } from "@utils/api/ApiError";
@@ -31,13 +32,11 @@ export function Paginator({
   }, [newMaxPage]);
 
   const getVisiblePageNumbers = () => {
-    const maxVisibleButtons = 4;
+    let start = Math.max(currPage - Math.floor(MAX_VISIBLE_BUTTONS / 2), 1);
+    const end = Math.min(start + MAX_VISIBLE_BUTTONS - 1, maxPage);
 
-    let start = Math.max(currPage - Math.floor(maxVisibleButtons / 2), 1);
-    const end = Math.min(start + maxVisibleButtons - 1, maxPage);
-
-    if (end - start + 1 < maxVisibleButtons) {
-      start = Math.max(end - maxVisibleButtons + 1, 1);
+    if (end - start + 1 < MAX_VISIBLE_BUTTONS) {
+      start = Math.max(end - MAX_VISIBLE_BUTTONS + 1, 1);
     }
 
     const pages = [];
