@@ -31,7 +31,6 @@ export function ArtworkPage() {
     artwork = useSuspenseQuery({
       queryKey: ["artwork", artId],
       queryFn: () => ApiController.getArtwork(artId),
-      // initialData: state ?? undefined,
     });
   } else {
     artwork = state;

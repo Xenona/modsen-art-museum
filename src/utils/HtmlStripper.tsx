@@ -1,48 +1,53 @@
-function sanitize(doc: Element) {
-  const allowedTags = ["p", "i"];
+import React from "react";
 
-  for (const child of doc.children) {
-    if (!allowedTags.includes(child.tagName.toLowerCase())) {
-      child.replaceWith(document.createTextNode(child.textContent ?? ""));
-    } else {
-      sanitize(child);
+export const sanitizeHtml = (htmlString: string): HTMLElement | null => {
+  const allowedTags = ["P", "I"];
+
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = htmlString;
+
+  const filterElement = (element: Node) => {
+    if (element.nodeType === Node.ELEMENT_NODE) {
+      const el = element as HTMLElement;
+      if (!allowedTags.includes(el.nodeName)) {
+        el.parentNode?.removeChild(el);
+      } else {
+        Array.from(el.childNodes).forEach(filterElement);
+      }
     }
+  };
+
+  Array.from(tempDiv.childNodes).forEach(filterElement);
+
+  return tempDiv.childNodes.length > 0 ? tempDiv : null;
+};
+
+export const convertToReactNode = (domNode: Node): React.ReactNode => {
+  if (domNode.nodeType === Node.TEXT_NODE) {
+    return (domNode as Text).textContent || "";
   }
-}
 
-function transformToReact(node: ChildNode) {
-  if (node.nodeType === Node.TEXT_NODE) {
-    return node.textContent;
-  }
+  if (domNode.nodeType === Node.ELEMENT_NODE) {
+    const el = domNode as HTMLElement;
+    const { nodeName } = el;
+    const children = Array.from(el.childNodes).map(convertToReactNode);
 
-  if (node.nodeType === Node.ELEMENT_NODE) {
-    const element = node as Element;
-    const tagName = element.tagName.toLowerCase();
-
-    const children = Array.from(element.childNodes).map((node) =>
-      transformToReact(node),
-    );
-
-    if (tagName === "p") {
-      return <p key={element.textContent}>{children}</p>;
-    }
-
-    if (tagName === "i") {
-      return <i key={element.textContent}>{children}</i>;
+    switch (nodeName) {
+      case "P":
+        return <p key={Math.random()}>{children}</p>;
+      case "I":
+        return <i key={Math.random()}>{children}</i>;
+      default:
+        return null;
     }
   }
 
   return null;
-}
+};
 
-export function SafeHtml(htmlString: string) {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlString, "text/html");
-  sanitize(doc.body);
+export const SafeHtml = (htmlString: string): React.ReactNode => {
+  const sanitizedDom = sanitizeHtml(htmlString);
+  if (!sanitizedDom) return null;
 
-  const reactElements = Array.from(doc.body.childNodes).map((node) =>
-    transformToReact(node),
-  );
-
-  return <>{reactElements}</>;
-}
+  return Array.from(sanitizedDom.childNodes).map(convertToReactNode);
+};
