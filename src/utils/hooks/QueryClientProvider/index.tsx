@@ -1,10 +1,5 @@
 import { createContext, useContext, useState } from "react";
-
-type Cache = { [key: string]: () => unknown };
-
-interface IQueryClientContext {
-  cache: Cache;
-}
+import { Cache, IQueryClientContext } from "src/types/query";
 
 const QueryClientContext = createContext<IQueryClientContext>({
   cache: {},

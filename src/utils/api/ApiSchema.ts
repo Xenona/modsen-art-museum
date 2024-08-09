@@ -44,5 +44,3 @@ export const searchDataSchema = z.object({
 
 export const searchAndPaginationSchema =
   paginationDataSchema.merge(searchDataSchema);
-
-export type Art = z.infer<typeof artSchema>;

@@ -2,8 +2,8 @@ import { BookmarkButton } from "@components/BookmarkButton";
 import { SkeletonOrImage } from "@components/ImageOrSkeleton";
 import { StubImage } from "@components/StubImage";
 import { IMAGE_ENDPOINT } from "@constants/api";
-import { Art } from "@utils/api/ApiSchema";
 import { Link } from "react-router-dom";
+import { Art } from "src/types/schema";
 
 import { Author, Card, Content, PublicDomain, Title } from "./styled";
 

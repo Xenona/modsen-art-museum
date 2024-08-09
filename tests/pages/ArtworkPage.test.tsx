@@ -1,11 +1,11 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { ArtworkPage } from "../../src/pages/artwork";
-import { Art } from "@utils/api/ApiSchema";
 import { FavStorageProvider } from "@utils/hooks/FavStorageProvider";
 import { ApiError } from "@utils/api/ApiError";
 import { ThemeProvider } from "styled-components";
 import { theme } from "@styles/theme";
+import { Art } from "src/types/schema";
 
 jest.mock("@utils/api/ApiController", () => ({
   ApiController: {
