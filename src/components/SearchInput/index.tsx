@@ -2,7 +2,7 @@ import { ErrorBoundary } from "@components/ErrorBoundary";
 import { ShortGallerySkeleton } from "@components/skeletons/ShortGallerySkeleton";
 import { MAX_CHARS_SEARCH_INPUT } from "@constants/ui";
 import { useDebounce } from "@utils/hooks/useDebounce";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { SearchResults } from "./SearchResults";
@@ -30,10 +30,13 @@ export function SearchInput() {
     setSearchParams(searchParams);
   }, [debouncedQuery]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newQuery = validateAndSetQuery(e.target.value);
-    setQuery(newQuery);
-  };
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newQuery = validateSearchQuery(e.target.value);
+      setQuery(newQuery);
+    },
+    [setQuery],
+  );
 
   return (
     <>
