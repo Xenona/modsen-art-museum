@@ -13,7 +13,7 @@ import { IMAGE_ENDPOINT } from "@constants/api";
 import { ImageFigure } from "@components/SpecialGallery/ArtworkCard.styled";
 import { StubImage } from "@components/StubImage";
 import { ApiController } from "@utils/api/ApiController";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@utils/hooks/useFetch";
 import { ApiError } from "@utils/api/ApiError";
 import { SkeletonOrImage } from "@components/ImageOrSkeleton";
 import { SafeHtml } from "@utils/HtmlStripper";
@@ -26,13 +26,16 @@ export function ArtworkPage() {
     return <Navigate to="/404" replace />;
   }
 
-  const { data: artwork, error } = useSuspenseQuery({
-    queryKey: ["artwork", artId],
-    queryFn: () => ApiController.getArtwork(artId),
-    initialData: state ?? undefined,
-  });
-
-  if (error) throw error;
+  let artwork;
+  if (!state) {
+    artwork = useSuspenseQuery({
+      queryKey: ["artwork", artId],
+      queryFn: () => ApiController.getArtwork(artId),
+      // initialData: state ?? undefined,
+    });
+  } else {
+    artwork = state;
+  }
 
   if (artwork instanceof ApiError) {
     return (

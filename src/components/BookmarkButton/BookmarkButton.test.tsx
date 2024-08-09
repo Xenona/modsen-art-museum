@@ -1,9 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BookmarkButton } from ".";
-import { useFavStorageContext } from "@components/FavStorageProvider";
+import { useFavStorageContext } from "@utils/hooks/FavStorageProvider";
 
-// Mock the favStorageContext
 jest.mock("@components/FavStorageProvider", () => ({
   useFavStorageContext: jest.fn(),
 }));

@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { ArtworkPage } from ".";
 import { Art } from "@utils/api/ApiSchema.ts";
-import { FavStorageProvider } from "@components/FavStorageProvider/index.tsx";
+import { FavStorageProvider } from "@utils/hooks/FavStorageProvider";
 import { ApiError } from "@utils/api/ApiError.ts";
 
 jest.mock("@utils/api/ApiController", () => ({

@@ -1,18 +1,16 @@
-import { useFavStorageContext } from "@components/FavStorageProvider";
+import { useFavStorageContext } from "@utils/hooks/FavStorageProvider";
 import { BottomText } from "@components/SectionHeader/styles";
 import { ShortGallery } from "@components/ShortGallery";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@utils/hooks/useFetch";
 import { ApiController } from "@utils/api/ApiController";
 export function FavGallery() {
   const favStorageContext = useFavStorageContext();
   const ids = favStorageContext.getAll();
 
-  const { data: artworks, error } = useSuspenseQuery({
+  const artworks = useSuspenseQuery({
     queryKey: ["fav", ids],
     queryFn: () => ApiController.getArtworks(ids),
   });
-
-  if (error) throw error;
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { IMAGE_ENDPOINT } from "@constants/api";
 import { ArtworkCard, ImageFigure, Text } from "./ArtworkCard.styled";
 import { InfoCard } from "@components/InfoCard";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@utils/hooks/useFetch";
 import { ApiController } from "@utils/api/ApiController";
 import { ArtworkContainer as Container } from "./styled";
 import { StubImage } from "@components/StubImage";
@@ -68,13 +68,12 @@ export function ArtworkContainer({
   page: number;
   sortingId: number;
 }) {
-  const { data: artworks, error } = useSuspenseQuery({
+  const artworks = useSuspenseQuery({
     queryKey: ["page", page],
     queryFn: () => ApiController.getPage({ page }),
   });
 
   if (artworks instanceof ApiError) return <ServerError />;
-  if (error) throw error;
 
   artworks.sort(sortingInfo[sortingId].cb);
 

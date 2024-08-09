@@ -1,6 +1,6 @@
 import bookmarkIcon from "@assets/icons/bookmark.svg";
 import bookmarkFilledIcon from "@assets/icons/bookmark_filled.svg";
-import { useFavStorageContext } from "@components/FavStorageProvider";
+import { useFavStorageContext } from "@utils/hooks/FavStorageProvider";
 import { useState } from "react";
 import { ButtonIcon, BookmarkButtonStyled } from "./styled";
 

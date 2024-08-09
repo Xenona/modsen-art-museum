@@ -4,42 +4,19 @@ import { FavouritesPage } from "@pages/favourites";
 import { ArtworkPage } from "@pages/artwork";
 import { NotFound } from "@pages/404";
 import { AppHeader } from "@components/Header";
-import { FavStorageProvider } from "@components/FavStorageProvider";
+import { FavStorageProvider } from "@utils/hooks/FavStorageProvider";
 import { Footer } from "@components/Footer";
 import "@styles/globals.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Suspense } from "react";
 import { ErrorBoundary } from "@components/ErrorBoundary";
 import { ArtworkPageSkeleton } from "@components/skeletons/ArtworkPageSkeleton";
 import ScrollToTop from "@utils/ScrollToTop";
-import { useQuery } from "@utils/hooks/useFetch";
-import { ApiController } from "@utils/api/ApiController";
-
-
-function LazyComponent() {
-  const data = useQuery({
-    queryKey: ['data'],
-    queryFn: () => ApiController.getTotalPages(),
-  })
-
-  // @ts-ignore
-  return <div>{JSON.stringify(data)}</div>;
-}
-
+import { QueryClientProvider } from "@utils/hooks/QueryClientProvider";
 
 function App() {
   return (
-    <ErrorBoundary>
-      <Suspense fallback={<p>Loading...........</p>}>
-      <LazyComponent/>
-      </Suspense>
-    </ErrorBoundary>
-  );
-
-  const queryClient = new QueryClient();
-  return (
     <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
+      <QueryClientProvider>
         <FavStorageProvider>
           <AppHeader />
           <Routes>
