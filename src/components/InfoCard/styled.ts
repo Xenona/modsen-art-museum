@@ -26,7 +26,6 @@ export const Thumbnail = styled.img`
 `;
 
 export const Content = styled.div`
-  position: relative;
   max-width: 100%;
   overflow: hidden;
   min-width: 100%;

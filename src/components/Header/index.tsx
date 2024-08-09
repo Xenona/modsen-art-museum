@@ -7,6 +7,7 @@ import {
   Header,
   MobileMenu,
   MobileMenuButton,
+  Overlay,
   TopLine,
 } from "./styled";
 import { LinkedLogo } from "./LinkedLogo";
@@ -35,9 +36,12 @@ export function AppHeader() {
       )}
 
       {isMenuOpened && (
-        <MobileMenu>
-          <Menu />
-        </MobileMenu>
+        <>
+          <MobileMenu>
+            <Menu />
+          </MobileMenu>
+          <Overlay onClick={() => setIsMenuOpened(false)} />
+        </>
       )}
     </Header>
   );

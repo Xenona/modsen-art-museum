@@ -1,4 +1,13 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+`;
 
 export const Header = styled.header`
   margin: 0;
@@ -6,6 +15,7 @@ export const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 32px 8%;
+
   background: linear-gradient(
     90deg,
     rgba(52, 51, 51, 1) 17%,
@@ -43,6 +53,8 @@ export const TopLine = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  position: relative;
+  z-index: 1;
 `;
 
 export const DesktopMenu = styled.div`
@@ -55,6 +67,8 @@ export const DesktopMenu = styled.div`
 
 export const MobileMenu = styled.div`
   display: none;
+  position: relative;
+  z-index: 1;
 
   @media screen and (max-width: 720px) {
     display: block;
@@ -73,7 +87,7 @@ export const Nav = styled.nav`
   }
 
   li {
-    font-family: 'Inter';
+    font-family: "Inter";
 
     a {
       color: var(--surface-color);
